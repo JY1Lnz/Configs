@@ -54,6 +54,7 @@ return {
       "nvim-lua/plenary.nvim",
       "BurntSushi/ripgrep",
       "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope-live-grep-args.nvim",
     },
     config = function()
       require("configs/telescope")
@@ -61,7 +62,8 @@ return {
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build" },
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+  },
   {
     "MattesGroeger/vim-bookmarks",
     config = function()
@@ -72,4 +74,11 @@ return {
     config = function()
     end
   },
+  -- git
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("configs/gitsigns")
+    end
+  }
 }

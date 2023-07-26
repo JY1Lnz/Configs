@@ -49,7 +49,7 @@ M.setup = function()
   map("n", "<C-w>", ":bdelete<CR>", opt)
 
 -- telescope
-  map("n", "<C-p>", ":Telescope find_files", opt)
+  map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 
 end
 
@@ -69,10 +69,21 @@ M.normal = {
     f = {
       name = "find",
       f = { "<cmd>Telescope find_files<CR>", "find files" },
-      g = { "<cmd>Telescope live_grep<CR>", "live_grep" },
+      w = {
+        function()
+          require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
+        "live_grep" },
       b = { "<cmd>Telescope buffers<CR>", "find buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "help tags" },
     },
+  },
+  m = {
+    -- bookmark
+    m = { "<cmd>BookmarkToggle<CR>", "bookmark" },
+    i = { "<cmd>BookmarkAnnotate<CR>", "bookmark annotation" },
+    a = { "<cmd>Telescope vim_bookmarks current_file<CR>", "show current file bookmarks" },
+    A = { "<cmd>Telescope vim_bookmarks all<CR>", "show all bookmarks" },
   }
 }
 
@@ -100,11 +111,15 @@ M.telescope = {
   i = {
     ["<C-n>"] = "cycle_history_next",
     ["<C-p>"] = "cycle_history_prev",
-
     ["<C-k>"] = "preview_scrolling_up",
-    ["<C-d>"] = "preview_scrolling_down",
+    ["<C-j>"] = "preview_scrolling_down",
   },
   n = {
+    ["<C-n>"] = "cycle_history_next",
+    ["<C-p>"] = "cycle_history_prev",
+    ["<C-k>"] = "preview_scrolling_up",
+    ["<C-j>"] = "preview_scrolling_down",
+
     ["<Esc>"] = "close",
     ["?"] = "which_key",
   },

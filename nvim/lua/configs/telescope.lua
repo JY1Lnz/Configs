@@ -7,12 +7,20 @@ telescope.setup({
     initial_mode = "insert",
     -- keymap
     mappings = keymap,
+
+    layout_strategy = 'horizontal',
+    layout_config = { height = 0.9 , width = 0.9, preview_width = 0.6 },
+
   },
   pickers = {
     find_files = {
       theme = "dropdown",
       previewer = false,
+      find_command = { "fdfind" },
+      layout_config = { width = 0.7 },
     },
+    live_grep = {
+    }
   },
   extensions = {
     fzf = {
@@ -26,3 +34,4 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 telescope.load_extension("vim_bookmarks")
+telescope.load_extension("live_grep_args")
