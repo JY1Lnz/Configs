@@ -50,12 +50,15 @@ M.setup = function()
 
 -- telescope
   map("n", "<C-p>", ":Telescope find_files<CR>", opt)
+-- lsp
+  map("n", "<A-.>", ":Lspsaga code_action<CR>", opt)
 
 end
 
 -- this is use for which key
 M.normal = {
   ["<leader>"] = {
+    k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
     s = {
       name = "window control",
       v = {"<cmd>vsp<CR>", "vertical split"},
@@ -76,6 +79,7 @@ M.normal = {
         "live_grep" },
       b = { "<cmd>Telescope buffers<CR>", "find buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "help tags" },
+      o = { "<cmd>AerialToggle<CR>", "find outline" },
     },
     -- gitsigns & diffview
     g = {
@@ -90,14 +94,37 @@ M.normal = {
       l = { "<cmd>lua require 'gitsigns'.blame_line()<CR>", "git blame" },
       b = { "<cmd>Telescope git_branches<CR>", "git branch" },
       s = { "<cmd>Telescope git_status<CR>", "git status" },
+    },
+    -- debug,
+    D = {
+      name = "debug",
+      d = { "<cmd>Trouble document_diagnostics<CR>", "file diagnostics" },
+      w = { "<cmd>Trouble document_diagnostics<CR>", "workspace diagnostics" },
     }
   },
   m = {
     -- bookmark
+    name = "book mark",
     m = { "<cmd>BookmarkToggle<CR>", "bookmark" },
     i = { "<cmd>BookmarkAnnotate<CR>", "bookmark annotation" },
     a = { "<cmd>Telescope vim_bookmarks current_file<CR>", "show current file bookmarks" },
     A = { "<cmd>Telescope vim_bookmarks all<CR>", "show all bookmarks" },
+  },
+  g = {
+    -- goto lsp
+    name = "goto",
+    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
+    D = { "<cmd>Lspsaga peek_definition<CR>", "peek definition" },
+    r = { "<cmd>Lspsaga finder<CR>", "find ref" },
+    s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diag" },
+  },
+  ["["] = { 
+    -- d = { "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "prev diag"},
+    d = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "prev diag"},
+  },
+  ["]"] = {
+    -- d = { "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "next diag"},
+    d = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "next diag"},
   }
 }
 

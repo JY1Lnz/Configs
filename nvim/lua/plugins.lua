@@ -145,6 +145,17 @@ return {
       -- require("lsp/lsp-signature")
     end
   },
+  {
+    "nvimdev/lspsaga.nvim",
+    event = "LspAttach",
+    config = function ()
+      require("lsp/lspsaga")
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    }
+  },
   -- cmp
   {
     "hrsh7th/nvim-cmp",
@@ -158,4 +169,79 @@ return {
   { "hrsh7th/cmp-cmdline" },
   { "L3MON4D3/LuaSnip" },
   { "saadparwaiz1/cmp_luasnip" },
+
+  -- 
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function ()
+      require("indent_blankline").setup({
+        char = "|",
+        space_char_blankline = " ",
+        show_trailing_blankline_indent = false,
+        show_first_indent_level = true,
+        use_treesitter = true,
+        show_current_context = true,
+      })
+    end
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+    }
+  },
+  -- highlight
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = function ()
+      require("configs/nvim-treesitter")
+    end
+  },
+  -- outline
+  {
+    "stevearc/aerial.nvim",
+    opts = {},
+    dependencies = {
+     "nvim-treesitter/nvim-treesitter",
+     "nvim-tree/nvim-web-devicons"
+    },
+    config = function ()
+      require("configs/aerial")
+    end
+  },
+  -- auto save&load
+  {
+    "Pocco81/auto-save.nvim",
+    config = function ()
+      require("auto-save").setup({
+        enable = true,
+        -- execution_message = "",
+        event = {"InsertLeave", "TextChanged"},
+        conditions = {
+          exists = true,
+          filename_is_not = {"plugins.lua"},
+          filetype_is_not = {},
+          modifiable = true,
+        },
+        write_all_buffers = false,
+        on_off_commands = true,
+        clean_command_line_interval = 0,
+        debounce_delay = 135,
+      })
+    end
+  },
+  { "djoshea/vim-autoread" },
+  --debug
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    config = function ()
+      require("configs/trouble")
+    end
+  },
 }
