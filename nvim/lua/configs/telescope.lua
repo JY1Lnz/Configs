@@ -9,7 +9,7 @@ telescope.setup({
     mappings = keymap,
 
     layout_strategy = 'horizontal',
-    layout_config = { height = 0.9 , width = 0.9, preview_width = 0.6 },
+    layout_config = { height = 0.9 , width = 0.9 },
 
   },
   pickers = {
@@ -20,7 +20,8 @@ telescope.setup({
       layout_config = { width = 0.7 },
     },
     live_grep = {
-    }
+      layout_config = { preview_width = 0.6 },
+    },
   },
   extensions = {
     fzf = {
@@ -35,3 +36,4 @@ telescope.setup({
 telescope.load_extension("fzf")
 telescope.load_extension("vim_bookmarks")
 telescope.load_extension("live_grep_args")
+-- telescope.load_extension("projects")

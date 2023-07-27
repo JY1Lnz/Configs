@@ -15,3 +15,4 @@ bufferline.setup({
     end
   }
 })
+

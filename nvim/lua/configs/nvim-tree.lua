@@ -30,6 +30,11 @@ nt.setup({
       quit_on_open = true,
     }
   },
+  update_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+  }
 })
 
 vim.cmd([[

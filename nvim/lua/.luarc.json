@@ -1,0 +1,21 @@
+{
+    "workspace.library": [
+        "/home/jyl/.config/nvim",
+        "/home/jyl/.local/share/nvim/lazy/lazy.nvim",
+        "/home/jyl/.local/share/nvim/lazy/nvim-lspconfig",
+        "/home/jyl/.local/share/nvim/lazy/gitsigns.nvim",
+        "/home/jyl/.local/share/nvim/lazy/nvim-tree.lua",
+        "/home/jyl/.local/share/nvim/lazy/onedark.nvim",
+        "/home/jyl/.local/share/nvim/lazy/telescope-vim-bookmarks.nvim",
+        "/home/jyl/.local/share/nvim/lazy/nvim-web-devicons",
+        "/home/jyl/.local/share/nvim/lazy/bufferline.nvim",
+        "/home/jyl/.local/share/nvim/lazy/tokyonight.nvim",
+        "/home/jyl/.local/share/nvim/lazy/diffview.nvim",
+        "/home/jyl/.local/share/nvim/lazy/which-key.nvim",
+        "/home/jyl/download/nvim-linux64/share/nvim/runtime",
+        "/home/jyl/download/nvim-linux64/lib/nvim",
+        "/home/jyl/.local/state/nvim/lazy/readme",
+        "${3rd}/luassert/library",
+        "${3rd}/luv/library"
+    ]
+}
