@@ -77,6 +77,20 @@ M.normal = {
       b = { "<cmd>Telescope buffers<CR>", "find buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "help tags" },
     },
+    -- gitsigns & diffview
+    g = {
+      name = "git",
+      P = { "<cmd>DiffviewOpen<CR>", "diff project" },
+      C = { "<cmd>DiffviewClose<CR>", "close diff project" },
+      F = { "<cmd>DiffviewFileHistory<CR>", "file history" },
+      j = { "<cmd>lua require 'gitsigns'.next_hunk()<CR>", "next hunk" },
+      k = { "<cmd>lua require 'gitsigns'.prev_hunk()<CR>", "prev hunk" },
+      p = { "<cmd>lua require 'gitsigns'.preview_hunk()<CR>", "preview hunk" },
+      d = { "<cmd>Gitsigns diffthis<CR>", "git diff" },
+      l = { "<cmd>lua require 'gitsigns'.blame_line()<CR>", "git blame" },
+      b = { "<cmd>Telescope git_branches<CR>", "git branch" },
+      s = { "<cmd>Telescope git_status<CR>", "git status" },
+    }
   },
   m = {
     -- bookmark

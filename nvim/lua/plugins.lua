@@ -80,5 +80,11 @@ return {
     config = function()
       require("configs/gitsigns")
     end
+  },
+  {
+    "sindrets/diffview.nvim",
+    config = function()
+      require("configs/diffview")
+    end
   }
 }
