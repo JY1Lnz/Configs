@@ -125,14 +125,14 @@ M.telescope = {
   i = {
     ["<C-n>"] = "cycle_history_next",
     ["<C-p>"] = "cycle_history_prev",
-    ["<C-k>"] = "preview_scrolling_up",
-    ["<C-j>"] = "preview_scrolling_down",
+    -- ["<C-k>"] = "preview_scrolling_up",
+    -- ["<C-j>"] = "preview_scrolling_down",
   },
   n = {
     ["<C-n>"] = "cycle_history_next",
     ["<C-p>"] = "cycle_history_prev",
-    ["<C-k>"] = "preview_scrolling_up",
-    ["<C-j>"] = "preview_scrolling_down",
+    -- ["<C-k>"] = "preview_scrolling_up",
+    -- ["<C-j>"] = "preview_scrolling_down",
 
     ["<Esc>"] = "close",
     ["?"] = "which_key",

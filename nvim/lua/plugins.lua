@@ -142,18 +142,20 @@ return {
     event = "VeryLazy",
     "ray-x/lsp_signature.nvim",
     config = function()
-      require("lsp/lsp-signature")
+      -- require("lsp/lsp-signature")
     end
   },
   -- cmp
   {
     "hrsh7th/nvim-cmp",
     config = function()
-      return "cmp/nvim-cmp"
+      require("cmp/nvim-cmp")
     end,
   },
   { "hrsh7th/cmp-nvim-lsp" },
-  -- { "hrsh7th/cmp-buffer" },
-  -- { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
+  { "L3MON4D3/LuaSnip" },
+  { "saadparwaiz1/cmp_luasnip" },
 }
