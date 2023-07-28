@@ -19,6 +19,8 @@ M.setup = function()
   local map = vim.api.nvim_set_keymap
   local opt = { noremap = true, silent = true }
 
+  map("i", "jj", "<Esc>", opt)
+
   map("n", "<Esc>", ":noh<CR>", opt)
 
   map("n", "<A-h>", "<C-w>h", opt)
@@ -54,12 +56,16 @@ M.setup = function()
   map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 -- lsp
   map("n", "<A-.>", ":Lspsaga code_action<CR>", opt)
+-- terminal
+  map("t", "<Esc>", "<C-\\><C-n>", opt)
+  map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
 
 end
 
 -- this is use for which key
 M.normal = {
   ["<leader>"] = {
+    ["<space>"] = { "<cmd>Telescope buffers<CR>", "buffer" },
     ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "toggle comment" },
     k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
     c = {
@@ -81,13 +87,17 @@ M.normal = {
       f = { "<cmd>Telescope find_files<CR>", "find files" },
       w = {
         function()
-          require("telescope").extensions.live_grep_args.live_grep_args()
+          require("telescope").extensions.live_grep_args.live_grep_args({
+            preview_width = 0.8
+          })
         end,
         "live_grep" },
       b = { "<cmd>Telescope buffers<CR>", "find buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "help tags" },
       o = { "<cmd>AerialToggle<CR>", "find outline" },
       t = { "<cmd>TranslateW<CR>", "translate" },
+      s = { "<cmd>Telescope lsp_document_symbols<CR>", "symbols" },
+      S = { "<cmd>Telescope lsp_workspace_symbols<CR>", "all symbols" },
     },
     -- gitsigns & diffview
     g = {
@@ -127,6 +137,12 @@ M.normal = {
     D = { "<cmd>Lspsaga peek_definition<CR>", "peek definition" },
     r = { "<cmd>Lspsaga finder<CR>", "find ref" },
     s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diag" },
+  },
+  t = {
+    name = "terminal",
+    f = { "<cmd>ToggleTerm direction=float<CR>", "float term" },
+    h = { "<cmd>ToggleTerm direction=horizontal<CR>", "horizontal term" },
+    v = { "<cmd>ToggleTerm direction=vertical<CR>", "vertical term" },
   },
   ["["] = {
     -- d = { "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "prev diag"},
@@ -173,14 +189,18 @@ M.telescope = {
   i = {
     ["<C-n>"] = "cycle_history_next",
     ["<C-p>"] = "cycle_history_prev",
-    -- ["<C-k>"] = "preview_scrolling_up",
-    -- ["<C-j>"] = "preview_scrolling_down",
+    ["<C-u>"] = "preview_scrolling_up",
+    ["<C-d>"] = "preview_scrolling_down",
+    ["<C-j>"] = "move_selection_next",
+    ["<C-k>"] = "move_selection_previous",
   },
   n = {
     ["<C-n>"] = "cycle_history_next",
     ["<C-p>"] = "cycle_history_prev",
-    -- ["<C-k>"] = "preview_scrolling_up",
-    -- ["<C-j>"] = "preview_scrolling_down",
+    ["<C-u>"] = "preview_scrolling_up",
+    ["<C-d>"] = "preview_scrolling_down",
+    ["<C-j>"] = "move_selection_next",
+    ["<C-k>"] = "move_selection_previous",
 
     ["q"] = "close",
     ["?"] = "which_key",
