@@ -12,7 +12,14 @@ return {
   -- colorschemes
   {"folke/tokyonight.nvim"},
   {"ful1e5/onedark.nvim"},
-
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function ()
+      require("configs/catppuccin")
+    end
+  },
   -- sidebar
   {
     "nvim-tree/nvim-tree.lua",
@@ -115,6 +122,17 @@ return {
   },
   -- lsp
   {
+    { "arkav/lualine-lsp-progress" }
+  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   tag = "legacy",
+  --   event = "LspAttach",
+  --   opts = {
+  --
+  --   }
+  -- },
+  {
     "williamboman/mason.nvim",
     cmd = {
       "Mason",
@@ -139,6 +157,13 @@ return {
         vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
       end, {})
       vim.g.mason_binaries_list = opts.ensure_installed
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "VeryLazy",
+    opts = function ()
+      return require("lsp/null-ls")
     end,
   },
   {
@@ -176,6 +201,7 @@ return {
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
+  { "hrsh7th/cmp-nvim-lua"},
   { "L3MON4D3/LuaSnip" },
   { "saadparwaiz1/cmp_luasnip" },
 
@@ -207,10 +233,34 @@ return {
     }
   },
   -- highlight
+  -- {  -- cannot use
+  --   "folke/todo-comments.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   -- config = function ()
+  --   --   require("configs/todo-comments")
+  --   -- end
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     config = function ()
       require("configs/nvim-treesitter")
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function ()
+      require("treesitter-context").setup({
+        enable = true,
+        max_lines = 2,
+        min_window_height = 0,
+        line_numbers = true,
+        multiline_threshold = 20,
+        trim_scope = 'outer',
+        mode = 'cursor',
+        separator = nil,
+        zindex = 20,
+        on_attach = nil,
+      })
     end
   },
   -- outline
@@ -248,6 +298,12 @@ return {
   },
   { "djoshea/vim-autoread" },
   --debug
+  -- {
+  --   "simrat39/symbols-outline.nvim",
+  --   config = function ()
+  --     require("configs/symbols-outline")
+  --   end
+  -- },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -277,6 +333,49 @@ return {
     config = function ()
       require("configs/hop");
     end
+  },
+  {
+    "ethanholz/nvim-lastplace",
+    config = function ()
+      require("nvim-lastplace").setup({
+        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+        lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+        lastplace_open_folds = true,
+      })
+    end
+  },
+  {
+    "simeji/winresizer",
+    config = function ()
+    end
+  },
+  -- markdown
+  {
+    "skanehira/preview-markdown.vim",
+    dependencies = { "MichaelMure/mdr" },
+    config = function()
+      vim.g.preview_markdown_auto_update = 1
+    end
+  },
+  -- translator
+  {
+    "voldikss/vim-translator",
+    config = function ()
+      vim.g.translator_window_type = 'popup'
+      vim.g.translator_default_engines = {'google', 'bing'}
+    end
+  },
+  -- log
+  {
   }
+  -- tmux
+  -- {
+  --   "aserowy/tmux.nvim"
+  -- },
+  -- 
+  -- {
+  --   "tpope/vim-repeat",
+  --   "tpope/vim-surround",
+  -- }
 }
 
