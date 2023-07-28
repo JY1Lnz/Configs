@@ -16,11 +16,19 @@ telescope.setup({
     find_files = {
       theme = "dropdown",
       previewer = false,
-      find_command = { "fdfind" },
+      find_command = { "fdfind" , "-H", "-I" },
       layout_config = { width = 0.7 },
     },
-    live_grep = {
-      layout_config = { preview_width = 0.6 },
+    buffers = {
+      theme = "dropdown",
+      previewer = false,
+      layout_config = { width = 0.7 },
+    },
+    lsp_document_symbols = {
+      layout_config = { preview_width = 0.5 },
+    },
+    lsp_workspace_symbols = {
+      layout_config = { preview_width = 0.5 },
     },
   },
   extensions = {
@@ -30,6 +38,12 @@ telescope.setup({
       override_file_sorter = true,
       case_mode = "smart_case",
     },
+    live_grep_args = {
+      auto_quoting = true,
+      layout_config = {
+        preview_width = 0.5
+      }
+    }
   },
 })
 

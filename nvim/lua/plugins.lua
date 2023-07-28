@@ -375,6 +375,10 @@ return {
     config = function ()
       require("configs/toggleterm")
     end
+  },
+  -- dap
+  {
+
   }
   -- tmux
   -- {
