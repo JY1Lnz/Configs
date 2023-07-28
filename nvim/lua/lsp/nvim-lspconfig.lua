@@ -5,6 +5,7 @@ local handler = require("lsp/handlers")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local dir = vim.fn.getcwd()
 local filepath = dir .. '/build/compile_commands.json'
+local filepath_dir = dir .. '/build'
 
 local file_exists = function(filename)
   local file = io.open(filename, "r")
@@ -30,7 +31,7 @@ local clangd_cmd = {
 }
 
 if file_exists(filepath) then
-  table.insert(clangd_cmd, "--compile-commands-dir=" .. filepath)
+  table.insert(clangd_cmd, "--compile-commands-dir=" .. filepath_dir)
 end
 
 lspconfig.clangd.setup({
