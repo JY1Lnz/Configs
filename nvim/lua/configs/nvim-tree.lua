@@ -4,6 +4,7 @@ local list_keys = require("mappings").nvim_tree_map
 nt.setup({
   git = {
     enable = true,
+    ignore = false,
   },
   view = {
     width = 50,
@@ -22,7 +23,8 @@ nt.setup({
 
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
+    custom = { '.git' },
   },
   actions = {
     open_file = {

@@ -1,16 +1,21 @@
 local lspconfig = require("lspconfig")
 local handler = require("lsp/handlers")
 
-local on_attach = function(client, bufnr)
-end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+local dir = vim.fn.getcwd()
+local filepath = dir .. '/build/compile_commands.json'
 
-lspconfig.clangd.setup({
-  flags = {
-    debounce_text_change = 150,
-  },
-  cmd = {
+local file_exists = function(filename)
+  local file = io.open(filename, "r")
+  if file then
+    file:close()
+    return true
+  end
+  return false
+end
+
+local clangd_cmd = {
     "clangd",
     "--pretty",
     "--background-index", -- 后台建立索引，并持久化到disk
@@ -22,7 +27,17 @@ lspconfig.clangd.setup({
     "--cross-file-rename=true",
     "--header-insertion=iwyu",
     "--header-insertion-decorators",
+}
+
+if file_exists(filepath) then
+  table.insert(clangd_cmd, "--compile-commands-dir=" .. filepath)
+end
+
+lspconfig.clangd.setup({
+  flags = {
+    debounce_text_change = 150,
   },
+  cmd = clangd_cmd,
   filetypes = {
     "c", "cpp", "objc", "cl", "cuda",
   },
