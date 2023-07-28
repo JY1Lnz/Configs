@@ -9,3 +9,9 @@ wk.register(mappings.normal, {
   noremap = true,
   silent = true,
 })
+
+wk.register(mappings.visual, {
+  mode = "v",
+  noremap = true,
+  silent = true,
+})

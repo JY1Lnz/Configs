@@ -93,6 +93,15 @@ return {
       require("configs/diffview")
     end
   },
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config = function ()
+      require("configs/lazygit")
+    end
+  },
   -- dashboard 
   {
     "glepnir/dashboard-nvim",
@@ -170,18 +179,25 @@ return {
   { "L3MON4D3/LuaSnip" },
   { "saadparwaiz1/cmp_luasnip" },
 
-  -- 
+  -- indent
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   config = function ()
+  --     require("indent_blankline").setup({
+  --       char = "|",
+  --       space_char_blankline = " ",
+  --       show_trailing_blankline_indent = false,
+  --       show_first_indent_level = true,
+  --       use_treesitter = true,
+  --       show_current_context = true,
+  --     })
+  --   end
+  -- },
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "shellRaining/hlchunk.nvim",
+    event = "UIEnter",
     config = function ()
-      require("indent_blankline").setup({
-        char = "|",
-        space_char_blankline = " ",
-        show_trailing_blankline_indent = false,
-        show_first_indent_level = true,
-        use_treesitter = true,
-        show_current_context = true,
-      })
+      require("configs/indent")
     end
   },
   {
@@ -244,4 +260,23 @@ return {
       require("configs/trouble")
     end
   },
+  -- comments
+  {
+    "numToStr/Comment.nvim",
+    config = function ()
+      require("configs/comments")
+    end
+  },
+  -- move
+  {
+    "phaazon/hop.nvim",
+    branch = "v2",
+    opts = {
+
+    },
+    config = function ()
+      require("configs/hop");
+    end
+  }
 }
+

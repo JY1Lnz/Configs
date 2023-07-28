@@ -58,6 +58,7 @@ end
 -- this is use for which key
 M.normal = {
   ["<leader>"] = {
+    ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "toggle comment" },
     k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
     s = {
       name = "window control",
@@ -118,16 +119,22 @@ M.normal = {
     r = { "<cmd>Lspsaga finder<CR>", "find ref" },
     s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diag" },
   },
-  ["["] = { 
+  ["["] = {
     -- d = { "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "prev diag"},
     d = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "prev diag"},
   },
   ["]"] = {
     -- d = { "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "next diag"},
     d = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "next diag"},
-  }
+  },
+  ["\\"] = { "<cmd>HopChar1<CR>", "jump"},
 }
 
+M.visual = {
+  ["<leader>"] = {
+    ["/"] = { "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "toggle comment" },
+  }
+}
 
 M.nvim_tree_map = {
   -- open file or folder
