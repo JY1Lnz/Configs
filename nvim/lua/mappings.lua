@@ -33,10 +33,12 @@ M.setup = function()
   map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
   map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
 
-  map("v", "J", ":move '>+1<CR>gv-gv", opt)
-  map("v", "K", ":move '<-2<CR>gv-gv", opt)
+  map("v", "<A-j>", ":move '>+1<CR>gv-gv", opt)
+  map("v", "<A-k>", ":move '<-2<CR>gv-gv", opt)
   map("v", "<", "<gv", opt)
   map("v", ">", ">gv", opt)
+  map("v", "J", "10j", opt)
+  map("v", "K", "10k", opt)
 
   map("n", "<C-M-q>", ":qa<CR>", opt)
 
@@ -60,6 +62,10 @@ M.normal = {
   ["<leader>"] = {
     ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "toggle comment" },
     k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
+    c = {
+      name = "code",
+      f = { "<Esc><cmd>lua vim.lsp.buf.format(vim.fn.visualmode())<CR>", "format code" },
+    },
     s = {
       name = "window control",
       v = {"<cmd>vsp<CR>", "vertical split"},
@@ -81,6 +87,7 @@ M.normal = {
       b = { "<cmd>Telescope buffers<CR>", "find buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "help tags" },
       o = { "<cmd>AerialToggle<CR>", "find outline" },
+      t = { "<cmd>TranslateW<CR>", "translate" },
     },
     -- gitsigns & diffview
     g = {
@@ -97,10 +104,11 @@ M.normal = {
       s = { "<cmd>Telescope git_status<CR>", "git status" },
     },
     -- debug,
-    D = {
+    d = {
       name = "debug",
       d = { "<cmd>Trouble document_diagnostics<CR>", "file diagnostics" },
       w = { "<cmd>Trouble document_diagnostics<CR>", "workspace diagnostics" },
+      -- o = { "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
     }
   },
   m = {
@@ -110,6 +118,7 @@ M.normal = {
     i = { "<cmd>BookmarkAnnotate<CR>", "bookmark annotation" },
     a = { "<cmd>Telescope vim_bookmarks current_file<CR>", "show current file bookmarks" },
     A = { "<cmd>Telescope vim_bookmarks all<CR>", "show all bookmarks" },
+    P = { ":PreviewMarkdown right<CR>", "preview markdown"},
   },
   g = {
     -- goto lsp
@@ -133,7 +142,12 @@ M.normal = {
 M.visual = {
   ["<leader>"] = {
     ["/"] = { "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "toggle comment" },
-  }
+    c = {
+      name = "code",
+      f = { "<cmd>lua vim.lsp.buf.format()<CR>", "format code" },
+    },
+    t = { "<cmd>TranslateW<CR>", "translate" },
+  },
 }
 
 M.nvim_tree_map = {
@@ -168,7 +182,7 @@ M.telescope = {
     -- ["<C-k>"] = "preview_scrolling_up",
     -- ["<C-j>"] = "preview_scrolling_down",
 
-    ["<Esc>"] = "close",
+    ["q"] = "close",
     ["?"] = "which_key",
   },
 }

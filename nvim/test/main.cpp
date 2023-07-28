@@ -1,12 +1,15 @@
 #include <iostream>
 #include <vector>
+// TODO
+//
+//
 
-int main()
-{
-  int x;
-  std::vector<int> vec = {
-    1, 2, 3, 4
-  };
+void call() {}
+
+void func(int) { call(); }
+
+int main() {
+  func(10);
 
   return 0;
 }
