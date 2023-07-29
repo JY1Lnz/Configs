@@ -12,6 +12,10 @@ chunk.setup({
         support_filetypes = {
             "*.lua",
             "*.js",
+            "*.cpp",
+            "*.json",
+            "*.py",
+            "*.cl",
         },
         chars = {
             horizontal_line = "─",

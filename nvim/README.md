@@ -2,7 +2,7 @@
 
 ## 按键绑定-速查
 ### 
-- 
+- Ctrl+E resize window
 
-### hello
+#winresizer## hello
 
