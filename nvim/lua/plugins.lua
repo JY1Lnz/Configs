@@ -10,13 +10,13 @@ return {
     end
   },
   -- colorschemes
-  {"folke/tokyonight.nvim"},
-  {"ful1e5/onedark.nvim"},
+  { "folke/tokyonight.nvim" },
+  { "ful1e5/onedark.nvim" },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    config = function ()
+    config = function()
       require("configs/catppuccin")
     end
   },
@@ -69,7 +69,8 @@ return {
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+    build =
+    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
   },
   -- {
   --  "ahmedkhalf/project.nvim",
@@ -105,11 +106,11 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
-    config = function ()
+    config = function()
       require("configs/lazygit")
     end
   },
-  -- dashboard 
+  -- dashboard
   {
     "glepnir/dashboard-nvim",
     event = "VimEnter",
@@ -162,7 +163,7 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
-    opts = function ()
+    opts = function()
       return require("lsp/null-ls")
     end,
   },
@@ -182,7 +183,7 @@ return {
   {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
-    config = function ()
+    config = function()
       require("lsp/lspsaga")
     end,
     dependencies = {
@@ -201,11 +202,20 @@ return {
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
-  { "hrsh7th/cmp-nvim-lua"},
+  { "hrsh7th/cmp-nvim-lua" },
   { "L3MON4D3/LuaSnip" },
   { "saadparwaiz1/cmp_luasnip" },
 
   -- indent
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   config = function ()
+  --     require("indent_blankline").setup({
+  --       char = '|',
+  --       show_current_context = true,
+  --     })
+  --   end
+  -- },
   {
     "shellRaining/hlchunk.nvim",
     event = "UIEnter",
@@ -229,13 +239,13 @@ return {
   -- },
   {
     "nvim-treesitter/nvim-treesitter",
-    config = function ()
+    config = function()
       require("configs/nvim-treesitter")
     end
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    config = function ()
+    config = function()
       require("treesitter-context").setup({
         enable = true,
         max_lines = 2,
@@ -255,24 +265,24 @@ return {
     "stevearc/aerial.nvim",
     opts = {},
     dependencies = {
-     "nvim-treesitter/nvim-treesitter",
-     "nvim-tree/nvim-web-devicons"
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
     },
-    config = function ()
+    config = function()
       require("configs/aerial")
     end
   },
   -- auto save&load
   {
     "Pocco81/auto-save.nvim",
-    config = function ()
+    config = function()
       require("auto-save").setup({
         enable = true,
         -- execution_message = "",
-        event = {"InsertLeave", "TextChanged"},
+        event = { "InsertLeave", "TextChanged" },
         conditions = {
           exists = true,
-          filename_is_not = {"plugins.lua"},
+          filename_is_not = { "plugins.lua" },
           filetype_is_not = {},
           modifiable = true,
         },
@@ -299,14 +309,14 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-    config = function ()
+    config = function()
       require("configs/trouble")
     end
   },
   -- comments
   {
     "numToStr/Comment.nvim",
-    config = function ()
+    config = function()
       require("configs/comments")
     end
   },
@@ -317,13 +327,13 @@ return {
     opts = {
 
     },
-    config = function ()
+    config = function()
       require("configs/hop");
     end
   },
   {
     "ethanholz/nvim-lastplace",
-    config = function ()
+    config = function()
       require("nvim-lastplace").setup({
         lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
         lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
@@ -333,7 +343,7 @@ return {
   },
   {
     "simeji/winresizer",
-    config = function ()
+    config = function()
     end
   },
   -- markdown
@@ -347,9 +357,9 @@ return {
   -- translator
   {
     "voldikss/vim-translator",
-    config = function ()
+    config = function()
       vim.g.translator_window_type = 'popup'
-      vim.g.translator_default_engines = {'google', 'bing'}
+      vim.g.translator_default_engines = { 'google', 'bing' }
     end
   },
   -- log
@@ -359,21 +369,62 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    config = function ()
+    config = function()
       require("configs/toggleterm")
     end
   },
   -- dap
   {
-  }
+    "mfussenegger/nvim-dap",
+    config = function ()
+      require("lsp/dap")
+    end
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function ()
+      -- require("lsp/dap-ui")
+    end
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = function ()
+      require("nvim-dap-virtual-text").setup({
+        enabled = true,                        -- enable this plugin (the default)
+        enabled_commands = true,               -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+        highlight_changed_variables = true,    -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+        highlight_new_as_changed = false,      -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+        show_stop_reason = true,               -- show stop reason when stopped for exceptions
+        commented = false,                     -- prefix virtual text with comment string
+        only_first_definition = true,          -- only show virtual text at first definition (if there are multiple)
+        all_references = false,                -- show virtual text on all all references of the variable (not only definitions)
+        clear_on_continue = false,             -- clear virtual text on "continue" (might cause flickering when stepping)
+        display_callback = function(variable, buf, stackframe, node, options)
+          if options.virt_text_pos == 'inline' then
+            return ' = ' .. variable.value
+          else
+            return variable.name .. ' = ' .. variable.value
+          end
+        end,
+        -- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
+        virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+        -- virt_text_pos = 'eol',
+
+        -- experimental features:
+        all_frames = false,                    -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+        virt_lines = false,                    -- show virtual lines instead of virtual text (will flicker!)
+        virt_text_win_col = nil                -- position the virtual text at a fixed window column (starting from the first text column) ,
+                                              -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
+      })
+    end
+  },
   -- tmux
   -- {
   --   "aserowy/tmux.nvim"
   -- },
-  -- 
+  --
   -- {
   --   "tpope/vim-repeat",
   --   "tpope/vim-surround",
   -- }
 }
-

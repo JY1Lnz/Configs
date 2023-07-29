@@ -59,6 +59,13 @@ M.setup = function()
 -- terminal
   map("t", "<Esc>", "<C-\\><C-n>", opt)
   map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
+  -- Dap
+  map("n", "<F5>", ":DapContinue<CR>", opt)
+  map("n", "<F4>", ":DapTerminate<CR>", opt)
+  map("n", "<F10>", ":DapStepOver<CR>", opt)
+  map("n", "<F9>", ":DapToggleBreakpoint<CR>", opt)
+  map("n", "<F11>", ":DapStepInto<CR>", opt)
+  map("n", "<F12>", ":DapStepOut<CR>", opt)
 
 end
 
@@ -68,6 +75,7 @@ M.normal = {
     ["<space>"] = { "<cmd>Telescope buffers<CR>", "buffer" },
     ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "toggle comment" },
     k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
+    K = { "<cmd>lua require('dapui').eval()<CR>", "eval hover" },
     c = {
       name = "code",
       f = { "<Esc><cmd>lua vim.lsp.buf.format(vim.fn.visualmode())<CR>", "format code" },
@@ -116,8 +124,19 @@ M.normal = {
     -- debug,
     d = {
       name = "debug",
-      d = { "<cmd>Trouble document_diagnostics<CR>", "file diagnostics" },
+      f = { "<cmd>Trouble document_diagnostics<CR>", "file diagnostics" },
       w = { "<cmd>Trouble document_diagnostics<CR>", "workspace diagnostics" },
+      d = { function ()
+        require("dapui").float_element("repl", {
+          width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+          height = math.floor(vim.api.nvim_win_get_height(0) * 0.8),
+          enter = true,
+          position = "center",
+        })
+      end, "debug console" },
+      r = { function()
+        require("dapui").eval(vim.fn.input('expr: '))
+      end, "debug run" },
       -- o = { "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
     }
   },
