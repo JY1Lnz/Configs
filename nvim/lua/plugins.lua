@@ -150,6 +150,7 @@ return {
         "clang-format",
         "codelldb",
         "lua-language-server",
+        "pyright",
       }
     },
     config = function(_, opts)

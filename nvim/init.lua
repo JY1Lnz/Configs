@@ -34,38 +34,48 @@ vim.notify = function(msg, ...)
     notify(msg, ...)
 end
 
+local vim_config = function ()
+  vim.cmd([[
+    augroup OpenCLFileType
+      autocmd!
+      autocmd BufRead,BufNewFile *.cl setlocal filetype=cpp
+    augroup END
+  ]])
+end
+
+
 -- 放在前面会被覆盖，只能丢在这了
 
 local dap_breakpoint = {
     error = {
-      text = "🛑",
-      texthl = "DapBreakpoint",
-      linehl = "DapBreakpoint",
-      numhl = "DapBreakpoint",
+      text = "",
+      texthl = "DapBreakpointText",
+      linehl = "DapBreakpointLine",
+      numhl = "DapBreakpointNum",
     },
     condition = {
         text = '',
-        texthl = 'DapBreakpoint',
-        linehl = 'DapBreakpoint',
-        numhl = 'DapBreakpoint',
+        texthl = 'DapBreakpointText',
+        linehl = 'DapBreakpointLine',
+        numhl = 'DapBreakpointNum',
     },
     rejected = {
       text = "",
-      texthl = "DapBreakpoint",
-      linehl = "DapBreakpoint",
-      numhl = "DapBreakpoint",
+      texthl = "DapBreakpointText",
+      linehl = "DapBreakpointLine",
+      numhl = "DapBreakpointNum",
     },
     logpoint = {
         text = '',
-        texthl = 'DapLogPoint',
-        linehl = 'DapLogPoint',
-        numhl = 'DapLogPoint',
+        texthl = 'DapLogPointText',
+        linehl = 'DapLogPointLine',
+        numhl = 'DapLogPointNum',
     },
     stopped = {
-        text = '',
-        texthl = 'DapStopped',
-        linehl = 'DapStopped',
-        numhl = 'DapStopped',
+        text = '',
+        texthl = 'DapStoppedText',
+        linehl = 'DapStoppedLine',
+        numhl = 'DapStoppedNum',
     },
 }
 
@@ -78,18 +88,28 @@ vim.fn.sign_define('DapStopped', dap_breakpoint.stopped)
 local dap_breakpoint_color = {
     breakpoint = {
         ctermbg=0,
-        fg='#993939',
-        bg='#31353f',
+        fg='#d02500',
+        -- bg='#31353f',
     },
     logpoing = {
         ctermbg=0,
         fg='#61afef',
         bg='#31353f',
     },
-    stopped = {
+    stopped_line = {
         ctermbg=0,
-        fg='#98c379',
-        bg='#31353f'
+        fg='#1a1f1b',
+        bg='#9ef8b2'
     },
+    stopped_text = {
+      ctermbg = 0,
+      fg='#9ef8b2'
+  }
 }
 
+vim.api.nvim_set_hl(0, 'DapBreakpointText', dap_breakpoint_color.breakpoint)
+-- vim.api.nvim_set_hl(0, 'DapLogPoint', dap_breakpoint_color.logpoing)
+vim.api.nvim_set_hl(0, 'DapStoppedLine', dap_breakpoint_color.stopped_line)
+vim.api.nvim_set_hl(0, 'DapStoppedText', dap_breakpoint_color.stopped_text)
+
+vim_config()

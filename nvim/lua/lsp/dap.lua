@@ -154,6 +154,24 @@ dap.adapters.codelldb = {
   },
 }
 
+dap.adapters.debugpy = {
+  type = 'executable',
+  command = 'python',
+  args = { "-m", "debugpy.adapter" },
+  options = {
+    source_filetype = 'python',
+  }
+}
+
+-- dap.configurations.python = {
+--   {
+--     type = "debugpy",
+--     request = "launch",
+--     name = "debug py",
+--     program = "${file}"
+--   }
+-- }
+
 -- dap.configurations.cpp = {
 --   {
 --     name = "Launch file",
@@ -196,6 +214,7 @@ dap.listeners.before.disconnect["dapui_config"] = function ()
 end
 
 require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/.vscode/launch.json", {
-  codelldb = { 'h', 'cpp' }
+  codelldb = { 'h', 'cpp' },
+  debugpy = { 'py', 'python' }
 })
 

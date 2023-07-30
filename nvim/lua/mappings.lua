@@ -93,6 +93,19 @@ M.normal = {
     f = {
       name = "find",
       f = { "<cmd>Telescope find_files<CR>", "find files" },
+      F = {function ()
+        require("telescope.builtin").find_files({
+          find_command = {
+            "fdfind",
+            "-H",
+            "-I",
+            "-t",
+            "f"
+          }
+        })
+      end,
+        "find all files",
+      },
       w = {
         function()
           require("telescope").extensions.live_grep_args.live_grep_args({
