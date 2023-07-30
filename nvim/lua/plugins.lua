@@ -242,7 +242,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("configs/nvim-treesitter")
-    end
+    end,
+    dependencies = {
+      "p00f/nvim-ts-rainbow"
+    }
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
