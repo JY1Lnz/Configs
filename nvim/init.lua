@@ -113,3 +113,6 @@ vim.api.nvim_set_hl(0, 'DapStoppedLine', dap_breakpoint_color.stopped_line)
 vim.api.nvim_set_hl(0, 'DapStoppedText', dap_breakpoint_color.stopped_text)
 
 vim_config()
+
+
+require("highlight")

@@ -19,6 +19,11 @@ nt.setup({
   },
   indent = {
     enable = true,
+  },
+  rainbow = {
+    enable = true,
+    extenden_mode = true,
+    max_file_liens = nil,
   }
 })
 
