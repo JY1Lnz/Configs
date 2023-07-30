@@ -16,7 +16,7 @@ telescope.setup({
     find_files = {
       theme = "dropdown",
       previewer = false,
-      find_command = { "fdfind" , "-H", "-I", "-t", "f"},
+      find_command = { "fdfind" , "-t", "f"},
       layout_config = { width = 0.7 },
     },
     buffers = {

@@ -80,3 +80,6 @@ vim.o.listchars = "space:·"
 -- nvim-tree
 vim.opt.termguicolors = true
 
+
+vim.opt.exrc = true
+

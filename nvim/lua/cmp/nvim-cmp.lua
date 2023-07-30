@@ -7,7 +7,7 @@ cmp_config = {
   },
   completion = {
     ---@usage The minimum length of a word to complete on.
-    keyword_length = 1,
+    keyword_length = 2,
   },
   experimental = {
     ghost_text = true,
@@ -15,7 +15,7 @@ cmp_config = {
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
-    max_width = 0,
+    max_width = 40,
     kind_icons = {
       Class = " ",
       Color = " ",
@@ -84,7 +84,9 @@ cmp_config = {
   },
   window = {
     completion = cmp.config.window.bordered(),
+    -- completion = { max_height = 10, max_width = 10 },
     documentation = cmp.config.window.bordered(),
+    -- documentation = { max_height = 5, max_width = 5 },
   },
   sources = {
     { name = "nvim_lsp" },
@@ -100,8 +102,8 @@ cmp_config = {
     -- { name = "crates" },
   },
   mapping = cmp.mapping.preset.insert {
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
-    ["<C-.>"] = cmp.mapping({
+    ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+    ["<A-,>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close()
     }),
