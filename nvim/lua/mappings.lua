@@ -169,6 +169,8 @@ M.normal = {
     D = { "<cmd>Lspsaga peek_definition<CR>", "peek definition" },
     r = { "<cmd>Lspsaga finder<CR>", "find ref" },
     s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diag" },
+    h = { "<C-o>", "go back" },
+    l = { "<C-i>", "go prev" },
   },
   t = {
     name = "terminal",
