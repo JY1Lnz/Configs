@@ -116,3 +116,13 @@ vim_config()
 
 
 require("highlight")
+
+function get_highlight_info()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local row, col = cursor[1], cursor[2]
+  local buf = vim.api.nvim_win_get_buf(0)
+  local extmark_id = vim.api.nvim_buf_get_extmarks(buf, 0, row - 1, col - 1, {})
+  local highlight_info = vim.api.nvim_buf_get_extmark_by_id(buf, 0, extmark_id, { details = true })
+  print (vim.inspect(highlight_info))
+end
+
