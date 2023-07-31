@@ -19,6 +19,7 @@ vim.wo.relativenumber = true
 
 -- highlight cursor line
 vim.wo.cursorline = true
+vim.wo.cursorcolumn = true
 
 -- left sidebar icon
 vim.wo.signcolumn = "yes"
