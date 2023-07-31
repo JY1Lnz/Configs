@@ -131,14 +131,13 @@ return {
   {
     { "arkav/lualine-lsp-progress" }
   },
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   tag = "legacy",
-  --   event = "LspAttach",
-  --   opts = {
-  --
-  --   }
-  -- },
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    -- event = "LspAttach",
+    opts = {
+    }
+  },
   {
     "williamboman/mason.nvim",
     cmd = {
