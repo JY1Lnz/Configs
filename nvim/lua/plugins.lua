@@ -367,7 +367,7 @@ return {
   {
     "voldikss/vim-translator",
     config = function()
-      vim.g.translator_window_type = 'popup'
+      vim.g.translator_window_type = 'preview'
       vim.g.translator_default_engines = { 'google', 'bing' }
     end
   },

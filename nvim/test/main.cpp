@@ -37,9 +37,10 @@ int main() {
   cout << "hello world" << endl;
   int x = 10;
   int y = 20;
-  cout << "hello world" << endl;
-  const int q = 10;
-  const char* ss = "abc";
+  cout << "hello wold" << endl;
 
+  const int q = 10;
+
+  const char* ss = "abc";
   return 0;
 }

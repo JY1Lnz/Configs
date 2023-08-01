@@ -1,10 +1,10 @@
 local notify = vim.notify
 vim.notify = function(msg, ...)
-    if msg:match("warning: multiple different client offset_encodings") then
-        return
-    end
+  if msg:match("warning: multiple different client offset_encodings") then
+    return
+  end
 
-    notify(msg, ...)
+  notify(msg, ...)
 end
 
 local clangd_config = {
@@ -62,8 +62,8 @@ normal_map["<Esc>"] = ":noh<CR>"
 normal_map["<C-p>"] = ":Telescope find_files<cr>"
 normal_map["<M-m>"] = ":NvimTreeToggle<cr>"
 normal_map["<C-M-q>"] = ":qa<CR>"
--- normal_map["<C-h>"] = ":BufferLineCyclePrev<CR>"
--- normal_map["<C-l>"] = ":BufferLineCycleNext<CR>"
+normal_map["<C-h>"] = ":BufferLineCyclePrev<CR>"
+normal_map["<C-l>"] = ":BufferLineCycleNext<CR>"
 normal_map["<C-w>"] = ":bd<CR>"
 normal_map["<leader><Space>"] = ":Telescope buffers<CR>"
 -- normal_map["gd"] = ":lua vim.lsp.buf.definition()<CR>"
@@ -80,6 +80,8 @@ normal_map["mm"] = ":BookmarkToggle<cr>"
 normal_map["mi"] = ":BookmarkAnnotate<cr>"
 normal_map["ma"] = ":Telescope vim_bookmarks current_file<cr>"
 normal_map["mA"] = ":Telescope vim_bookmarks all<cr>"
+normal_map["H"] = "^"
+normal_map["L"] = "$"
 
 
 local visual_map = lvim.keys.visual_mode
@@ -120,12 +122,32 @@ which_map['f'] = {
   w = { "<cmd>Telescope live_grep_args<CR>", "Live grep" },
   s = { "<cmd>Telescope lsp_document_symbols<CR>", "Find symbols" },
   S = { "<cmd>Telescope lsp_workspace_symbols<CR>", "Find all symbols" },
+  o = { "<cmd>SymbolsOutline<CR>", "Find outline" },
+  t = { "<cmd>TranslateW<CR>", "Translate" }
 }
 which_map['t'] = {
   name = "terminal",
   f = { "<cmd>ToggleTerm direction=float<CR>", "float term" },
   h = { "<cmd>ToggleTerm direction=horizontal<CR>", "horizontal term" },
   v = { "<cmd>ToggleTerm direction=vertical<CR>", "vertical term" },
+}
+which_map['k'] = { "<cmd>Lspsaga hover_doc<CR>", "Hover" }
+which_map['K'] = { "<cmd>lua require('dapui').eval()<CR>", "Eval" }
+which_map['s'] = {
+  name = "split window",
+  v = { "<cmd>vsp<CR>", "Vertical split" },
+  h = { "<cmd>sp<CR>", "Horizontal split" },
+}
+which_map['d'] = {
+  name = "debug",
+  d = { function()
+    require("dapui").float_element("repl", {
+      width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+      height = math.floor(vim.api.nvim_win_get_height(0) * 0.8),
+      enter = true,
+      position = "center",
+    })
+  end, "Debug colsole" }
 }
 
 -- lvim.lsp.buffer_mappings.normal_mode.
@@ -152,6 +174,99 @@ lvim.builtin.lualine.sections.lualine_c = { 'lsp_progress' }
 -- lvim.builtin.indentlines.active = false
 
 lvim.plugins = {
+  -- {
+  --   "JuanZoran/Trans.nvim",
+  --   build = function() require 'Trans'.install() end,
+  --   dependencies = { 'kkharji/sqlite.lua' },
+  --   opts = {
+  --     front
+  --   },
+  -- },
+  -- {
+  --   "voldikss/vim-translator",
+  --   config = function()
+  --     vim.g.translator_window_type = 'popup'
+  --     vim.g.translator_default_engines = { 'google', 'bing' }
+  --   end
+  -- },
+  -- {
+  --   "ethanholz/nvim-lastplace",
+  --   config = function()
+  --     require("nvim-lastplace").setup({
+  --       lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+  --       lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+  --       lastplace_open_folds = true,
+  --     })
+  --   end
+  -- },
+  {
+    "simrat39/symbols-outline.nvim",
+    config = function()
+      require("symbols-outline").setup({
+        highlight_hovered_item = true,
+        show_guides = true,
+        auto_preview = false,
+        position = 'right',
+        relative_width = true,
+        width = 25,
+        auto_close = false,
+        show_numbers = false,
+        show_relative_numbers = false,
+        show_symbol_details = true,
+        preview_bg_highlight = 'Pmenu',
+        autofold_depth = nil,
+        auto_unfold_hover = true,
+        fold_markers = { '', '' },
+        wrap = false,
+        keymaps = { -- These keymaps can be a string or a table for multiple keys
+          close = { "<Esc>", "q" },
+          goto_location = "<Cr>",
+          focus_location = "o",
+          hover_symbol = "<C-space>",
+          toggle_preview = "K",
+          rename_symbol = "r",
+          code_actions = "a",
+          fold = "h",
+          unfold = "l",
+          fold_all = "W",
+          unfold_all = "E",
+          fold_reset = "R",
+        },
+        lsp_blacklist = {},
+        symbol_blacklist = {},
+        symbols = {
+          File = { icon = "", hl = "@text.uri" },
+          Module = { icon = "", hl = "@namespace" },
+          Namespace = { icon = "", hl = "@namespace" },
+          Package = { icon = "", hl = "@namespace" },
+          Class = { icon = "𝓒", hl = "@type" },
+          Method = { icon = "ƒ", hl = "@method" },
+          Property = { icon = "", hl = "@method" },
+          Field = { icon = "", hl = "@field" },
+          Constructor = { icon = "", hl = "@constructor" },
+          Enum = { icon = "ℰ", hl = "@type" },
+          Interface = { icon = "", hl = "@type" },
+          Function = { icon = "", hl = "@function" },
+          Variable = { icon = "", hl = "@constant" },
+          Constant = { icon = "", hl = "@constant" },
+          String = { icon = "𝓐", hl = "@string" },
+          Number = { icon = "#", hl = "@number" },
+          Boolean = { icon = "⊨", hl = "@boolean" },
+          Array = { icon = "", hl = "@constant" },
+          Object = { icon = "⦿", hl = "@type" },
+          Key = { icon = "🔐", hl = "@type" },
+          Null = { icon = "NULL", hl = "@type" },
+          EnumMember = { icon = "", hl = "@field" },
+          Struct = { icon = "𝓢", hl = "@type" },
+          Event = { icon = "🗲", hl = "@type" },
+          Operator = { icon = "+", hl = "@operator" },
+          TypeParameter = { icon = "𝙏", hl = "@parameter" },
+          Component = { icon = "", hl = "@function" },
+          Fragment = { icon = "", hl = "@constant" },
+        },
+      })
+    end
+  },
   { "arkav/lualine-lsp-progress" },
   {
     "MattesGroeger/vim-bookmarks",
@@ -384,8 +499,30 @@ telescope.extensions.live_grep_args = {
 
 
 -- debug
+lvim.builtin.dap.ui.config.floating.max_width = 0.9
 lvim.builtin.dap.breakpoint.text = ''
 lvim.builtin.dap.breakpoint_rejected.text = ''
+lvim.builtin.dap.ui.config.layouts = {
+  {
+    elements = {
+      -- Elements can be strings or table with id and size keys.
+      { id = "scopes",      size = 0.3 },
+      { id = "watches",     size = 0.25 },
+      { id = "stacks",      size = 0.3 },
+      { id = "breakpoints", size = 0.15 },
+    },
+    size = 40, -- 40 columns
+    position = "left",
+  },
+  {
+    elements = {
+      -- "repl",
+      "console",
+    },
+    size = 0.25, -- 25% of total lines
+    position = "bottom",
+  },
+}
 
 local dap = require("dap")
 local dapui = require("dapui")
@@ -449,7 +586,11 @@ end
 
 
 -- cmp
+--
+lvim.builtin.cmp.formatting.kind_icons.Function = '󰊕'
+
 local cmp = require("cmp")
+
 lvim.builtin.cmp.mapping = cmp.mapping.preset.insert {
   ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
   ["<A-,>"] = cmp.mapping({
@@ -530,3 +671,24 @@ cmp.setup.cmdline(':', {
 
 
 require("telescope").load_extension("live_grep_args")
+vim.cmd('source ~/.config/lvim/syntax/llvm.vim')
+vim.cmd('source ~/.config/lvim/syntax/machine-ir.vim')
+vim.cmd('source ~/.config/lvim/syntax/mir.vim')
+vim.cmd('source ~/.config/lvim/syntax/tablegen.vim')
+
+local vim_config = function()
+  vim.cmd([[
+    augroup OpenCLFileType
+      autocmd!
+      autocmd BufRead,BufNewFile *.cl setlocal filetype=cpp
+    augroup END
+  ]])
+  vim.cmd([[
+    au BufRead,BufNewFile *.ll set filetype=llvm
+  ]])
+  vim.cmd([[
+    au BufNewFile,BufRead *.td set filetype=tablegen
+  ]])
+end
+
+vim_config()
