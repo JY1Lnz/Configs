@@ -38,6 +38,10 @@ require("which-key").register({
       name = "code",
       f = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format code" },
     },
+    f = {
+      name = "find",
+      t = { "<cmd>Translate<CR>", "translate" }
+    }
   },
 }, { mode = "v", noremap = true, silent = true })
 
@@ -123,7 +127,7 @@ which_map['f'] = {
   s = { "<cmd>Telescope lsp_document_symbols<CR>", "Find symbols" },
   S = { "<cmd>Telescope lsp_workspace_symbols<CR>", "Find all symbols" },
   o = { "<cmd>SymbolsOutline<CR>", "Find outline" },
-  t = { "<cmd>TranslateW<CR>", "Translate" }
+  t = { "<cmd>Translate<CR>", "Translate" }
 }
 which_map['t'] = {
   name = "terminal",
@@ -174,31 +178,23 @@ lvim.builtin.lualine.sections.lualine_c = { 'lsp_progress' }
 -- lvim.builtin.indentlines.active = false
 
 lvim.plugins = {
-  -- {
-  --   "JuanZoran/Trans.nvim",
-  --   build = function() require 'Trans'.install() end,
-  --   dependencies = { 'kkharji/sqlite.lua' },
-  --   opts = {
-  --     front
-  --   },
-  -- },
-  -- {
-  --   "voldikss/vim-translator",
-  --   config = function()
-  --     vim.g.translator_window_type = 'popup'
-  --     vim.g.translator_default_engines = { 'google', 'bing' }
-  --   end
-  -- },
-  -- {
-  --   "ethanholz/nvim-lastplace",
-  --   config = function()
-  --     require("nvim-lastplace").setup({
-  --       lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-  --       lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
-  --       lastplace_open_folds = true,
-  --     })
-  --   end
-  -- },
+  {
+    "voldikss/vim-translator",
+    config = function()
+      vim.g.translator_window_type = 'preview'
+      vim.g.translator_default_engines = { 'google', 'bing' }
+    end
+  },
+  {
+    "ethanholz/nvim-lastplace",
+    config = function()
+      require("nvim-lastplace").setup({
+        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+        lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+        lastplace_open_folds = true,
+      })
+    end
+  },
   {
     "simrat39/symbols-outline.nvim",
     config = function()
