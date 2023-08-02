@@ -49,6 +49,8 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.relativenumber = true
+vim.wo.colorcolumn = "81"
+vim.wo.cursorcolumn = true
 
 lvim.lsp.buffer_mappings.normal_mode["gD"] = nil
 lvim.lsp.buffer_mappings.normal_mode["gs"] = nil
@@ -75,6 +77,7 @@ normal_map["gD"] = ":Lspsaga peek_definition<CR>"
 normal_map["gr"] = ":Lspsaga finder<CR>"
 normal_map["gs"] = ":Lspsaga show_line_diagnostics<CR>"
 normal_map["<F4>"] = ":lua require'dap'.terminate()<cr>"
+normal_map["<F3>"] = ":lua require'dapui'.toggle()<cr>"
 normal_map["<F5>"] = ":lua require'dap'.continue()<cr>"
 normal_map["<F9>"] = ":lua require'dap'.toggle_breakpoint()<cr>"
 normal_map["<F10>"] = ":lua require'dap'.step_over()<cr>"
@@ -119,14 +122,20 @@ which_map['f'] = {
   f = { "<cmd>Telescope find_files<cr>", "Find files" },
   F = { function()
     require("telescope.builtin").find_files({
-      "fdfind",
-      "-H",
-      "-I",
-      "-t",
-      "f"
+      find_command = {
+        "fdfind",
+        "-H",
+        "-I",
+        "-t",
+        "f",
+      },
     })
   end, "Find all files" },
-  w = { "<cmd>Telescope live_grep_args<CR>", "Live grep" },
+  w = { function()
+    require("telescope").extensions.live_grep_args.live_grep_args({
+      preview_width = 0.8
+    })
+  end, "Live grep" },
   s = { "<cmd>Telescope lsp_document_symbols<CR>", "Find symbols" },
   S = { "<cmd>Telescope lsp_workspace_symbols<CR>", "Find all symbols" },
   o = { "<cmd>SymbolsOutline<CR>", "Find outline" },
@@ -163,6 +172,14 @@ which_map['d'] = {
       position = "center",
     })
   end, "Debug colsole" },
+  s = { function()
+    require("dapui").float_element("stacks", {
+      width = math.floor(vim.api.nvim_win_get_width(0) * 1),
+      height = math.floor(vim.api.nvim_win_get_height(0) * 1),
+      enter = true,
+      position = "center",
+    })
+  end, "Debug colsole" },
   b = { "<cmd>Trouble document_diagnostics<CR>", "Buffer diagnostics" },
   w = { "<cmd>Trouble workspace_diagnostics<CR>", "Workspace diagnostics" },
 }
@@ -190,13 +207,68 @@ lvim.colorscheme = "onedark"
 -- lvim.builtin.lualine.sections.lualine_a = { 'mode' }
 lvim.builtin.lualine.sections.lualine_b = { 'filename' }
 lvim.builtin.lualine.sections.lualine_c = { 'lsp_progress' }
--- lvim.builtin.lualine.sections.lualine_x = { '' }
--- lvim.builtin.lualine.sections.lualine_y = { '' }
+-- lvim.builtin.lualine.sections.lualine_x = { 'filesize', 'fileformat', 'filetype'}
+lvim.builtin.lualine.sections.lualine_y = { 'filesize', 'location' }
 -- lvim.builtin.lualine.sections.lualine_z = { '' }
 
 -- lvim.builtin.indentlines.active = false
 
 lvim.plugins = {
+  {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      local lsp_signature_config = {
+        debug = false,                                        -- set to true to enable debug logging
+        log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
+        -- default is  ~/.cache/nvim/lsp_signature.log
+        verbose = false,                                      -- show debug line number
+
+        bind = true,                                          -- This is mandatory, otherwise border config won't get registered.
+        -- If you want to hook lspsaga or other signature handler, pls set to false
+        doc_lines = 10,                                       -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+        -- set to 0 if you DO NOT want any API comments be shown
+        -- This setting only take effect in insert mode, it does not affect signature help in normal
+        -- mode, 10 by default
+
+        floating_window = false,          -- show hint in a floating window, set to false for virtual text only mode
+
+        floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+        -- will set to true when fully tested, set to false will use whichever side has more space
+        -- this setting will be helpful if you do not want the PUM and floating win overlap
+
+        floating_window_off_x = 0, -- adjust float windows x position.
+        floating_window_off_y = 0, -- adjust float windows y position.
+
+
+        fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+        hint_enable = true, -- virtual hint enable
+        hint_prefix = "🐼 ", -- Panda for parameter
+        hint_scheme = "String",
+        hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+        max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+        -- to view the hiding contents
+        max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+        handler_opts = {
+          border = "rounded" -- double, rounded, single, shadow, none
+        },
+
+        always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+
+        auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
+        extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+        zindex = 200,       -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+
+        padding = '',       -- character to pad on left and right of signature can be ' ', or '|'  etc
+
+        transparency = nil, -- disabled by default, allow floating win transparent value 1~100
+        shadow_blend = 36,  -- if you using shadow as border use this set the opacity
+        shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+        timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
+        toggle_key = nil    -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+      }
+      require("lsp_signature").setup(lsp_signature_config)
+    end
+  },
   {
     "folke/trouble.nvim",
     dependecies = { "nvim-tree/nvim-web-devicons" },
@@ -586,9 +658,9 @@ lvim.builtin.dap.ui.config.layouts = {
     elements = {
       -- Elements can be strings or table with id and size keys.
       { id = "repl",   size = 0.7 },
-      { id = "scopes", size = 0.3 },
+      -- { id = "scopes", size = 0.3 },
       -- { id = "watches",     size = 0.3 },
-      -- { id = "stacks",      size = 0.3 },
+      { id = "stacks", size = 0.3 },
       -- { id = "breakpoints", size = 0.15 },
     },
     size = 30, -- 40 columns
@@ -635,34 +707,34 @@ require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/.vscode/launch.json
   debugpy = { 'py', 'python' }
 })
 
-local debug_open = function()
-  dapui.open()
+-- local debug_open = function()
+--   dapui.open()
 
-  vim.api.nvim_command("DapVirtualTextEnable")
-  vim.api.nvim_command("NvimTreeClose")
-end
+--   vim.api.nvim_command("DapVirtualTextEnable")
+--   vim.api.nvim_command("NvimTreeClose")
+-- end
 
-local debug_close = function()
-  dap.repl.close()
-  dapui.close()
-  vim.api.nvim_command("DapVirtualTextDisable")
-end
+-- local debug_close = function()
+--   dap.repl.close()
+--   dapui.close()
+--   vim.api.nvim_command("DapVirtualTextDisable")
+-- end
 
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  debug_open()
-end
+-- dap.listeners.after.event_initialized["dapui_config"] = function()
+--   debug_open()
+-- end
 
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  debug_close()
-end
+-- dap.listeners.before.event_terminated["dapui_config"] = function()
+--   debug_close()
+-- end
 
-dap.listeners.before.event_exited["dapui_config"] = function()
-  debug_close()
-end
+-- dap.listeners.before.event_exited["dapui_config"] = function()
+--   debug_close()
+-- end
 
-dap.listeners.before.disconnect["dapui_config"] = function()
-  debug_close()
-end
+-- dap.listeners.before.disconnect["dapui_config"] = function()
+--   debug_close()
+-- end
 
 
 -- cmp
@@ -764,11 +836,52 @@ local vim_config = function()
     augroup END
   ]])
   vim.cmd([[
+    augroup IncFileType
+      autocmd!
+      autocmd BufRead,BufNewFile *.inc setlocal filetype=cpp
+    augroup END
+  ]])
+  vim.cmd([[
     au BufRead,BufNewFile *.ll set filetype=llvm
   ]])
   vim.cmd([[
     au BufNewFile,BufRead *.td set filetype=tablegen
   ]])
+  vim.cmd([[
+    au BufNewFile,BufRead *.inc set filetype=cpp
+  ]])
 end
 
 vim_config()
+
+-- vim.cmd([[
+-- augroup LargeFile
+--         let g:large_file = 3145728 " 3MB
+
+--         " Set options:
+--         "   eventignore+=FileType (no syntax highlighting etc
+--         "   assumes FileType always on)
+--         "   noswapfile (save copy of file)
+--         "   bufhidden=unload (save memory when other file is viewed)
+--         "   buftype=nowritefile (is read-only)
+--         "   undolevels=-1 (no undo possible)
+--         au BufReadPre *
+--                 \ let f=expand("<afile>") |
+--                 \ if getfsize(f) > g:large_file |
+--                         \ set eventignore+=FileType |
+--                         \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 filetype=off lazyredraw eventignore=all nohidden syntax=off
+--                 \ else |
+--                         \ set eventignore-=FileType |
+--                 \ endif
+-- augroup END
+-- ]])
+
+-- custom function
+
+function Exec(cmd)
+  local exec_cmd = cmd
+  if cmd == nil then
+    exec_cmd = vim.fn.input('Command to execute: ')
+  end
+  print(exec_cmd)
+end

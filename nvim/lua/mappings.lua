@@ -109,7 +109,6 @@ M.normal = {
       w = {
         function()
           require("telescope").extensions.live_grep_args.live_grep_args({
-            preview_width = 0.8
           })
         end,
         "live_grep" },
