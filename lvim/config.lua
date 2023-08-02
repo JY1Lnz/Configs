@@ -127,7 +127,7 @@ which_map['f'] = {
   s = { "<cmd>Telescope lsp_document_symbols<CR>", "Find symbols" },
   S = { "<cmd>Telescope lsp_workspace_symbols<CR>", "Find all symbols" },
   o = { "<cmd>SymbolsOutline<CR>", "Find outline" },
-  t = { "<cmd>Translate<CR>", "Translate" }
+  t = { "<cmd>TranslateW<CR>", "Translate" }
 }
 which_map['t'] = {
   name = "terminal",
@@ -181,7 +181,7 @@ lvim.plugins = {
   {
     "voldikss/vim-translator",
     config = function()
-      vim.g.translator_window_type = 'preview'
+      vim.g.translator_window_type = 'popup'
       vim.g.translator_default_engines = { 'google', 'bing' }
     end
   },
@@ -498,6 +498,7 @@ telescope.extensions.live_grep_args = {
 lvim.builtin.dap.ui.config.floating.max_width = 0.9
 lvim.builtin.dap.breakpoint.text = ''
 lvim.builtin.dap.breakpoint_rejected.text = ''
+lvim.builtin.dap.ui.config.controls.enabled = false
 lvim.builtin.dap.ui.config.layouts = {
   {
     elements = {
