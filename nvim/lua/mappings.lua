@@ -211,6 +211,7 @@ M.visual = {
     c = {
       name = "code",
       f = { "<cmd>lua vim.lsp.buf.format()<CR>", "format code" },
+      c = { "<cmd>OSCYankVisual<CR>", "copy" },
     },
     t = { "<cmd>TranslateW<CR>", "translate" },
   },
