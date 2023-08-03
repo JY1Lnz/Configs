@@ -1,5 +1,5 @@
 local nt = require("nvim-tree")
--- local list_keys = require("mappings").nvim_tree_map
+local list_keys = require("mappings").nvim_tree_map
 
 local function my_on_attach(bufnr)
   local api = require ("nvim-tree.api")
@@ -21,7 +21,7 @@ nt.setup({
   on_attach = my_on_attach,
   git = {
     enable = true,
-    ignore = true,
+    ignore = false,
   },
   view = {
     width = 50,
@@ -29,7 +29,7 @@ nt.setup({
     hide_root_folder = false,
     mappings = {
       custom_only = false,
-      -- list = list_keys,
+      list = list_keys,
     },
     -- number line
     number = true,
@@ -40,7 +40,7 @@ nt.setup({
 
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
     custom = { '.git' },
   },
   actions = {

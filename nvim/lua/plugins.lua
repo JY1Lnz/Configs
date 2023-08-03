@@ -314,15 +314,21 @@ return {
   },
   -- move
   {
-    "phaazon/hop.nvim",
-    branch = "v2",
-    opts = {
-
-    },
-    config = function()
-      require("configs/hop");
+    "ggandor/leap.nvim",
+    config = function ()
+      require("leap").add_default_mappings()
     end
   },
+  -- {
+  --   "phaazon/hop.nvim",
+  --   branch = "v2",
+  --   opts = {
+  --
+  --   },
+  --   config = function()
+  --     require("configs/hop");
+  --   end
+  -- },
   {
     "ethanholz/nvim-lastplace",
     config = function()

@@ -15,7 +15,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 local plugins = require("plugins")
 
-require("lazy").setup(plugins)
+require("lazy").setup({
+  plugins,
+})
 
 --- lazy.nvim end
 
@@ -46,6 +48,9 @@ local vim_config = function ()
   vim.cmd([[
     au BufNewFile,BufRead *.td set filetype=tablegen
   ]])
+  -- vim.cmd([[
+  --   au BufNewFile,BufRead *.inc set filetype=cpp
+  -- ]])
 end
 
 
@@ -121,4 +126,5 @@ vim_config()
 
 
 require("highlight")
+require("custom_function")
 

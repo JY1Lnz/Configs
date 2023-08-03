@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
--- local handler = require("lsp/handlers")
+local handler = require("lsp/handlers")
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -59,7 +59,7 @@ lspconfig.opencl_ls.setup({
 })
 
 lspconfig.lua_ls.setup {
-  -- on_attach = handler.on_attach,
+  on_attach = handler.on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {

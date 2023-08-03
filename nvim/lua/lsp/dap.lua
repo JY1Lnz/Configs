@@ -34,12 +34,14 @@ require("dapui").setup({
     {
       elements = {
       -- Elements can be strings or table with id and size keys.
-        { id = "scopes", size = 0.3 },
-        { id = "watches", size = 0.25 },
-        { id = "stacks", size = 0.3 },
-        { id = "breakpoints", size = 0.15 },
+        "repl",
+        -- { id = "repl", size = 0.75 },
+        -- { id = "scopes", size = 0.3 },
+        -- { id = "watches", size = 0.25 },
+        -- { id = "stacks", size = 0.25 },
+        -- { id = "breakpoints", size = 0.15 },
       },
-      size = 40, -- 40 columns
+      size = 30, -- 40 columns
       position = "left",
     },
     {
@@ -149,7 +151,7 @@ dap.adapters.codelldb = {
   host = '127.0.0.1',
   port = 13123,
   executable = {
-    command = '/home/jyl/.local/share/nvim/mason/bin/codelldb',
+    command = '/home/jinyulin/.local/share/nvim/mason/bin/codelldb',
     args = { "--port", "13123" },
   },
 }
@@ -186,14 +188,14 @@ dap.adapters.debugpy = {
 -- }
 
 local debug_open = function ()
-  dapui.open()
-  vim.api.nvim_command("DapVirtualTextEnable")
   vim.api.nvim_command("NvimTreeClose")
+  dapui.open({})
+  vim.api.nvim_command("DapVirtualTextEnable")
 end
 
 local debug_close = function ()
   dap.repl.close()
-  dapui.close()
+  dapui.close({})
   vim.api.nvim_command("DapVirtualTextDisable")
 end
 
