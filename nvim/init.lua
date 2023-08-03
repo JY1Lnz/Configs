@@ -17,7 +17,6 @@ local plugins = require("plugins")
 
 require("lazy").setup(plugins)
 
-
 --- lazy.nvim end
 
 require("basic")

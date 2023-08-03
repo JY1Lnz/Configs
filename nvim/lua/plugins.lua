@@ -11,7 +11,7 @@ return {
   },
   -- colorschemes
   { "folke/tokyonight.nvim" },
-  { "jy1lnz/onedark.nvim" },
+  { "jy1lnz/onedark.nvim", version = "main" },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -248,37 +248,26 @@ return {
     config = function()
       require("configs/nvim-treesitter")
     end,
-    dependencies = {
-      "p00f/nvim-ts-rainbow"
-    }
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = function()
-      require("treesitter-context").setup({
-        enable = true,
-        max_lines = 2,
-        min_window_height = 0,
-        line_numbers = true,
-        multiline_threshold = 20,
-        trim_scope = 'outer',
-        mode = 'cursor',
-        separator = nil,
-        zindex = 20,
-        on_attach = nil,
-      })
-    end
+    -- dependencies = {
+    --   "p00f/nvim-ts-rainbow"
+    -- }
   },
   -- outline
+  -- {
+  --   "stevearc/aerial.nvim",
+  --   opts = {},
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  --   config = function()
+  --     require("configs/aerial")
+  --   end
+  -- },
   {
-    "stevearc/aerial.nvim",
-    opts = {},
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      require("configs/aerial")
+    "simrat39/symbols-outline.nvim",
+    config = function ()
+      require("configs/symbols-outline")
     end
   },
   -- auto save&load
@@ -304,12 +293,6 @@ return {
   },
   { "djoshea/vim-autoread" },
   --debug
-  -- {
-  --   "simrat39/symbols-outline.nvim",
-  --   config = function ()
-  --     require("configs/symbols-outline")
-  --   end
-  -- },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },

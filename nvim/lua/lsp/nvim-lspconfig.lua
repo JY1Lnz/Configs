@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
-local handler = require("lsp/handlers")
+-- local handler = require("lsp/handlers")
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -99,10 +99,10 @@ lspconfig.pyright.setup({
   }
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    local buffer = ev.buf
-    handler.on_attach(buffer)
-  end
-})
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+--   callback = function(ev)
+--     local buffer = ev.buf
+--     handler.on_attach(buffer)
+--   end
+-- })
