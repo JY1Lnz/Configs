@@ -1,4 +1,22 @@
 return {
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+    },
+    dependencies = {
+      "Muniftanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require("configs/noice")
+    end
+  },
+  -- copy
+  {
+    "ojroques/vim-oscyank",
+    version = "main",
+  },
   -- keyboard
   {
     "folke/which-key.nvim",
