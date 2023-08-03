@@ -11,7 +11,10 @@ return {
   },
   -- colorschemes
   { "folke/tokyonight.nvim" },
-  { "jy1lnz/onedark.nvim", version = "main" },
+  {
+    "jy1lnz/onedark.nvim",
+    version = "main"
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
