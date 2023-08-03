@@ -215,6 +215,15 @@ lvim.builtin.lualine.sections.lualine_y = { 'filesize', 'location' }
 
 lvim.plugins = {
   {
+    "ggandor/leap.nvim",
+    dependecies = {
+      "tpope/vim-repeat"
+    },
+    config = function ()
+      require('leap').add_default_mappings()
+    end
+  },
+  {
     "ray-x/lsp_signature.nvim",
     config = function()
       local lsp_signature_config = {
