@@ -55,7 +55,7 @@ M.setup = function()
 -- telescope
   map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 -- lsp
-  map("n", "<A-.>", ":Lspsaga code_action<CR>", opt)
+  -- map("n", "<A-.>", ":Lspsaga code_action<CR>", opt)
 -- terminal
   map("t", "<Esc>", "<C-\\><C-n>", opt)
   map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
@@ -79,6 +79,7 @@ M.normal = {
     c = {
       name = "code",
       f = { "<Esc><cmd>lua vim.lsp.buf.format(vim.fn.visualmode())<CR>", "format code" },
+      a = { "<cmd>Lspsaga code_action<CR>", "code action" },
     },
     s = {
       name = "window control",
@@ -146,8 +147,24 @@ M.normal = {
           position = "center",
         })
       end, "debug console" },
+      t = { function ()
+        require("dapui").float_element("console", {
+          width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+          height = math.floor(vim.api.nvim_win_get_height(0) * 0.8),
+          enter = true,
+          position = "center",
+        })
+      end, "debug terminal" },
+      s = { function ()
+        require("dapui").float_element("stacks", {
+          width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+          height = math.floor(vim.api.nvim_win_get_height(0) * 0.8),
+          enter = true,
+          position = "center",
+        })
+      end, "debug stacks" },
       r = { function()
-        require("dapui").eval(vim.fn.input('expr: '))
+        Exec()
       end, "debug run" },
       -- o = { "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
     }

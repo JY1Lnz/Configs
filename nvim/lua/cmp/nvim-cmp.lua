@@ -103,6 +103,8 @@ cmp_config = {
   },
   mapping = cmp.mapping.preset.insert {
     ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+    -- ["<C-.>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+    -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
     ["<A-,>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close()

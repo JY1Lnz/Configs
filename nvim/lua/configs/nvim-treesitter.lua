@@ -6,17 +6,24 @@ nt.setup({
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
+    disable = function (lang, buf)
+      local max_filesize = 4 * 1024 * 1024
+      local ok, status = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and status and status.size > max_filesize then
+        return true
+      end
+    end
   },
   -- 启用增量选择模块
-  -- incremental_selection = {
-  --   enable = true,
-  --   keymaps = {
-  --     init_selection = "<CR>",
-  --     node_incremental = "<CR>",
-  --     node_decremental = "<BS>",
-  --     scope_incremental = "<TAB>",
-  --   },
-  -- },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<CR>",
+      node_incremental = "<CR>",
+      node_decremental = "<BS>",
+      scope_incremental = "<TAB>",
+    },
+  },
   indent = {
     enable = true,
   },
