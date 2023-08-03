@@ -8,23 +8,23 @@ nt.setup({
     additional_vim_regex_highlighting = false,
   },
   -- 启用增量选择模块
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<CR>",
-      node_incremental = "<CR>",
-      node_decremental = "<BS>",
-      scope_incremental = "<TAB>",
-    },
-  },
+  -- incremental_selection = {
+  --   enable = true,
+  --   keymaps = {
+  --     init_selection = "<CR>",
+  --     node_incremental = "<CR>",
+  --     node_decremental = "<BS>",
+  --     scope_incremental = "<TAB>",
+  --   },
+  -- },
   indent = {
     enable = true,
   },
-  rainbow = {
-    enable = true,
-    extenden_mode = true,
-    max_file_liens = nil,
-  }
+  -- rainbow = {
+  --   enable = true,
+  --   extenden_mode = true,
+  --   max_file_liens = nil,
+  -- }
 })
 
 -- 开启 Folding 模块

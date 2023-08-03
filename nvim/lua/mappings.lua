@@ -114,7 +114,7 @@ M.normal = {
         "live_grep" },
       b = { "<cmd>Telescope buffers<CR>", "find buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "help tags" },
-      o = { "<cmd>AerialToggle<CR>", "find outline" },
+      o = { "<cmd>SymbolsOutline<CR>", "find outline" },
       t = { "<cmd>TranslateW<CR>", "translate" },
       s = { "<cmd>Telescope lsp_document_symbols<CR>", "symbols" },
       S = { "<cmd>Telescope lsp_workspace_symbols<CR>", "all symbols" },
@@ -136,8 +136,8 @@ M.normal = {
     -- debug,
     d = {
       name = "debug",
-      f = { "<cmd>Trouble document_diagnostics<CR>", "file diagnostics" },
-      w = { "<cmd>Trouble document_diagnostics<CR>", "workspace diagnostics" },
+      b = { "<cmd>Trouble document_diagnostics<CR>", "buffer diagnostics" },
+      w = { "<cmd>Trouble workspace_diagnostics<CR>", "workspace diagnostics" },
       d = { function ()
         require("dapui").float_element("repl", {
           width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
