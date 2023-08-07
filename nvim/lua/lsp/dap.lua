@@ -55,7 +55,7 @@ require("dapui").setup({
   },
   controls = {
     -- Requires Neovim nightly (or 0.8 when released)
-    enabled = true,
+    enabled = false,
     -- Display controls in this element
     element = "console",
     icons = {
@@ -215,8 +215,10 @@ dap.listeners.before.disconnect["dapui_config"] = function ()
   debug_close()
 end
 
-require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/.vscode/launch.json", {
-  codelldb = { 'h', 'cpp' },
-  debugpy = { 'py', 'python' }
-})
+if require('util').fileExists(vim.fn.getcwd() .. "/.vscode/launch.json") then
+  require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/.vscode/launch.json", {
+    codelldb = { 'h', 'cpp' },
+    debugpy = { 'py', 'python' }
+  })
+end
 

@@ -5,6 +5,9 @@ require("noice").setup({
       ["vim.lsp.util.stylize_markdown"] = true,
       ["cmp.entry.get_documentation"] = true,
     },
+    signature = {
+      enabled = false,
+    },
   },
   preset = {
     bottom_search = true,
@@ -13,11 +16,26 @@ require("noice").setup({
     inc_rename = false,
     lsp_doc_border = false,
   },
-  message = {
-    enable = false,
+  messages = {
+    -- enabled = false,
+    -- filter = {
+    --   ["not"] = { kind = { "echo" } }
+    -- }
   },
   notify = {
-    enable = false,
+    enabled = false,
+  },
+  views = {
+    cmdline_popup = {
+      position = {
+        row = 2,
+        col = "50%",
+      }
+    }
   }
+  -- cmdline = {
+  --   enabled = true,
+  --   view = "cmdline_popup",
+  -- },
 })
 

@@ -60,12 +60,15 @@ M.setup = function()
   map("t", "<Esc>", "<C-\\><C-n>", opt)
   map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
   -- Dap
-  map("n", "<F5>", ":DapContinue<CR>", opt)
+  map("n", "<F3>", ":lua require'dapui'.toggle()<CR>", opt)
   map("n", "<F4>", ":DapTerminate<CR>", opt)
+  map("n", "<F5>", ":DapContinue<CR>", opt)
   map("n", "<F10>", ":DapStepOver<CR>", opt)
   map("n", "<F9>", ":DapToggleBreakpoint<CR>", opt)
   map("n", "<F11>", ":DapStepInto<CR>", opt)
   map("n", "<F12>", ":DapStepOut<CR>", opt)
+
+  map("n", "<M-o>", ":ClangdSwitchSourceHeader<CR>", opt)
 
 end
 
@@ -80,6 +83,7 @@ M.normal = {
       name = "code",
       f = { "<Esc><cmd>lua vim.lsp.buf.format(vim.fn.visualmode())<CR>", "format code" },
       a = { "<cmd>Lspsaga code_action<CR>", "code action" },
+      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
     },
     s = {
       name = "window control",
@@ -211,9 +215,10 @@ M.visual = {
     c = {
       name = "code",
       f = { "<cmd>lua vim.lsp.buf.format()<CR>", "format code" },
-      c = { "<cmd>OSCYankVisual<CR>", "copy" },
+      c = { ":OSCYankVisual<CR>", "copy" },
     },
     t = { "<cmd>TranslateW<CR>", "translate" },
+    f = { "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<CR>", "grep select" }
   },
 }
 
