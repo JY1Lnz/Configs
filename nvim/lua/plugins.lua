@@ -287,7 +287,7 @@ return {
   -- },
   {
     "simrat39/symbols-outline.nvim",
-    config = function ()
+    config = function()
       require("configs/symbols-outline")
     end
   },
@@ -335,11 +335,37 @@ return {
   },
   -- move
   {
-    "ggandor/leap.nvim",
-    config = function ()
-      require("leap").add_default_mappings()
-    end
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
+      {
+        "R",
+        mode = { "o", "x" },
+        function() require("flash").treesitter_search() end,
+        desc =
+        "Treesitter Search"
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function() require("flash").toggle() end,
+        desc =
+        "Toggle Flash Search"
+      },
+    },
   },
+  -- {
+  --   "ggandor/leap.nvim",
+  --   config = function ()
+  --     require("leap").add_default_mappings()
+  --   end
+  -- },
   -- {
   --   "phaazon/hop.nvim",
   --   branch = "v2",
@@ -441,9 +467,9 @@ return {
   -- {
   --   "aserowy/tmux.nvim"
   -- },
-  --
-  -- {
-  --   "tpope/vim-repeat",
-  --   "tpope/vim-surround",
-  -- }
+
+  {
+    "tpope/vim-repeat",
+    -- "tpope/vim-surround",
+  }
 }
