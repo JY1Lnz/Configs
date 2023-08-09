@@ -28,11 +28,11 @@ return {
     end
   },
   -- colorschemes
-  { "folke/tokyonight.nvim" },
-  {
-    "jy1lnz/onedark.nvim",
-    version = "main"
-  },
+  -- { "folke/tokyonight.nvim" },
+  -- {
+  --   "jy1lnz/onedark.nvim",
+  --   version = "main"
+  -- },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -149,6 +149,12 @@ return {
     },
   },
   -- lsp
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    config = function()
+      require("lsp-inlayhints").setup({})
+    end
+  },
   {
     { "arkav/lualine-lsp-progress" }
   },
