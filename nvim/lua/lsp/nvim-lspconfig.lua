@@ -24,7 +24,7 @@ local clangd_cmd = {
   "--completion-style=detailed",
   "--clang-tidy",   -- 开启clang-tidy
   -- "--clang-tidy-checks=bugprone-*, clang-analyzer-*, google-*, modernize-*, performance-*, portability-*, readability-*, -bugprone-too-small-loop-variable, -clang-analyzer-cplusplus.NewDelete, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-use-nodiscard, -modernize-avoid-c-arrays, -readability-magic-numbers, -bugprone-branch-clone, -bugprone-signed-char-misuse, -bugprone-unhandled-self-assignment, -clang-diagnostic-implicit-int-float-conversion, -modernize-use-auto, -modernize-use-trailing-return-type, -readability-convert-member-functions-to-static, -readability-make-member-function-const, -readability-qualified-auto, -readability-redundant-access-specifiers,",
-  "--clang-tidy-checks=llvm-*, llvmlibc-*, clang-analyzer-*, hicpp-*",
+  -- "--clang-tidy-checks=llvm-*, llvmlibc-*, clang-analyzer-*, hicpp-*",
   "--pch-storage=memory",
   "--cross-file-rename=true",
   "--header-insertion=iwyu",
@@ -36,6 +36,13 @@ if file_exists(filepath) then
 end
 
 lspconfig.clangd.setup({
+  settings = {
+    InlayHints = {
+      Enabled = true,
+      ParameterNames = true,
+      DeducedTypes = true,
+    }
+  },
   flags = {
     debounce_text_change = 150,
   },
@@ -100,6 +107,19 @@ lspconfig.pyright.setup({
   }
 })
 
+vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = "LspAttach_inlayhints",
+  callback = function(args)
+    if not (args.data and args.data.client_id) then
+      return
+    end
+
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    require("lsp-inlayhints").on_attach(client, bufnr)
+  end,
+})
 -- vim.api.nvim_create_autocmd('LspAttach', {
 --   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
 --   callback = function(ev)

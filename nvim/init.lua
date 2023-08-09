@@ -128,4 +128,5 @@ vim_config()
 require("highlight")
 require("custom_function")
 require("local")
+require("tools")
 

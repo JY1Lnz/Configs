@@ -137,6 +137,7 @@ M.normal = {
       l = { "<cmd>lua require 'gitsigns'.blame_line()<CR>", "git blame" },
       b = { "<cmd>Telescope git_branches<CR>", "git branch" },
       s = { "<cmd>Telescope git_status<CR>", "git status" },
+      g = { "<cmd>LazyGit<CR>", "lazy git" },
     },
     -- debug,
     d = {
