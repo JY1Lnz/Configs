@@ -77,7 +77,8 @@ M.normal = {
   ["<leader>"] = {
     ["<space>"] = { "<cmd>Telescope buffers<CR>", "buffer" },
     ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "toggle comment" },
-    k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
+    -- k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
+    k = { "<cmd>lua require('hover').hover()<CR>", "hover" },
     K = { "<cmd>lua require('dapui').eval()<CR>", "eval hover" },
     c = {
       name = "code",
@@ -192,6 +193,11 @@ M.normal = {
     s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diag" },
     h = { "<C-o>", "go back" },
     l = { "<C-i>", "go prev" },
+    k = { function()
+      vim.lsp.buf.hover()
+      vim.lsp.buf.hover()
+    end, "hover" },
+    K = { "<cmd>lua require('hover').hover_select()<CR>", "hover" },
   },
   t = {
     name = "terminal",

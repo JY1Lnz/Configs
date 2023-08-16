@@ -17,7 +17,7 @@ require("noice").setup({
     lsp_doc_border = false,
   },
   messages = {
-    -- enabled = false,
+    enabled = false,
     -- filter = {
     --   ["not"] = { kind = { "echo" } }
     -- }

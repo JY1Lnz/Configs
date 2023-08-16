@@ -17,7 +17,7 @@ local file_exists = function(filename)
 end
 
 local clangd_cmd = {
-  "clangd",
+  "/usr/local/bin/clangd",
   "--pretty",
   "--background-index",   -- 后台建立索引，并持久化到disk
   "-j=16",
@@ -31,18 +31,18 @@ local clangd_cmd = {
   "--header-insertion-decorators",
 }
 
-if file_exists(filepath) then
-  table.insert(clangd_cmd, "--compile-commands-dir=" .. filepath_dir)
-end
+-- if file_exists(filepath) then
+--   table.insert(clangd_cmd, "--compile-commands-dir=" .. filepath_dir)
+-- end
 
 lspconfig.clangd.setup({
-  settings = {
-    InlayHints = {
-      Enabled = true,
-      ParameterNames = true,
-      DeducedTypes = true,
-    }
-  },
+  -- settings = {
+  --   InlayHints = {
+  --     Enabled = true,
+  --     ParameterNames = true,
+  --     DeducedTypes = true,
+  --   }
+  -- },
   flags = {
     debounce_text_change = 150,
   },
@@ -107,19 +107,19 @@ lspconfig.pyright.setup({
   }
 })
 
-vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = "LspAttach_inlayhints",
-  callback = function(args)
-    if not (args.data and args.data.client_id) then
-      return
-    end
-
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    require("lsp-inlayhints").on_attach(client, bufnr)
-  end,
-})
+-- vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   group = "LspAttach_inlayhints",
+--   callback = function(args)
+--     if not (args.data and args.data.client_id) then
+--       return
+--     end
+--
+--     local bufnr = args.buf
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     require("lsp-inlayhints").on_attach(client, bufnr)
+--   end,
+-- })
 -- vim.api.nvim_create_autocmd('LspAttach', {
 --   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
 --   callback = function(ev)

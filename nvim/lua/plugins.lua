@@ -29,10 +29,10 @@ return {
   },
   -- colorschemes
   -- { "folke/tokyonight.nvim" },
-  -- {
-  --   "jy1lnz/onedark.nvim",
-  --   version = "main"
-  -- },
+  {
+    "jy1lnz/onedark.nvim",
+    version = "main"
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -87,7 +87,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "BurntSushi/ripgrep",
-      "nvim-treesitter/nvim-treesitter",
+      -- "nvim-treesitter/nvim-treesitter",
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
     config = function()
@@ -149,11 +149,38 @@ return {
     },
   },
   -- lsp
+  -- {
+  --   "lvimuser/lsp-inlayhints.nvim",
+  --   config = function()
+  --     require("lsp-inlayhints").setup({})
+  --   end
+  -- },
   {
-    "lvimuser/lsp-inlayhints.nvim",
+    "lewis6991/hover.nvim",
     config = function()
-      require("lsp-inlayhints").setup({})
-    end
+      require("hover").setup {
+        init = function()
+          -- Require providers
+          require("hover.providers.lsp")
+          -- require('hover.providers.gh')
+          -- require('hover.providers.gh_user')
+          -- require('hover.providers.jira')
+          -- require('hover.providers.man')
+          -- require('hover.providers.dictionary')
+        end,
+        preview_opts = {
+          border = nil
+        },
+        -- Whether the contents of a currently open hover window should be moved
+        -- to a :h preview-window when pressing the hover keymap.
+        preview_window = true,
+        title = true
+      }
+
+      -- Setup keymaps
+      -- vim.keymap.set("n", "<leader>K", require("hover").hover, { desc = "hover.nvim" })
+      -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+    end,
   },
   {
     { "arkav/lualine-lsp-progress" }
@@ -178,7 +205,7 @@ return {
     opts = {
       ensure_installed = {
         "cmake-language-server",
-        "clangd",
+        -- "clangd",
         "clang-format",
         "codelldb",
         "lua-language-server",
@@ -220,7 +247,7 @@ return {
       require("lsp/lspsaga")
     end,
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+      -- "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     }
   },
@@ -240,22 +267,25 @@ return {
   { "saadparwaiz1/cmp_luasnip" },
 
   -- indent
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   config = function ()
-  --     require("indent_blankline").setup({
-  --       char = '|',
-  --       show_current_context = true,
-  --     })
-  --   end
-  -- },
   {
-    "shellRaining/hlchunk.nvim",
-    event = "UIEnter",
+    "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("configs/indent")
+      -- vim.opt.termguicolors = true
+      -- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
+      -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
+      require("indent_blankline").setup({
+        char = '|',
+        show_current_context = true,
+      })
     end
   },
+  -- {
+  --   "shellRaining/hlchunk.nvim",
+  --   event = "UIEnter",
+  --   config = function()
+  --     require("configs/indent")
+  --   end
+  -- },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -270,15 +300,15 @@ return {
   --   --   require("configs/todo-comments")
   --   -- end
   -- },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("configs/nvim-treesitter")
-    end,
-    -- dependencies = {
-    --   "p00f/nvim-ts-rainbow"
-    -- }
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   config = function()
+  --     require("configs/nvim-treesitter")
+  --   end,
+  --   -- dependencies = {
+  --   --   "p00f/nvim-ts-rainbow"
+  --   -- }
+  -- },
   -- outline
   -- {
   --   "stevearc/aerial.nvim",
@@ -343,20 +373,11 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    ---@type Flash.Config
     opts = {},
-    -- stylua: ignore
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
       { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
-      {
-        "R",
-        mode = { "o", "x" },
-        function() require("flash").treesitter_search() end,
-        desc =
-        "Treesitter Search"
-      },
       {
         "<c-s>",
         mode = { "c" },
@@ -477,5 +498,8 @@ return {
   {
     "tpope/vim-repeat",
     -- "tpope/vim-surround",
+  },
+  {
+    "kevinhwang91/nvim-bqf",
   }
 }
