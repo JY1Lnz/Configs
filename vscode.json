@@ -1,0 +1,777 @@
+{
+  "remote.SSH.remotePlatform": {
+    "Test": "linux",
+    "Ubuntu-develop": "linux",
+    "JYL-dev": "linux"
+  },
+  "hexinspector.hoverContent": [
+    "decimal",
+    "hexadecimal",
+    "binary",
+    "float32",
+    "float16",
+    "ascii",
+    "size"
+  ],
+  "editor.lineHighlightBackground": "#000000",
+  "editor.fontLigatures": true,
+  "editor.lineNumbers": "relative",
+  "editor.fontSize": 19,
+  "editor.scrollBeyondLastLine": false,
+  "editor.suggest.insertMode": "replace",
+  "editor.smoothScrolling": false,
+  "editor.cursorSmoothCaretAnimation": "off",
+  "workbench.editor.enablePreview": false,
+  "editor.rulers": [
+    80
+  ],
+  "errorLens.excludePatterns": [
+    "**/*.cl"
+  ],
+  "todo-tree.highlights.enabled": true,
+  "todo-tree.highlights.useColourScheme": true,
+  "ColumnHighlight.color": "#000000",
+  "ColumnHighlight.size": 30,
+  // "clangd.detectExtensionConflicts": true,
+  "clangd.detectExtensionConflicts": false,
+  "clangd.onConfigChanged": "restart",
+  "editor.guides.bracketPairs": true,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "terminal.integrated.fontFamily": "SauceCodePro Nerd font",
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "vim.leader": "<space>",
+  // "vim.foldfix": true,
+  "vim.useSystemClipboard": true,
+  "vim.hlsearch": false,
+  "vim.highlightedyank.enable": true,
+  "vim.commandLineModeKeyBindingsNonRecursive": [],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>",
+      ]
+    },
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "J"
+      ],
+      "after": [
+        ":move '>+1<CR>gv-gv"
+      ],
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "after": [
+        ":move '<-2<CR>gv-gv"
+      ],
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // leader -> search
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "a"
+      ],
+      "commands": [
+        "workbench.view.search"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.gotoSymbol"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "i"
+      ],
+      "commands": [
+        "actions.find"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "r"
+      ],
+      "commands": [
+        "editor.action.startFindReplaceAction"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "["
+      ],
+      "after": [
+        "[",
+        "{"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "]"
+      ],
+      "after": [
+        "]",
+        "}"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.splitEditorLeft",
+        "workbench.action.moveEditorToPreviousGroup"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "r"
+      ],
+      "commands": [
+        "workbench.action.splitEditorRight",
+        "workbench.action.moveEditorToNextGroup"
+      ]
+    },
+    {
+      "before": [
+        "<Esc>",
+      ],
+      "commands": [
+        ":noh",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "f"
+      ],
+      "commands": [
+        "git.openChange"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "k"
+      ],
+      "commands": [
+        "editor.action.showHover",
+      ],
+      "when": "editorTextFocus"
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "a"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ],
+      "when": "editorFocus"
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "t"
+      ],
+      "commands": [
+        "todo-tree-view.focus"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "b"
+      ],
+      "commands": [
+        "bookmarksExplorer.focus"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "n"
+      ],
+      "commands": [
+        "notes.focus"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "p"
+      ],
+      "commands": [
+        "copyFilePath"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.splitEditorLeft",
+        "workbench.action.moveEditorToPreviousGroup",
+        "editor.action.revealDefinition",
+      ],
+      "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.splitEditorRight",
+        "workbench.action.moveEditorToNextGroup",
+        "editor.action.revealDefinition",
+      ],
+      "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "b"
+      ],
+      "commands": [
+        "bookmarks.toggle"
+      ],
+      "when": "editorFocus"
+    },
+    {
+      "before": [
+        "]",
+        "d"
+      ],
+      "commands": [
+        "editor.action.marker.next"
+      ],
+      "when": "editorFocus"
+    },
+    {
+      "before": [
+        "[",
+        "d"
+      ],
+      "commands": [
+        "editor.action.marker.prev"
+      ],
+      "when": "editorFocus"
+    },
+    {
+      "before": [
+        "J"
+      ],
+      "after": [
+        "1",
+        "5",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "after": [
+        "1",
+        "5",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "<"
+      ],
+      "commands": [
+        "editor.action.jumpToBracket",
+      ],
+      "when": "editorTextFocus"
+    },
+    {
+      "before": [
+        "g",
+        ">"
+      ],
+      "commands": [
+        "editor.action.jumpToBracket",
+      ],
+      "when": "editorTextFocus"
+    },
+    {
+      "before": [
+        "<space>",
+        "<space>"
+      ],
+      "commands": [
+        "whichkey.show"
+      ]
+    },
+    {
+      "before": [
+        "z",
+        "z"
+      ],
+      "commands": [
+        "editor.toggleFold"
+      ]
+    },
+    {
+      "before": [
+        "m",
+        "m"
+      ],
+      "commands": [
+        "bookmarks.toggle"
+      ]
+    },
+    {
+      "before": [
+        "s",
+      ],
+      "commands": [
+        "leap.find"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "v"
+      ],
+      "commands": [
+        ":vsp<CR>"
+      ],
+    },
+    {
+      "before": [
+        "g",
+        "D"
+      ],
+      "commands": [
+        "editor.action.peekDefinition",
+      ],
+      "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "g",
+        "d"
+      ],
+      "commands": [
+        ":vsp<CR>",
+        "editor.action.revealDefinition"
+      ],
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "h"
+      ],
+      "commands": [
+        ":sp<CR>"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "d"
+      ],
+      "commands": [
+        "editor.action.peekDefinition"
+      ],
+      "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+      "before": [
+        "d",
+        "w"
+      ],
+      "after": [
+        "d",
+        "i",
+        "w"
+      ],
+    },
+    // {
+    //     "before": [
+    //         "j"
+    //     ],
+    //     "after": [
+    //         "g",
+    //         "j"
+    //     ]
+    // },
+    // {
+    //     "before": [
+    //         "k"
+    //     ],
+    //     "after": [
+    //         "g",
+    //         "k"
+    //     ]
+    // },
+    {
+      "before": [
+        "<leader>",
+        "s"
+      ],
+      "commands": [
+        ":w"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "q"
+      ],
+      "commands": [
+        ":wq"
+      ]
+    },
+    {
+      "before": [
+        "H"
+      ],
+      "after": [
+        "^"
+      ]
+    },
+    {
+      "before": [
+        "L"
+      ],
+      "after": [
+        "$"
+      ]
+    },
+    {
+      "before": [
+        "\\"
+      ],
+      "commands": [
+        "metaGo.gotoSmart"
+      ]
+    },
+    {
+      "before": [
+        "f",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.terminal.toggleTerminal"
+      ],
+      "when": "terminal.active"
+    },
+    {
+      "before": [
+        "f",
+        "d"
+      ],
+      "commands": [
+        "workbench.debug.action.toggleRepl"
+      ],
+      "when": "workbench.panel.repl.view.active"
+    },
+    {
+      "before": [
+        "V"
+      ],
+      "after": [
+        "<C-v>"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.navigateBack"
+      ],
+      "when": "canNavigateBack"
+    },
+    {
+      "before": [
+        "g",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.navigateForward"
+      ],
+      "when": "canNavigateForward"
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.goToReferences"
+      ],
+      "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    }
+  ],
+  "workbench.colorTheme": "Visual Assist Dark Theme",
+  "leetcode.endpoint": "leetcode-cn",
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.fontFamily": "SourceCodePro Nerd Font Mono",
+  "workbench.colorCustomizations": {
+    "[Solarized Light]": {
+      "editor.selectionBackground": "#cacaca",
+      "editor.lineHighlightBackground": "#cccdcc"
+    },
+    "[Visual Assist Dark Theme]": {
+      "editor.lineHighlightBackground": "#000000"
+    }
+  },
+  "editor.semanticHighlighting.enabled": true,
+  "editor.semanticTokenColorCustomizations": {
+    "[Solarized Light]": {
+      "enabled": true,
+      "rules": {
+        "comments": "#00BF00",
+        // format
+        // 普通变量: normal
+        // 成员变量: italic
+        // 常量    : bold
+        // 静态变量: underling
+        "parameter": "#306b72",
+        "class": {
+          "fontStyle": "bold",
+          "foreground": "#CB4B16"
+        },
+        "type.fileScope": {
+          "fontStyle": "bold",
+          "foreground": "#586E75"
+        },
+        "type": {
+          "fontStyle": "bold",
+          "foreground": "#586E75"
+        },
+        "function": {
+          "foreground": "#DB7800"
+        },
+        "typeParameter": {
+          "foreground": "#729de3",
+          "fontStyle": "italic bold",
+        },
+        "variable.static": {
+          "fontStyle": "underline"
+        },
+        "variable.readonly.static": {
+          "fontStyle": "underline bold"
+        },
+        "enum": {
+          "fontStyle": "bold",
+          "foreground": "#3084b4"
+        },
+        "enumMember": "#074a79",
+        "macro": {
+          "foreground": "#8f5daf",
+          "fontStyle": "bold"
+        },
+        "method": {
+          "foreground": "#DB7800",
+          "fontStyle": "italic",
+        },
+        "*.static": {
+          "fontStyle": "underline"
+        },
+        // 只读量加粗
+        "*.readonly": {
+          "fontStyle": "bold"
+        },
+        "comment": "#1b6d31",
+        "namespace": {
+          "foreground": "#35c95f",
+          "fontStyle": "bold"
+        },
+        "property": {
+          "fontStyle": "italic"
+        },
+        "property.readonly": {
+          "fontStyle": "italic underline"
+        },
+        "method.readonly": {
+          "fontStyle": "italic bold"
+        },
+        "function.static": {
+          "fontStyle": "underline"
+        },
+      }
+    },
+    "[Visual Assist Dark Theme]": {
+      "enabled": true,
+      "rules": {
+        "comments": "#00BF00",
+        // format
+        // 普通变量: normal
+        // 成员变量: italic
+        // 常量    : bold
+        // 静态变量: underling
+        // "parameter": "#306b72",
+        "class": {
+          "fontStyle": "bold",
+          // "foreground": "#CB4B16"
+        },
+        "type.fileScope": {
+          "fontStyle": "bold",
+          // "foreground": "#586E75"
+        },
+        "type": {
+          "fontStyle": "underline",
+          // "foreground": "#d8f800"
+        },
+        "function": {
+          // "foreground": "#DB7800"
+        },
+        "typeParameter": {
+          // "foreground": "#729de3",
+          "fontStyle": "italic bold",
+        },
+        // "parameter": "#f15203",
+        "variable": "#bfbfb4",
+        "variable.static": {
+          "fontStyle": "underline"
+        },
+        "variable.readonly.static": {
+          "fontStyle": "underline bold"
+        },
+        "enum": {
+          "fontStyle": "bold",
+          "foreground": "#3084b4"
+        },
+        "enumMember": {
+          "foreground": "#00e2c8",
+          "fontStyle": "bold"
+        },
+        // "enumMember": "#074a79",
+        "macro": {
+          "foreground": "#8f5daf",
+          "fontStyle": "bold"
+        },
+        "method": {
+          // "foreground": "#DB7800",
+          "fontStyle": "italic",
+        },
+        "*.static": {
+          "fontStyle": "underline"
+        },
+        // 只读量加粗
+        "*.readonly": {
+          "fontStyle": "bold"
+        },
+        // "comment": "#1b6d31",
+        "namespace": {
+          "fontStyle": "bold underline",
+          "foreground": "#ffd700",
+        },
+        "property": {
+          "fontStyle": "italic"
+        },
+        "property.readonly": {
+          "fontStyle": "italic underline"
+        },
+        "method.readonly": {
+          "fontStyle": "italic bold"
+        },
+        "function.static": {
+          "fontStyle": "underline"
+        },
+      }
+    }
+  },
+  "RainbowBrackets.depreciation-notice": false,
+  "vim.useCtrlKeys": false,
+  "notebook.output.textLineLimit": 100,
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "*.cl": "cpp",
+    "*.s": "shellscript"
+  },
+  "editor.accessibilitySupport": "off",
+  "editor.minimap.enabled": false,
+  // "editor.wordWrap": "on"
+  // which key
+  "logFileHighlighter.customPatterns": [
+    {
+      "pattern": "\\s=\\s*(\\w+)",
+      "foreground": "#ff6b01"
+    }
+  ],
+  "files.autoSave": "onFocusChange",
+  "debug.onTaskErrors": "debugAnyway",
+  "task.problemMatchers.neverPrompt": {
+    "shell": true
+  },
+  "editor.tabSize": 2,
+  "workbench.editorLargeFileConfirmation": 30,
+  "workbench.layoutControl.enabled": false,
+  "window.commandCenter": false,
+  "vim.foldfix": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "diffEditor.maxComputationTime": 0,
+  "terminal.integrated.scrollback": 1000000,
+  "leetcode.workspaceFolder": "/home/jinyulin/.leetcode",
+  "leetcode-problem-rating.defaultLanguage": "cpp",
+  "leetcode-problem-rating.hint.configWebviewMarkdown": false,
+  "leetcode-problem-rating.hint.commandShortcut": false,
+  "leetcode-problem-rating.hint.commentDescription": false,
+  "window.zoomLevel": 1,
+  // "breadcrumbs.enabled": false
+}
