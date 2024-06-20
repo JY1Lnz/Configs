@@ -233,6 +233,7 @@ M.normal = {
     f = { "<cmd>ToggleTerm direction=float<CR>", "float term" },
     h = { "<cmd>ToggleTerm direction=horizontal<CR>", "horizontal term" },
     v = { "<cmd>ToggleTerm direction=vertical<CR>", "vertical term" },
+    t = { "<cmd>ToggleTerm direction=tab<CR>", "tab term" },
   },
   ["["] = {
     -- d = { "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "prev diag"},
