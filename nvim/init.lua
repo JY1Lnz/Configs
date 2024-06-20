@@ -134,3 +134,49 @@ require("custom_function")
 -- require("local")
 require("tools")
 
+
+-- transparent
+local set_transparent = function (config)
+  vim.api.nvim_set_hl(0, config.group, config.opt)
+end
+local configs = {
+  {
+    group = "NvimTreeNormal",
+    opt = {
+      guibg = NONE,
+      ctermbg = NONE,
+    }
+  },
+  {
+    group = "TelescopeBorder",
+    opt = {
+      guibg = NONE,
+      ctermbg = NONE,
+    }
+  },
+  {
+    group = "FloatBorder",
+    opt = {
+      guibg = NONE,
+      ctermbg = NONE,
+    }
+  },
+  {
+    group = "NormalFloat",
+    opt = {
+      guibg = NONE,
+      ctermbg = NONE,
+    }
+  },
+  {
+    group = "WhichKeyFloat",
+    opt = {
+      guibg = NONE,
+      ctermbg = NONE,
+    }
+  },
+
+}
+for k, v in pairs(configs) do
+  set_transparent(v)
+end

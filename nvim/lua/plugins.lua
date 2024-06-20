@@ -30,7 +30,12 @@ return {
   },
   {
     "jy1lnz/onedark.nvim",
-    version = "main"
+    version = "main",
+    config = function ()
+      require("onedark").setup({
+        transparent = true,
+      })
+    end
   },
   -- {
   --   "norcalli/nvim-colorizer.lua",

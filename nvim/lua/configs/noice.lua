@@ -76,7 +76,7 @@ require("noice").setup({
         find = "deprecated",
       },
       opts = { skip = true, }
-    }
+    },
   },
   -- cmdline = {
   --   enabled = true,

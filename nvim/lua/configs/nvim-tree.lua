@@ -48,9 +48,11 @@ nt.setup({
   update_focused_file = {
     enable = true,
     update_cwd = true,
-  }
+  },
 })
 
 vim.cmd([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]])
+
+
