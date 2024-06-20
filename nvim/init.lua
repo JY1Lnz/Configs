@@ -135,48 +135,33 @@ require("custom_function")
 require("tools")
 
 
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { guibg=NONE, ctermbg=NONE} )
+vim.api.nvim_set_hl(0, "NormalFloat", { guibg=NONE, ctermbg=NONE} )
+vim.api.nvim_set_hl(0, "WhichKeyFloat", { guibg=NONE, ctermbg=NONE} )
 -- transparent
-local set_transparent = function (config)
-  vim.api.nvim_set_hl(0, config.group, config.opt)
+local set_border_transparent = function (group)
+  vim.api.nvim_set_hl(0, group, { guibg=NONE, ctermbg=NONE, fg='#ffffff' })
 end
-local configs = {
-  {
-    group = "NvimTreeNormal",
-    opt = {
-      guibg = NONE,
-      ctermbg = NONE,
-    }
-  },
-  {
-    group = "TelescopeBorder",
-    opt = {
-      guibg = NONE,
-      ctermbg = NONE,
-    }
-  },
-  {
-    group = "FloatBorder",
-    opt = {
-      guibg = NONE,
-      ctermbg = NONE,
-    }
-  },
-  {
-    group = "NormalFloat",
-    opt = {
-      guibg = NONE,
-      ctermbg = NONE,
-    }
-  },
-  {
-    group = "WhichKeyFloat",
-    opt = {
-      guibg = NONE,
-      ctermbg = NONE,
-    }
-  },
-
+local borders = {
+  "TelescopeBorder",
+  "FloatBorder",
+  "SagaBorder",
+  "RenameBorder",
+  "WhichKeyBorder",
+  "NoiceConfirmBorder",
+  "NoicePopupmenuBorder",
+  "DiagnosticShowBorder",
+  "ActionPreviewBorder",
+  "NoiceCmdlinePopupBorderCmdline",
+  "NoiceCmdlinePopupBorderInput",
+  "NoiceCmdlinePopupBorderLua",
+  "NoiceCmdlinePopupBorderSearch",
+  "NoiceCmdlinePopupBorderFilter",
+  "NoiceCmdlinePopupBorderCalculator",
+  "NoiceCmdlinePopupBorder",
+  "NoiceCmdlinePopupBorderHelper",
 }
-for k, v in pairs(configs) do
-  set_transparent(v)
+
+for k, v in pairs(borders) do
+  set_border_transparent(v)
 end

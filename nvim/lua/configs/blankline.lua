@@ -23,4 +23,13 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
     vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 end)
 
-ibl.setup { indent = { highlight = highlight } }
+ibl.setup { 
+  indent = {
+    highlight = highlight
+  },
+  scope = {
+    enabled = true,
+    show_start = false,
+    show_end = false,
+  },
+}
