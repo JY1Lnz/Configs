@@ -26,11 +26,6 @@ nt.setup({
   view = {
     width = 50,
     side = 'left',
-    hide_root_folder = false,
-    mappings = {
-      custom_only = false,
-      list = list_keys,
-    },
     -- number line
     number = true,
     relativenumber = true,

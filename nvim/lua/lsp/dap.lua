@@ -5,8 +5,8 @@ require("dapui").setup({
   icons = { expanded = "", collapsed = "", current_frame = "" },
   mappings = {
     -- Use a table to apply multiple mappings
-    expand = { "<CR>", "<2-LeftMouse>" },
-    open = "o",
+    expand = "o",
+    open = "<CR>",
     remove = "d",
     edit = "e",
     repl = "r",
@@ -16,6 +16,10 @@ require("dapui").setup({
   element_mappings = {
     -- Example:
     stacks = {
+      open = "<CR>",
+      expand = "o",
+    },
+    eval = {
       open = "<CR>",
       expand = "o",
     }
@@ -34,15 +38,23 @@ require("dapui").setup({
     {
       elements = {
       -- Elements can be strings or table with id and size keys.
-        "repl",
+        -- "repl",
+        { id = "watches", size = 0.5 },
+        { id = "scopes", size = 0.5 },
         -- { id = "repl", size = 0.75 },
-        -- { id = "scopes", size = 0.3 },
-        -- { id = "watches", size = 0.25 },
         -- { id = "stacks", size = 0.25 },
         -- { id = "breakpoints", size = 0.15 },
       },
       size = 30, -- 40 columns
       position = "left",
+    },
+    {
+      elements = {
+        "repl",
+        -- { id = "repl", size = 0.75 },
+      },
+      size = 30,
+      position = "right",
     },
     {
       elements = {
@@ -151,7 +163,7 @@ dap.adapters.codelldb = {
   host = '127.0.0.1',
   port = 13123,
   executable = {
-    command = '/home/jinyulin/.local/share/nvim/mason/bin/codelldb',
+    command = 'codelldb',
     args = { "--port", "13123" },
   },
 }
@@ -190,13 +202,14 @@ dap.adapters.debugpy = {
 local debug_open = function ()
   vim.api.nvim_command("NvimTreeClose")
   dapui.open({})
-  vim.api.nvim_command("DapVirtualTextEnable")
+  -- vim.api.nvim_command("DapVirtualTextEnable")
+  vim.api.nvim_command("DapVirtualTextDisable")
 end
 
 local debug_close = function ()
   dap.repl.close()
   dapui.close({})
-  vim.api.nvim_command("DapVirtualTextDisable")
+  -- vim.api.nvim_command("DapVirtualTextDisable")
 end
 
 dap.listeners.after.event_initialized["dapui_config"] = function ()
@@ -217,8 +230,10 @@ end
 
 if require('util').fileExists(vim.fn.getcwd() .. "/.vscode/launch.json") then
   require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/.vscode/launch.json", {
-    codelldb = { 'h', 'cpp' },
+    codelldb = { 'h', 'cpp', 'c' },
     debugpy = { 'py', 'python' }
   })
 end
 
+_G.store_breakpoints = require('util').store_breakpoints
+_G.load_breakpoints = require('util').load_breakpoints

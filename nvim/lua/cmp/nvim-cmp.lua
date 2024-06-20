@@ -113,21 +113,7 @@ cmp_config = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end),
-    ["<CR>"] = cmp.mapping.confirm({
+    ["<Tab>"] = cmp.mapping.confirm({
       select = true,
       behavior = cmp.ConfirmBehavior.Replace
     }),

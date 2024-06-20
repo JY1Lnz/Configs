@@ -4,7 +4,7 @@ nt.setup({
     "json", "html", "css", "vim", "lua", "javascript", "typescript", "c", "cpp", "python", "lua", "markdown", "markdown_inline"
   },
   highlight = {
-    enable = true,
+    enable = false,
     additional_vim_regex_highlighting = false,
     disable = function (lang, buf)
       local max_filesize = 4 * 1024 * 1024
@@ -25,7 +25,7 @@ nt.setup({
     },
   },
   indent = {
-    enable = true,
+    enable = false,
   },
   -- rainbow = {
   --   enable = true,
