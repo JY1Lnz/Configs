@@ -35,23 +35,27 @@ vim.notify = function(msg, ...)
     notify(msg, ...)
 end
 
-local vim_config = function ()
-  vim.cmd([[
-    augroup OpenCLFileType
-      autocmd!
-      autocmd BufRead,BufNewFile *.cl setlocal filetype=cpp
-    augroup END
+vim.cmd([[
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup='Visual', timeout=300}
   ]])
-  vim.cmd([[
-    au BufRead,BufNewFile *.ll set filetype=llvm
-  ]])
-  vim.cmd([[
-    au BufNewFile,BufRead *.td set filetype=tablegen
-  ]])
-  -- vim.cmd([[
-  --   au BufNewFile,BufRead *.inc set filetype=cpp
-  -- ]])
-end
+
+-- local vim_config = function ()
+--   vim.cmd([[
+--     augroup OpenCLFileType
+--       autocmd!
+--       autocmd BufRead,BufNewFile *.cl setlocal filetype=cpp
+--     augroup END
+--   ]])
+--   vim.cmd([[
+--     au BufRead,BufNewFile *.ll set filetype=llvm
+--   ]])
+--   vim.cmd([[
+--     au BufNewFile,BufRead *.td set filetype=tablegen
+--   ]])
+--   -- vim.cmd([[
+--   --   au BufNewFile,BufRead *.inc set filetype=cpp
+--   -- ]])
+-- end
 
 
 -- 放在前面会被覆盖，只能丢在这了
@@ -118,15 +122,15 @@ local dap_breakpoint_color = {
 }
 
 vim.api.nvim_set_hl(0, 'DapBreakpointText', dap_breakpoint_color.breakpoint)
--- vim.api.nvim_set_hl(0, 'DapLogPoint', dap_breakpoint_color.logpoing)
+vim.api.nvim_set_hl(0, 'DapLogPoint', dap_breakpoint_color.logpoing)
 vim.api.nvim_set_hl(0, 'DapStoppedLine', dap_breakpoint_color.stopped_line)
 vim.api.nvim_set_hl(0, 'DapStoppedText', dap_breakpoint_color.stopped_text)
 
-vim_config()
+-- vim_config()
 
 
 require("highlight")
 require("custom_function")
-require("local")
+-- require("local")
 require("tools")
 

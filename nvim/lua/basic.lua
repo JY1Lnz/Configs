@@ -60,7 +60,7 @@ vim.o.autoread = true
 vim.bo.autoread = true
 
 -- dont wrap line
-vim.wo.wrap = false
+vim.wo.wrap = true
 
 vim.o.mouse = "a"
 

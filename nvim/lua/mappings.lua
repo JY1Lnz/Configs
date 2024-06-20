@@ -43,6 +43,9 @@ M.setup = function()
   map("v", "K", "10k", opt)
 
   map("n", "<C-M-q>", ":qa<CR>", opt)
+-- terminal
+  map("n", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
+  map("t", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
 
 -- nvim-tree
   map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
@@ -78,6 +81,30 @@ M.normal = {
     ["<space>"] = { "<cmd>Telescope buffers<CR>", "buffer" },
     ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "toggle comment" },
     -- k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
+    l = { function()
+      require("flash").jump({
+        search = { mode = "search", max_length = 0 },
+        label = { after = { 0, 0 } },
+        pattern = "^",
+      })
+    end, "jump to a line" },
+    w = { function()
+      require("flash").jump({
+        pattern = ".", -- initialize pattern with any char
+        search = {
+          mode = function(pattern)
+            -- remove leading dot
+            if pattern:sub(1, 1) == "." then
+              pattern = pattern:sub(2)
+            end
+            -- return word pattern and proper skip pattern
+            return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
+          end,
+        },
+        -- select the range
+        -- jump = { pos = "range" },
+      })
+    end, "jump to a word" },
     k = { "<cmd>lua require('hover').hover()<CR>", "hover" },
     K = { "<cmd>lua require('dapui').eval()<CR>", "eval hover" },
     c = {
@@ -118,6 +145,12 @@ M.normal = {
           })
         end,
         "live_grep" },
+      c = {
+        function()
+          require("telescope").extensions.live_grep_args.live_grep_args({
+          })
+        end,
+        "live_grep" },
       b = { "<cmd>Telescope buffers<CR>", "find buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "help tags" },
       o = { "<cmd>SymbolsOutline<CR>", "find outline" },
@@ -145,6 +178,7 @@ M.normal = {
       name = "debug",
       b = { "<cmd>Trouble document_diagnostics<CR>", "buffer diagnostics" },
       w = { "<cmd>Trouble workspace_diagnostics<CR>", "workspace diagnostics" },
+      v = { "<cmd>DapVirtualTextToggle<CR>", "dap virtual txt toggle" },
       d = { function ()
         require("dapui").float_element("repl", {
           width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
@@ -182,21 +216,16 @@ M.normal = {
     i = { "<cmd>BookmarkAnnotate<CR>", "bookmark annotation" },
     a = { "<cmd>Telescope vim_bookmarks current_file<CR>", "show current file bookmarks" },
     A = { "<cmd>Telescope vim_bookmarks all<CR>", "show all bookmarks" },
-    P = { ":PreviewMarkdown right<CR>", "preview markdown"},
+    -- P = { ":PreviewMarkdown right<CR>", "preview markdown"},
   },
   g = {
     -- goto lsp
     name = "goto",
-    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
+    -- d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
+    d = { "<cmd>Lspsaga goto_definition<CR>", "goto definition" },
     D = { "<cmd>Lspsaga peek_definition<CR>", "peek definition" },
     r = { "<cmd>Lspsaga finder<CR>", "find ref" },
     s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diag" },
-    h = { "<C-o>", "go back" },
-    l = { "<C-i>", "go prev" },
-    k = { function()
-      vim.lsp.buf.hover()
-      vim.lsp.buf.hover()
-    end, "hover" },
     K = { "<cmd>lua require('hover').hover_select()<CR>", "hover" },
   },
   t = {
@@ -225,8 +254,32 @@ M.visual = {
       c = { ":OSCYankVisual<CR>", "copy" },
     },
     t = { "<cmd>TranslateW<CR>", "translate" },
-    f = { "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<CR>", "grep select" }
-  },
+    f = { "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<CR>", "grep select" },
+    l = { function()
+      require("flash").jump({
+        search = { mode = "search", max_length = 0 },
+        label = { after = { 0, 0 } },
+        pattern = "^",
+      })
+    end, "jump to a line" },
+    w = { function()
+      require("flash").jump({
+        pattern = ".", -- initialize pattern with any char
+        search = {
+          mode = function(pattern)
+            -- remove leading dot
+            if pattern:sub(1, 1) == "." then
+              pattern = pattern:sub(2)
+            end
+            -- return word pattern and proper skip pattern
+            return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
+          end,
+        },
+        -- select the range
+        -- jump = { pos = "range" },
+      })
+    end, "jump to a word"},
+  }
 }
 
 M.nvim_tree_map = {

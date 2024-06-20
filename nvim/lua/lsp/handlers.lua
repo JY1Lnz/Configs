@@ -13,7 +13,7 @@ local lsp_signature_config = {
   -- This setting only take effect in insert mode, it does not affect signature help in normal
   -- mode, 10 by default
 
-  floating_window = false, -- show hint in a floating window, set to false for virtual text only mode
+  floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
 
   floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
   -- will set to true when fully tested, set to false will use whichever side has more space
@@ -34,6 +34,7 @@ local lsp_signature_config = {
   handler_opts = {
     border = "rounded"   -- double, rounded, single, shadow, none
   },
+  hint_inline = function() return true end,
 
   always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
 
@@ -94,7 +95,7 @@ M.setup = function()
 
 end
 
-M.on_attach = function(bufnr)
+M.on_attach = function(client, bufnr)
   require 'lsp_signature'.on_attach(lsp_signature_config, bufnr)
 end
 

@@ -1,4 +1,5 @@
 return {
+  -- 通知提示
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -27,19 +28,9 @@ return {
       require("configs/which-key")
     end
   },
-  -- colorschemes
-  -- { "folke/tokyonight.nvim" },
   {
     "jy1lnz/onedark.nvim",
     version = "main"
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      require("configs/catppuccin")
-    end
   },
   -- {
   --   "norcalli/nvim-colorizer.lua",
@@ -83,11 +74,11 @@ return {
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.2",
+    -- tag = "0.1.2",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "BurntSushi/ripgrep",
-      -- "nvim-treesitter/nvim-treesitter",
+      "nvim-treesitter/nvim-treesitter",
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
     config = function()
@@ -105,6 +96,7 @@ return {
   --    require ("configs/project")
   --  end
   -- },
+  -- bookmarks and telescope bookmark extension
   {
     "MattesGroeger/vim-bookmarks",
     config = function()
@@ -122,12 +114,13 @@ return {
       require("configs/gitsigns")
     end
   },
-  {
-    "sindrets/diffview.nvim",
-    config = function()
-      require("configs/diffview")
-    end
-  },
+  -- VCS tool invalid
+  -- {
+  --   "sindrets/diffview.nvim",
+  --   config = function()
+  --     require("configs/diffview")
+  --   end
+  -- },
   {
     "kdheepak/lazygit.nvim",
     dependencies = {
@@ -176,14 +169,11 @@ return {
         preview_window = true,
         title = true
       }
-
-      -- Setup keymaps
-      -- vim.keymap.set("n", "<leader>K", require("hover").hover, { desc = "hover.nvim" })
-      -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
     end,
   },
   {
-    { "arkav/lualine-lsp-progress" }
+    "arkav/lualine-lsp-progress",
+    event = "VeryLazy",
   },
   {
     "j-hui/fidget.nvim",
@@ -220,13 +210,13 @@ return {
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return require("lsp/null-ls")
-    end,
-  },
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   event = "VeryLazy",
+  --   opts = function()
+  --     return require("lsp/null-ls")
+  --   end,
+  -- },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -247,7 +237,7 @@ return {
       require("lsp/lspsaga")
     end,
     dependencies = {
-      -- "nvim-treesitter/nvim-treesitter",
+      "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     }
   },
@@ -269,14 +259,11 @@ return {
   -- indent
   {
     "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      -- vim.opt.termguicolors = true
-      -- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
-      -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
-      require("indent_blankline").setup({
-        char = '|',
-        show_current_context = true,
-      })
+    event = "VeryLazy",
+    main = "ibl",
+    opts = {},
+    config = function ()
+      require("configs/blankline")
     end
   },
   -- {
@@ -300,27 +287,16 @@ return {
   --   --   require("configs/todo-comments")
   --   -- end
   -- },
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   config = function()
-  --     require("configs/nvim-treesitter")
-  --   end,
-  --   -- dependencies = {
-  --   --   "p00f/nvim-ts-rainbow"
-  --   -- }
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("configs/nvim-treesitter")
+    end,
+    -- dependencies = {
+    --   "p00f/nvim-ts-rainbow"
+    -- }
+  },
   -- outline
-  -- {
-  --   "stevearc/aerial.nvim",
-  --   opts = {},
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "nvim-tree/nvim-web-devicons"
-  --   },
-  --   config = function()
-  --     require("configs/aerial")
-  --   end
-  -- },
   {
     "simrat39/symbols-outline.nvim",
     config = function()
@@ -387,22 +363,6 @@ return {
       },
     },
   },
-  -- {
-  --   "ggandor/leap.nvim",
-  --   config = function ()
-  --     require("leap").add_default_mappings()
-  --   end
-  -- },
-  -- {
-  --   "phaazon/hop.nvim",
-  --   branch = "v2",
-  --   opts = {
-  --
-  --   },
-  --   config = function()
-  --     require("configs/hop");
-  --   end
-  -- },
   {
     "ethanholz/nvim-lastplace",
     config = function()
@@ -417,25 +377,6 @@ return {
     "simeji/winresizer",
     config = function()
     end
-  },
-  -- markdown
-  {
-    "skanehira/preview-markdown.vim",
-    dependencies = { "MichaelMure/mdr" },
-    config = function()
-      vim.g.preview_markdown_auto_update = 1
-    end
-  },
-  -- translator
-  {
-    "voldikss/vim-translator",
-    config = function()
-      vim.g.translator_window_type = 'preview'
-      vim.g.translator_default_engines = { 'google', 'bing' }
-    end
-  },
-  -- log
-  {
   },
   -- terminal
   {
@@ -454,6 +395,10 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio"
+    },
     config = function()
       -- require("lsp/dap-ui")
     end
@@ -479,7 +424,8 @@ return {
           end
         end,
         -- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
-        virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+        -- virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+         virt_text_pos = 'inline',
         -- virt_text_pos = 'eol',
 
         -- experimental features:
@@ -490,14 +436,16 @@ return {
       })
     end
   },
-  -- tmux
-  -- {
-  --   "aserowy/tmux.nvim"
-  -- },
-
+  -- vim-surround
+  -- ds "   => delete "
+  -- cs " ' => change " to '
+  -- ys w ' => add '
+  -- https://gist.github.com/wilon/ac1fc66f4a79e7b0c161c80877c75c94
   {
     "tpope/vim-repeat",
-    -- "tpope/vim-surround",
+  },
+  {
+    "tpope/vim-surround",
   },
   {
     "kevinhwang91/nvim-bqf",

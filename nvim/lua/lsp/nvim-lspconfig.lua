@@ -17,7 +17,7 @@ local file_exists = function(filename)
 end
 
 local clangd_cmd = {
-  "/usr/local/bin/clangd",
+  "/home/ubuntu/download/clangd_18.1.3/bin/clangd",
   "--pretty",
   "--background-index",   -- 后台建立索引，并持久化到disk
   "-j=16",
@@ -43,6 +43,7 @@ lspconfig.clangd.setup({
   --     DeducedTypes = true,
   --   }
   -- },
+  on_attach = handler.on_attach,
   flags = {
     debounce_text_change = 150,
   },
@@ -51,20 +52,20 @@ lspconfig.clangd.setup({
     "c", "cpp", "objc", "cuda",
   },
   single_file_support = true,
-  root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json'),
+  root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json', '.clangd'),
 })
 
-lspconfig.opencl_ls.setup({
-  flag = {
-    debounce_text_change = 150,
-  },
-  cmd = {
-    "opencl-language-server",
-  },
-  single_file_support = true,
-  filetypes = { "opencl", "cl" },
-  root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json'),
-})
+-- lspconfig.opencl_ls.setup({
+--   flag = {
+--     debounce_text_change = 150,
+--   },
+--   cmd = {
+--     "opencl-language-server",
+--   },
+--   single_file_support = true,
+--   filetypes = { "opencl", "cl" },
+--   root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json'),
+-- })
 
 lspconfig.lua_ls.setup {
   on_attach = handler.on_attach,
@@ -83,29 +84,37 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+  cmd = {
+    "lua-language-server",
+  },
+  filetype = {
+    "lua",
+  },
+  root_dir = lspconfig.util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
+  single_file_support = true,
 }
 
-lspconfig.pyright.setup({
-  flags = {
-    debounce_text_change = 150,
-  },
-  cmd = {
-    "pyright-langserver",
-    "--stdio",
-  },
-  filetype = { "python", },
-  single_file_support = true,
-  root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json'),
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true
-      }
-    }
-  }
-})
+-- lspconfig.pyright.setup({
+--   flags = {
+--     debounce_text_change = 150,
+--   },
+--   cmd = {
+--     "pyright-langserver",
+--     "--stdio",
+--   },
+--   filetype = { "python", },
+--   single_file_support = true,
+--   root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json'),
+--   settings = {
+--     python = {
+--       analysis = {
+--         autoSearchPaths = true,
+--         diagnosticMode = "workspace",
+--         useLibraryCodeForTypes = true
+--       }
+--     }
+--   }
+-- })
 
 -- vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 -- vim.api.nvim_create_autocmd("LspAttach", {
