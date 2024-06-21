@@ -18,7 +18,7 @@ require("toggleterm").setup({
 local lisp_terminal = Terminal:new({
   cmd = "racket",
   hidden = true,
-  direction = "float",
+  direction = "vertical",
   name = "lisp",
 })
 
