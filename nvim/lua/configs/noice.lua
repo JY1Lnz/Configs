@@ -77,9 +77,26 @@ require("noice").setup({
       },
       opts = { skip = true, }
     },
+    {
+      filter = {
+        event = "notify",
+        -- kind = "echomsg",
+        find = "group",
+      },
+      opts = { skip = true, }
+    },
   },
   -- cmdline = {
   --   enabled = true,
   --   view = "cmdline_popup",
   -- },
 })
+
+-- local Manager = require("noice.message.manager")
+--
+-- vim.api.nvim_create_user_command('NoiceClear', function()
+--   local messages = Manager.get({ has = true }, { history = true })
+--   for _, msg in ipairs(messages) do
+--     Manager.remove(msg)
+--   end
+-- end, { desc = 'Noice clear' })

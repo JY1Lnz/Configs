@@ -166,4 +166,5 @@ for k, v in pairs(borders) do
   set_border_transparent(v)
 end
 
-vim.api.nvim_set_hl(0, "Comment", { fg="#00bf00" })
+vim.api.nvim_set_hl(0, "@comment", { fg="#00bf00" })
+vim.api.nvim_set_hl(0, "LspInlayHint", { fg='#fff3b7'})
