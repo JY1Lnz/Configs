@@ -119,7 +119,7 @@ M.normal = {
       h = {"<cmd>sp<CR>", "horizontal split"},
       ['='] = {"<cmd>vertical resize+5<CR>", "vertical size+5"},
       ['-'] = {"<cmd>vertical resize-5<CR>", "vertical size-5"},
-      ['j'] = {"<cmd>resize+3<CR>", "horizontal size+3"},
+      ['j'] = {"<cmd>resize-3<CR>", "horizontal size-3"},
       ['k'] = {"<cmd>resize+3<CR>", "horizontal size+3"},
       ['e'] = {"<C-w>=", "size equal"},
     },
