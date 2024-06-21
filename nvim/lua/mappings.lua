@@ -112,6 +112,10 @@ M.normal = {
       f = { "<Esc><cmd>lua vim.lsp.buf.format(vim.fn.visualmode())<CR>", "format code" },
       a = { "<cmd>Lspsaga code_action<CR>", "code action" },
       r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
+      i = { function ()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end, "inlayhints toggle",
+      },
     },
     s = {
       name = "window control",
