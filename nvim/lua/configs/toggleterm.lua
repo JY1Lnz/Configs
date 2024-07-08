@@ -25,8 +25,12 @@ local lisp_terminal = Terminal:new({
 vim.api.nvim_create_user_command("LispT", function ()
   lisp_terminal:toggle()
 end, {})
-vim.api.nvim_create_user_command("LispW", function ()
+
+vim.api.nvim_create_user_command("Lisp", function ()
   file = vim.api.nvim_buf_get_name(0)
+  if not lisp_terminal:is_open() then
+    lisp_terminal:toggle()
+  end
   cmd = '(enter! (file "'..file..'"))'
   cmd = lisp_terminal.id.."TermExec cmd='"..cmd.."'"
   vim.api.nvim_command(cmd)
