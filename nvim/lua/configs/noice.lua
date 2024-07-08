@@ -28,13 +28,13 @@ require("noice").setup({
     lsp_doc_border = false,
   },
   messages = {
-    enabled = true,
+    enabled = false,
     filter = {
       ["not"] = { kind = { "echo" } }
     }
   },
   notify = {
-    enabled = true,
+    enabled = false,
   },
   views = {
     cmdline_popup = {
