@@ -33,7 +33,7 @@ return {
     version = "main",
     config = function ()
       require("onedark").setup({
-        transparent = true,
+        -- transparent = true,
       })
     end
   },
