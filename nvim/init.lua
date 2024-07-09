@@ -135,12 +135,12 @@ require("custom_function")
 require("tools")
 
 
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { guibg=NONE, ctermbg=NONE} )
-vim.api.nvim_set_hl(0, "NormalFloat", { guibg=NONE, ctermbg=NONE} )
-vim.api.nvim_set_hl(0, "WhichKeyFloat", { guibg=NONE, ctermbg=NONE} )
+-- vim.api.nvim_set_hl(0, "NvimTreeNormal", { guibg=NONE, ctermbg=NONE} )
+-- vim.api.nvim_set_hl(0, "NormalFloat", { guibg=NONE, ctermbg=NONE} )
+-- vim.api.nvim_set_hl(0, "WhichKeyFloat", { guibg=NONE, ctermbg=NONE} )
 -- transparent
 local set_border_transparent = function (group)
-  vim.api.nvim_set_hl(0, group, { guibg=NONE, ctermbg=NONE, fg='#ffffff' })
+  -- vim.api.nvim_set_hl(0, group, { guibg=NONE, ctermbg=NONE, fg='#ffffff' })
 end
 local borders = {
   "TelescopeBorder",
@@ -162,9 +162,9 @@ local borders = {
   "NoiceCmdlinePopupBorderHelper",
 }
 
-for k, v in pairs(borders) do
-  set_border_transparent(v)
-end
+-- for k, v in pairs(borders) do
+--   set_border_transparent(v)
+-- end
 
-vim.api.nvim_set_hl(0, "@comment", { fg="#00bf00" })
-vim.api.nvim_set_hl(0, "LspInlayHint", { fg='#fff3b7'})
+-- vim.api.nvim_set_hl(0, "@comment", { fg="#00bf00" })
+-- vim.api.nvim_set_hl(0, "LspInlayHint", { fg='#fff3b7'})
