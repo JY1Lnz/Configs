@@ -33,8 +33,8 @@ ibl.setup {
     -- remove_blankline_trail = true,
   },
   scope = {
-    enabled = false,
-    show_start = false,
-    show_end = false,
+    enabled = true,
+    show_start = true,
+    show_end = true,
   },
 }
