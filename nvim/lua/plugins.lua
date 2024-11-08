@@ -28,6 +28,12 @@ return {
       require("configs/which-key")
     end
   },
+  -- { 
+  --   'echasnovski/mini.nvim', version = '*' ,
+  --   config = function()
+  --     require("mini.icons").setup()
+  --   end
+  -- },
   {
     "jy1lnz/onedark.nvim",
     version = "main",
@@ -101,15 +107,12 @@ return {
   --    require ("configs/project")
   --  end
   -- },
-  -- bookmarks and telescope bookmark extension
+  -- bookmarks
   {
-    "MattesGroeger/vim-bookmarks",
+    'tomasky/bookmarks.nvim',
+    -- after = "telescope.nvim",
     config = function()
-    end,
-  },
-  {
-    "tom-anders/telescope-vim-bookmarks.nvim",
-    config = function()
+      require('bookmarks').setup()
     end
   },
   -- git
@@ -119,40 +122,40 @@ return {
       require("configs/gitsigns")
     end
   },
-  -- VCS tool invalid
+  -- -- VCS tool invalid
+  -- -- {
+  -- --   "sindrets/diffview.nvim",
+  -- --   config = function()
+  -- --     require("configs/diffview")
+  -- --   end
+  -- -- },
   -- {
-  --   "sindrets/diffview.nvim",
+  --   "kdheepak/lazygit.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim"
+  --   },
   --   config = function()
-  --     require("configs/diffview")
+  --     require("configs/lazygit")
   --   end
   -- },
+  -- dashboard
+  -- {
+  --   "glepnir/dashboard-nvim",
+  --   event = "VimEnter",
+  --   config = function()
+  --     require("configs/dashboard")
+  --   end,
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  -- },
+  -- lsp
   {
-    "kdheepak/lazygit.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    },
+    "lvimuser/lsp-inlayhints.nvim",
     config = function()
-      require("configs/lazygit")
+      require("lsp-inlayhints").setup({})
     end
   },
-  -- dashboard
-  {
-    "glepnir/dashboard-nvim",
-    event = "VimEnter",
-    config = function()
-      require("configs/dashboard")
-    end,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-  },
-  -- lsp
-  -- {
-  --   "lvimuser/lsp-inlayhints.nvim",
-  --   config = function()
-  --     require("lsp-inlayhints").setup({})
-  --   end
-  -- },
   {
     "lewis6991/hover.nvim",
     config = function()
@@ -180,13 +183,13 @@ return {
     "arkav/lualine-lsp-progress",
     event = "VeryLazy",
   },
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    -- event = "LspAttach",
-    opts = {
-    }
-  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   tag = "legacy",
+  --   -- event = "LspAttach",
+  --   opts = {
+  --   }
+  -- },
   {
     "williamboman/mason.nvim",
     cmd = {
@@ -215,13 +218,13 @@ return {
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
-  -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   event = "VeryLazy",
-  --   opts = function()
-  --     return require("lsp/null-ls")
-  --   end,
-  -- },
+  -- -- {
+  -- --   "jose-elias-alvarez/null-ls.nvim",
+  -- --   event = "VeryLazy",
+  -- --   opts = function()
+  -- --     return require("lsp/null-ls")
+  -- --   end,
+  -- -- },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -239,7 +242,7 @@ return {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     config = function()
-      require("lsp/lspsaga")
+      require('lspsaga').setup({})
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -271,41 +274,53 @@ return {
       require("configs/blankline")
     end
   },
-  -- {
-  --   "shellRaining/hlchunk.nvim",
-  --   event = "UIEnter",
-  --   config = function()
-  --     require("configs/indent")
-  --   end
-  -- },
+  -- -- {
+  -- --   "shellRaining/hlchunk.nvim",
+  -- --   event = "UIEnter",
+  -- --   config = function()
+  -- --     require("configs/indent")
+  -- --   end
+  -- -- },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {
     }
   },
-  -- highlight
-  -- {  -- cannot use
-  --   "folke/todo-comments.nvim",
-  --   dependencies = { "nvim-lua/plenary.nvim" },
-  --   -- config = function ()
-  --   --   require("configs/todo-comments")
-  --   -- end
-  -- },
+  -- -- highlight
+  -- -- {  -- cannot use
+  -- --   "folke/todo-comments.nvim",
+  -- --   dependencies = { "nvim-lua/plenary.nvim" },
+  -- --   -- config = function ()
+  -- --   --   require("configs/todo-comments")
+  -- --   -- end
+  -- -- },
   {
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("configs/nvim-treesitter")
     end,
-    -- dependencies = {
-    --   "p00f/nvim-ts-rainbow"
-    -- }
+    dependencies = {
+      "p00f/nvim-ts-rainbow"
+    }
   },
   -- outline
+  -- {
+  --   "simrat39/symbols-outline.nvim",
+  --   config = function()
+  --     require("configs/symbols-outline")
+  --   end
+  -- },
   {
-    "simrat39/symbols-outline.nvim",
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+       "nvim-treesitter/nvim-treesitter",
+       "nvim-tree/nvim-web-devicons"
+    },
     config = function()
-      require("configs/symbols-outline")
+      require("configs/aerial")
     end
   },
   -- auto save&load
@@ -330,7 +345,7 @@ return {
     end
   },
   { "djoshea/vim-autoread" },
-  --debug
+  -- --debug
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -378,6 +393,7 @@ return {
       })
     end
   },
+  -- windows resize
   {
     "simeji/winresizer",
     config = function()
@@ -441,11 +457,12 @@ return {
       })
     end
   },
-  -- vim-surround
-  -- ds "   => delete "
-  -- cs " ' => change " to '
-  -- ys w ' => add '
-  -- https://gist.github.com/wilon/ac1fc66f4a79e7b0c161c80877c75c94
+  -- -- vim-surround
+  -- -- ds "   => delete "
+  -- -- cs " ' => change " to '
+  -- -- ys w ' => add '
+  -- -- https://gist.github.com/wilon/ac1fc66f4a79e7b0c161c80877c75c94
+
   {
     "tpope/vim-repeat",
   },
@@ -454,5 +471,47 @@ return {
   },
   {
     "kevinhwang91/nvim-bqf",
+    config = function()
+      require('bqf').setup({
+        auto_enable = true,
+        auto_resize_height = true, -- highly recommended enable
+        preview = {
+            win_height = 12,
+            win_vheight = 12,
+            delay_syntax = 80,
+            border = {'┏', '━', '┓', '┃', '┛', '━', '┗', '┃'},
+            show_title = false,
+            should_preview_cb = function(bufnr, qwinid)
+                local ret = true
+                local bufname = vim.api.nvim_buf_get_name(bufnr)
+                local fsize = vim.fn.getfsize(bufname)
+                if fsize > 100 * 1024 then
+                    -- skip file size greater than 100k
+                    ret = false
+                elseif bufname:match('^fugitive://') then
+                    -- skip fugitive buffer
+                    ret = false
+                end
+                return ret
+            end
+        },
+        -- make `drop` and `tab drop` to become preferred
+        func_map = {
+            drop = 'o',
+            openc = 'O',
+            split = '<C-s>',
+            tabdrop = '<C-t>',
+            -- set to empty string to disable
+            tabc = '',
+            ptogglemode = 'z,',
+        },
+        filter = {
+            fzf = {
+                action_for = {['ctrl-s'] = 'split', ['ctrl-t'] = 'tab drop'},
+                extra_opts = {'--bind', 'ctrl-o:toggle-all', '--prompt', '> '}
+            }
+        }
+    })
+    end
   }
 }

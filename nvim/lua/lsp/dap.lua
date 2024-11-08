@@ -39,10 +39,10 @@ require("dapui").setup({
       elements = {
       -- Elements can be strings or table with id and size keys.
         -- "repl",
-        { id = "watches", size = 0.5 },
-        { id = "scopes", size = 0.5 },
+        { id = "scopes", size = 0.4 },
+        { id = "watches", size = 0.3 },
         -- { id = "repl", size = 0.75 },
-        -- { id = "stacks", size = 0.25 },
+        { id = "stacks", size = 0.3 },
         -- { id = "breakpoints", size = 0.15 },
       },
       size = 30, -- 40 columns
@@ -96,74 +96,12 @@ require("dapui").setup({
   }
 })
 
-
--- local dap_breakpoint = {
---     error = {
---       text = "🛑",
---       texthl = "DapBreakpoint",
---       linehl = "DapBreakpoint",
---       numhl = "DapBreakpoint",
---     },
---     condition = {
---         text = '',
---         texthl = 'DapBreakpoint',
---         linehl = 'DapBreakpoint',
---         numhl = 'DapBreakpoint',
---     },
---     rejected = {
---       text = "",
---       texthl = "DapBreakpoint",
---       linehl = "DapBreakpoint",
---       numhl = "DapBreakpoint",
---     },
---     logpoint = {
---         text = '',
---         texthl = 'DapLogPoint',
---         linehl = 'DapLogPoint',
---         numhl = 'DapLogPoint',
---     },
---     stopped = {
---         text = '',
---         texthl = 'DapStopped',
---         linehl = 'DapStopped',
---         numhl = 'DapStopped',
---     },
--- }
--- vim.fn.sign_define('DapBreakpoint', dap_breakpoint.error)
--- vim.fn.sign_define('DapBreakpointCondition', dap_breakpoint.condition)
--- vim.fn.sign_define('DapBreakpointRejected', dap_breakpoint.rejected)
--- vim.fn.sign_define('DapLogPoint', dap_breakpoint.logpoint)
--- vim.fn.sign_define('DapStopped', dap_breakpoint.stopped)
-
--- local dap_breakpoint_color = {
---     breakpoint = {
---         ctermbg=0,
---         fg='#993939',
---         bg='#31353f',
---     },
---     logpoing = {
---         ctermbg=0,
---         fg='#61afef',
---         bg='#31353f',
---     },
---     stopped = {
---         ctermbg=0,
---         fg='#98c379',
---         bg='#31353f'
---     },
--- }
-
--- vim.api.nvim_set_hl(0, 'DapBreakpoint', dap_breakpoint_color.breakpoint)
--- vim.api.nvim_set_hl(0, 'DapLogPoint', dap_breakpoint_color.logpoing)
--- vim.api.nvim_set_hl(0, 'DapStopped', dap_breakpoint_color.stopped)
-
-
 dap.adapters.codelldb = {
   type = 'server',
   host = '127.0.0.1',
   port = 13123,
   executable = {
-    command = 'codelldb',
+    command = '/home/ubuntu/.local/share/nvim/mason/bin/codelldb',
     args = { "--port", "13123" },
   },
 }
@@ -186,20 +124,21 @@ dap.adapters.debugpy = {
 --   }
 -- }
 
--- dap.configurations.cpp = {
---   {
---     name = "Launch file",
---     type = "codelldb",
---     request = "launch",
---     program = function()
---       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---     end,
---     cwd = '${workspaceFolder}',
---     stopOnEntry = false,
---   },
--- }
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  },
+}
 
 local debug_open = function ()
+  require('custom/state').set_debug(true)
   vim.api.nvim_command("NvimTreeClose")
   dapui.open({})
   -- vim.api.nvim_command("DapVirtualTextEnable")
@@ -209,6 +148,7 @@ end
 local debug_close = function ()
   dap.repl.close()
   dapui.close({})
+  require('custom/state').set_debug(false)
   -- vim.api.nvim_command("DapVirtualTextDisable")
 end
 

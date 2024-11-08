@@ -58,6 +58,6 @@ telescope.setup({
 -- !.mp3$   inverse-suffix-exact-match  Items that do not end with .mp3
 
 telescope.load_extension("fzf")
-telescope.load_extension("vim_bookmarks")
+telescope.load_extension("bookmarks")
 telescope.load_extension("live_grep_args")
 -- telescope.load_extension("projects")

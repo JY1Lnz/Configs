@@ -25,10 +25,15 @@ end)
 
 ibl.setup { 
   indent = {
-    highlight = highlight
+    highlight = highlight,
+    -- char = "|",
+  },
+  whitespace = {
+    highlight = highlight,
+    -- remove_blankline_trail = true,
   },
   scope = {
-    enabled = true,
+    enabled = false,
     show_start = false,
     show_end = false,
   },
