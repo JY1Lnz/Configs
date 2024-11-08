@@ -17,7 +17,7 @@ local file_exists = function(filename)
 end
 
 local clangd_cmd = {
-  "/home/ubuntu/.local/share/nvim/mason/bin/clangd",
+  "clangd",
   "--pretty",
   "--background-index",   -- 后台建立索引，并持久化到disk
   "-j=16",
@@ -85,7 +85,7 @@ lspconfig.lua_ls.setup {
     },
   },
   cmd = {
-    "/home/ubuntu/.local/share/nvim/mason/bin/lua-language-server",
+    "/Users/jyl/.local/share/nvim/mason/bin/lua-language-server",
   },
   filetype = {
     "lua",
