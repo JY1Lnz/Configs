@@ -1,10 +1,17 @@
 local bufferline = require("bufferline")
 bufferline.setup({
+  highlights = {
+    buffer_selected = {
+      bold = true,
+    },
+  },
   options = {
-    mode = "buffers",
+    mode = "buffer",
     close_command = "bdelete %d",
     right_mouse_command = "bdelete %d",
     diagnostics = false,
+    show_buffer_close_icons = false,
+    show_close_icon = false,
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       local s = " "
       for e, n in pairs(diagnostics_dict) do

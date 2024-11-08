@@ -44,8 +44,8 @@ M.setup = function()
 
   map("n", "<C-M-q>", ":qa<CR>", opt)
 -- terminal
-  map("n", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
-  map("t", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
+  -- map("n", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
+  -- map("t", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
 
 -- nvim-tree
   map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
@@ -75,92 +75,166 @@ M.setup = function()
 
 end
 
+M.which_key = {
+  {
+    "<C-d>",
+    function()
+      if (not require('custom/state').get_debug()) then
+        vim.api.nvim_command('ToggleTerm direction=float')
+      else
+        require("dapui").float_element("console", {
+          width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+          height = math.floor(vim.api.nvim_win_get_height(0) * 0.8),
+          enter = true,
+          position = "center",
+        })
+      end
+    end,
+    desc = "toggle terminal",
+    mode = { "n", "v" }
+  },
+  { "<A-k>", "<C-w>k", mode = {"n"} },
+  { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "buffer file", mode = {"n"} },
+  { "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", desc = "toggle comment", mode = {"n"} },
+  { "<leader>/", "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", desc = "toggle comment", mode = {"v"} },
+  { "<leader>f", "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<CR>", desc = "grep select", mode = {"v"} },
+  { "<leader>l", function()
+    require("flash").jump({
+      search = { mode = "search", max_length = 0 },
+      label = { after = { 0, 0 } },
+      pattern = "^",
+    })
+  end, desc = "jump to a line", mode = {"n", "v"} },
+  { "<leader>w", function()
+    require("flash").jump({
+      pattern = ".", -- initialize pattern with any char
+      search = {
+        mode = function(pattern)
+          -- remove leading dot
+          if pattern:sub(1, 1) == "." then
+            pattern = pattern:sub(2)
+          end
+          -- return word pattern and proper skip pattern
+          return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
+        end,
+      },
+      -- select the range
+      -- jump = { pos = "range" },
+    })
+  end, desc = "jump to a word", mode = {"n", "v"}},
+  { "<leader>k", "<cmd>lua require('hover').hover()<CR>", desc = "hover", mode = {"n"} },
+  { "<leader>K", "<cmd>lua require('dapui').eval()<CR>", desc = "eval hover", mode = {"n"} },
+  -- c: code
+  { "<leader>c", group = "code" },
+  { "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "format code", mode = {"n", "v"} },
+  { "<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "code action", mode = {"n"} },
+  { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "rename", mode = {"n"} },
+  { "<leader>ci", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  end, desc = "inlayhints toggle", mode = {"n"} },
+  { "<leader>cc", ":OSCYankVisual<CR>", desc = "copy", mode = {"v"} },
+
+  -- f: find
+  { "<leader>f", group = "find" },
+  { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files", mode = {"n"} },
+  { "<leader>fF", function()
+    require("telescope.builtin").find_files({
+      find_command = {
+        "fdfind",
+        "-H",
+        "-I",
+        "-t",
+        "f"
+      }})
+  end, desc = "find files with fd", mode = {"n"} },
+  { "<leader>fw", function()
+    require("telescope").extensions.live_grep_args.live_grep_args({})
+  end, desc = "live_grep", mode = {"n"} },
+  { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "find buffers", mode = {"n"} },
+  { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "find help", mode = {"n"} },
+  -- { "<leader>fo", "<cmd>SymbolsOutline<CR>", desc = "find outline", mode = {"n"} },
+  { "<leader>fo", "<cmd>AerialToggle<CR>", desc = "find outline", mode = {"n"} },
+  -- { "<leader>ft", "<cmd>TranslateW<CR>", desc = "translate", mode = { "n" } },
+  { "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", desc = "find symbols", mode = {"n"} },
+  { "<leader>fS", function()
+    vim.ui.input({ prompt = "Workspace symbols: " }, function(query)
+      require('telescope.builtin').lsp_workspace_symbols({ query = query })
+    end)
+  end, desc = "find workspace symbols", mode = {"n"} },
+  { "<leader>fm", "<cmd>Telescope bookmarks list<CR>", desc = "show current file bookmarks", mode = {"n"} },
+
+  -- m: bookmark
+  { "m", group = "bookmark" },
+  { "mm", function()
+    require('bookmarks').bookmark_toggle()
+  end, desc = "bookmark", mode = {"n"} },
+  { "mi", function()
+    require('bookmarks').bookmark_ann()
+  end, desc = "bookmark with annoate", mode = {"n"} },
+  { "mc", function()
+    require('bookmarks').bookmark_clean()
+  end, desc = "clean buffer bookmarks", mode = {"n"} },
+  { "mC", function()
+    require('bookmarks').bookmark_clear_all()
+  end, desc = "clean all bookmarks", mode = {"n"} },
+
+  -- g: goto
+  { "g", group = "goto" },
+  { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "goto definition", mode = {"n"} },
+  -- { "gD", "<cmd>Lspsaga peek_definition<CR>", desc = "peek definition", mode = {"n"} },
+  { "gD", "<cmd>Lspsaga peek_definition<CR>", desc = "peek definition", mode = {"n"} },
+  -- { "gr", "<cmd>Lspsaga finder<CR>", desc = "goto reference", mode = {"n"} },
+  { "gr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "goto reference", mode = {"n"} },
+  { "gs", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "show line diga", mode = {"n"} },
+  { "gK", "<cmd>lua require('hover').hover_select()<CR>", desc = "hove", mode = {"n"} },
+
+  { "tf", "<cmd>ToggleTerm direction=float<CR>", desc = "toggle float terminal", mode = {"n"} },
+  { "th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "toggle horizontal terminal", mode = {"n"} },
+  { "tv", "<cmd>ToggleTerm direction=vertical<CR>", desc = "toggle vertical terminal", mode = {"n"} },
+  { "tt" , "<cmd>ToggleTerm direction=tab<CR>", desc = "toggle tab terminal", mode = {"n"} },
+
+  -- diagnostic
+  { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "goto prev diagnostic", mode = {"n"} },
+  { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "goto next diagnostic", mode = {"n"} },
+
+  -- s: window control
+  { "<leader>sv", "<cmd>vsp<CR>", desc = "vertical split", mode = {"n"} },
+  { "<leader>sh", "<cmd>sp<CR>", desc = "horizontal split", mode = {"n"} },
+  { "<leader>sr", "<cmd>WinResizerStartResize<CR>", desc = "resize window", mode = {"n"} },
+
+  -- g: gitsigns
+
+  -- d: debug
+  { "<leader>d", group = "debug" },
+  { "<leader>ds", function()
+    require("dapui").float_element("stacks", {
+      width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+      height = math.floor(vim.api.nvim_win_get_height(0) * 0.8),
+      enter = true,
+      position = "center",
+    })
+  end, desc = "show stack", mode = {"n"} },
+  { "<leader>dr", function()
+    require("dapui").float_element("repl", {
+      width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+      height = math.floor(vim.api.nvim_win_get_height(0) * 0.8),
+      enter = true,
+      position = "center",
+    })
+  end, desc = "show repl", mode = {"n"} },
+  { "<leader>de", function()
+    Exec();
+  end, desc = "Exec", mode = {"n"} },
+
+  -- t: t
+  { "<leader>tb", "<cmd>Trouble diagnostics focus=true<CR>", desc = "buffer diagnostics", mode = {"n"} },
+  { "<leader>te", "<cmd>Trouble diagnostics filter = { severity=vim.diagnostic.severity.ERROR }<CR>", desc = "buffer error", mode = {"n"} },
+}
+
 -- this is use for which key
 M.normal = {
   ["<leader>"] = {
-    ["<space>"] = { "<cmd>Telescope buffers<CR>", "buffer" },
-    ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "toggle comment" },
-    -- k = { "<cmd>Lspsaga hover_doc<CR>", "hover" },
-    l = { function()
-      require("flash").jump({
-        search = { mode = "search", max_length = 0 },
-        label = { after = { 0, 0 } },
-        pattern = "^",
-      })
-    end, "jump to a line" },
-    w = { function()
-      require("flash").jump({
-        pattern = ".", -- initialize pattern with any char
-        search = {
-          mode = function(pattern)
-            -- remove leading dot
-            if pattern:sub(1, 1) == "." then
-              pattern = pattern:sub(2)
-            end
-            -- return word pattern and proper skip pattern
-            return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
-          end,
-        },
-        -- select the range
-        -- jump = { pos = "range" },
-      })
-    end, "jump to a word" },
-    k = { "<cmd>lua require('hover').hover()<CR>", "hover" },
-    K = { "<cmd>lua require('dapui').eval()<CR>", "eval hover" },
     c = {
-      name = "code",
-      f = { "<Esc><cmd>lua vim.lsp.buf.format(vim.fn.visualmode())<CR>", "format code" },
-      a = { "<cmd>Lspsaga code_action<CR>", "code action" },
-      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-      i = { function ()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end, "inlayhints toggle",
-      },
-    },
-    s = {
-      name = "window control",
-      v = {"<cmd>vsp<CR>", "vertical split"},
-      h = {"<cmd>sp<CR>", "horizontal split"},
-      ['='] = {"<cmd>vertical resize+5<CR>", "vertical size+5"},
-      ['-'] = {"<cmd>vertical resize-5<CR>", "vertical size-5"},
-      ['j'] = {"<cmd>resize-3<CR>", "horizontal size-3"},
-      ['k'] = {"<cmd>resize+3<CR>", "horizontal size+3"},
-      ['e'] = {"<C-w>=", "size equal"},
-    },
-    f = {
-      name = "find",
-      f = { "<cmd>Telescope find_files<CR>", "find files" },
-      F = {function ()
-        require("telescope.builtin").find_files({
-          find_command = {
-            "fdfind",
-            "-H",
-            "-I",
-            "-t",
-            "f"
-          }
-        })
-      end,
-        "find all files",
-      },
-      w = {
-        function()
-          require("telescope").extensions.live_grep_args.live_grep_args({
-          })
-        end,
-        "live_grep" },
-      c = {
-        function()
-          require("telescope").extensions.live_grep_args.live_grep_args({
-          })
-        end,
-        "live_grep" },
-      b = { "<cmd>Telescope buffers<CR>", "find buffers" },
-      h = { "<cmd>Telescope help_tags<CR>", "help tags" },
-      o = { "<cmd>SymbolsOutline<CR>", "find outline" },
-      t = { "<cmd>TranslateW<CR>", "translate" },
-      s = { "<cmd>Telescope lsp_document_symbols<CR>", "symbols" },
-      S = { "<cmd>Telescope lsp_workspace_symbols<CR>", "all symbols" },
     },
     -- gitsigns & diffview
     g = {
@@ -207,84 +281,8 @@ M.normal = {
           position = "center",
         })
       end, "debug stacks" },
-      r = { function()
-        Exec()
-      end, "debug run" },
-      -- o = { "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
     }
   },
-  m = {
-    -- bookmark
-    name = "book mark",
-    m = { "<cmd>BookmarkToggle<CR>", "bookmark" },
-    i = { "<cmd>BookmarkAnnotate<CR>", "bookmark annotation" },
-    a = { "<cmd>Telescope vim_bookmarks current_file<CR>", "show current file bookmarks" },
-    A = { "<cmd>Telescope vim_bookmarks all<CR>", "show all bookmarks" },
-    -- P = { ":PreviewMarkdown right<CR>", "preview markdown"},
-  },
-  g = {
-    -- goto lsp
-    name = "goto",
-    -- d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
-    d = { "<cmd>Lspsaga goto_definition<CR>", "goto definition" },
-    D = { "<cmd>Lspsaga peek_definition<CR>", "peek definition" },
-    r = { "<cmd>Lspsaga finder<CR>", "find ref" },
-    s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show line diag" },
-    K = { "<cmd>lua require('hover').hover_select()<CR>", "hover" },
-  },
-  t = {
-    name = "terminal",
-    f = { "<cmd>ToggleTerm direction=float<CR>", "float term" },
-    h = { "<cmd>ToggleTerm direction=horizontal<CR>", "horizontal term" },
-    v = { "<cmd>ToggleTerm direction=vertical<CR>", "vertical term" },
-    t = { "<cmd>ToggleTerm direction=tab<CR>", "tab term" },
-  },
-  ["["] = {
-    -- d = { "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", "prev diag"},
-    d = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "prev diag"},
-  },
-  ["]"] = {
-    -- d = { "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", "next diag"},
-    d = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "next diag"},
-  },
-  ["\\"] = { "<cmd>HopChar1<CR>", "jump"},
-}
-
-M.visual = {
-  ["<leader>"] = {
-    ["/"] = { "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "toggle comment" },
-    c = {
-      name = "code",
-      f = { "<cmd>lua vim.lsp.buf.format()<CR>", "format code" },
-      c = { ":OSCYankVisual<CR>", "copy" },
-    },
-    t = { "<cmd>TranslateW<CR>", "translate" },
-    f = { "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<CR>", "grep select" },
-    l = { function()
-      require("flash").jump({
-        search = { mode = "search", max_length = 0 },
-        label = { after = { 0, 0 } },
-        pattern = "^",
-      })
-    end, "jump to a line" },
-    w = { function()
-      require("flash").jump({
-        pattern = ".", -- initialize pattern with any char
-        search = {
-          mode = function(pattern)
-            -- remove leading dot
-            if pattern:sub(1, 1) == "." then
-              pattern = pattern:sub(2)
-            end
-            -- return word pattern and proper skip pattern
-            return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
-          end,
-        },
-        -- select the range
-        -- jump = { pos = "range" },
-      })
-    end, "jump to a word"},
-  }
 }
 
 M.nvim_tree_map = {

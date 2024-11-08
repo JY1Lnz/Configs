@@ -1,7 +1,7 @@
 local nt = require("nvim-treesitter.configs")
 nt.setup({
   ensure_installed = {
-    "json", "html", "css", "vim", "lua", "javascript", "typescript", "c", "cpp", "python", "lua", "markdown", "markdown_inline"
+    "json", "html", "css", "vim", "lua", "javascript", "typescript", "c", "cpp", "python", "lua"
   },
   highlight = {
     enable = false,
@@ -27,16 +27,21 @@ nt.setup({
   indent = {
     enable = false,
   },
-  -- rainbow = {
-  --   enable = true,
-  --   extenden_mode = true,
-  --   max_file_liens = nil,
-  -- }
+  rainbow = {
+    enable = false,
+    extenden_mode = true,
+    max_file_liens = nil,
+  },
+  fold = {
+    enable = true,
+  },
 })
 
 -- 开启 Folding 模块
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.wo.foldmethod = 'expr'
+-- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 -- 默认不要折叠
 -- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
 vim.opt.foldenable = false

@@ -17,12 +17,12 @@ local file_exists = function(filename)
 end
 
 local clangd_cmd = {
-  "clangd",
+  "/home/ubuntu/.local/share/nvim/mason/bin/clangd",
   "--pretty",
   "--background-index",   -- 后台建立索引，并持久化到disk
   "-j=16",
-  "--completion-style=detailed",
-  "--clang-tidy",   -- 开启clang-tidy
+  -- "--completion-style=detailed",
+  -- "--clang-tidy",   -- 开启clang-tidy
   -- "--clang-tidy-checks=bugprone-*, clang-analyzer-*, google-*, modernize-*, performance-*, portability-*, readability-*, -bugprone-too-small-loop-variable, -clang-analyzer-cplusplus.NewDelete, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-use-nodiscard, -modernize-avoid-c-arrays, -readability-magic-numbers, -bugprone-branch-clone, -bugprone-signed-char-misuse, -bugprone-unhandled-self-assignment, -clang-diagnostic-implicit-int-float-conversion, -modernize-use-auto, -modernize-use-trailing-return-type, -readability-convert-member-functions-to-static, -readability-make-member-function-const, -readability-qualified-auto, -readability-redundant-access-specifiers,",
   -- "--clang-tidy-checks=llvm-*, llvmlibc-*, clang-analyzer-*, hicpp-*",
   "--pch-storage=memory",
@@ -85,7 +85,7 @@ lspconfig.lua_ls.setup {
     },
   },
   cmd = {
-    "lua-language-server",
+    "/home/ubuntu/.local/share/nvim/mason/bin/lua-language-server",
   },
   filetype = {
     "lua",

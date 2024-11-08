@@ -25,6 +25,7 @@ require("basic")
 require("colorscheme")
 require("mappings").setup()
 require("lsp/handlers").setup()
+require("custom_function")
 
 local notify = vim.notify
 vim.notify = function(msg, ...)
@@ -130,42 +131,8 @@ vim_config()
 
 
 require("highlight")
-require("custom_function")
--- require("local")
 require("tools")
+require("local")
 
 
--- vim.api.nvim_set_hl(0, "NvimTreeNormal", { guibg=NONE, ctermbg=NONE} )
--- vim.api.nvim_set_hl(0, "NormalFloat", { guibg=NONE, ctermbg=NONE} )
--- vim.api.nvim_set_hl(0, "WhichKeyFloat", { guibg=NONE, ctermbg=NONE} )
--- transparent
-local set_border_transparent = function (group)
-  -- vim.api.nvim_set_hl(0, group, { guibg=NONE, ctermbg=NONE, fg='#ffffff' })
-end
-local borders = {
-  "TelescopeBorder",
-  "FloatBorder",
-  "SagaBorder",
-  "RenameBorder",
-  "WhichKeyBorder",
-  "NoiceConfirmBorder",
-  "NoicePopupmenuBorder",
-  "DiagnosticShowBorder",
-  "ActionPreviewBorder",
-  "NoiceCmdlinePopupBorderCmdline",
-  "NoiceCmdlinePopupBorderInput",
-  "NoiceCmdlinePopupBorderLua",
-  "NoiceCmdlinePopupBorderSearch",
-  "NoiceCmdlinePopupBorderFilter",
-  "NoiceCmdlinePopupBorderCalculator",
-  "NoiceCmdlinePopupBorder",
-  "NoiceCmdlinePopupBorderHelper",
-}
-
--- for k, v in pairs(borders) do
---   set_border_transparent(v)
--- end
-
-vim.api.nvim_set_hl(0, "Comment", { fg="#00bf00" })
-vim.api.nvim_set_hl(0, "@comment", { fg="#00bf00" })
 vim.api.nvim_set_hl(0, "LspInlayHint", { fg='#fff3b7'})
