@@ -60,7 +60,7 @@ M.setup = function()
 -- lsp
   -- map("n", "<A-.>", ":Lspsaga code_action<CR>", opt)
 -- terminal
-  map("t", "<Esc>", "<C-\\><C-n>", opt)
+  -- map("t", "<Esc>", "<C-\\><C-n>", opt)
   map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
   -- Dap
   map("n", "<F3>", ":lua require'dapui'.toggle()<CR>", opt)
@@ -187,6 +187,18 @@ M.which_key = {
   { "gr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "goto reference", mode = {"n"} },
   { "gs", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "show line diga", mode = {"n"} },
   { "gK", "<cmd>lua require('hover').hover_select()<CR>", desc = "hove", mode = {"n"} },
+  { "g]", function ()
+    require('gitsigns').next_hunk()
+  end, desc = "next hunk", mode = { "n" } },
+  { "g[", function ()
+    require('gitsigns').prev_hunk()
+  end, desc = "prev hunk", mode = { "n" } },
+  { "gp", function ()
+    require('gitsigns').preview_hunk()
+  end, desc = "preview hunk", mode = { "n" } },
+  { "gP", function ()
+    require('gitsigns').preview_hunk_inline()
+  end, desc = "preview hunk inline", mode = { "n" } },
 
   { "tf", "<cmd>ToggleTerm direction=float<CR>", desc = "toggle float terminal", mode = {"n"} },
   { "th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "toggle horizontal terminal", mode = {"n"} },
@@ -198,11 +210,22 @@ M.which_key = {
   { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "goto next diagnostic", mode = {"n"} },
 
   -- s: window control
+  { "<leader>s", group = "window control" },
   { "<leader>sv", "<cmd>vsp<CR>", desc = "vertical split", mode = {"n"} },
   { "<leader>sh", "<cmd>sp<CR>", desc = "horizontal split", mode = {"n"} },
   { "<leader>sr", "<cmd>WinResizerStartResize<CR>", desc = "resize window", mode = {"n"} },
 
-  -- g: gitsigns
+  -- g: git
+  { "<leader>g",  group = "git" },
+  {
+    "<leader>gt",
+    "<cmd>DiffviewToggleFiles<CR>",
+    desc = "diffview toggle file panel",
+    mode = { "n" }
+  },
+  { "<leader>gg", "<cmd>:LazyGit<CR>", desc = "lazygit", mode = { "n" } },
+  { "<leader>gf", "<cmd>:LazyGitFilter<CR>", desc = "lazygit", mode = { "n" } },
+  { "<leader>gn", "<cmd>:LazyGitFilterCurrentFile<CR>", desc = "lazygit", mode = { "n" } },
 
   -- d: debug
   { "<leader>d", group = "debug" },
@@ -225,8 +248,51 @@ M.which_key = {
   { "<leader>de", function()
     Exec();
   end, desc = "Exec", mode = {"n"} },
+  {
+    "<leader>dd",
+    function()
+      if require('custom/state').get("diff_view") then
+        require('custom/state').set("diff_view", false)
+        vim.api.nvim_command('DiffviewClose')
+      else
+        require('custom/state').set("diff_view", true)
+        vim.api.nvim_command('DiffviewOpen')
+      end
+    end,
+    desc = "diffview open",
+    mode = { "n" }
+  },
+  {
+    "<leader>df",
+    function()
+      if require('custom/state').get("diff_view_file") then
+        require('custom/state').set("diff_view_file", false)
+        vim.api.nvim_command('tabclose')
+      else
+        require('custom/state').set("diff_view_file", true)
+        vim.api.nvim_command('DiffviewFileHistory')
+      end
+    end,
+    desc = "diffview file history",
+    mode = { "n" }
+  },
+  {
+    "<leader>dn",
+    function()
+      if require('custom/state').get("diff_view_file") then
+        require('custom/state').set("diff_view_file", false)
+        vim.api.nvim_command('tabclose')
+      else
+        require('custom/state').set("diff_view_file", true)
+        vim.api.nvim_command('DiffviewFileHistory %')
+      end
+    end,
+    desc = "diffview file history",
+    mode = { "n" }
+  },
 
   -- t: t
+  { "<leader>t", group = "Trouble" },
   { "<leader>tb", "<cmd>Trouble diagnostics focus=true<CR>", desc = "buffer diagnostics", mode = {"n"} },
   { "<leader>te", "<cmd>Trouble diagnostics filter = { severity=vim.diagnostic.severity.ERROR }<CR>", desc = "buffer error", mode = {"n"} },
 }
@@ -239,9 +305,6 @@ M.normal = {
     -- gitsigns & diffview
     g = {
       name = "git",
-      P = { "<cmd>DiffviewOpen<CR>", "diff project" },
-      C = { "<cmd>DiffviewClose<CR>", "close diff project" },
-      F = { "<cmd>DiffviewFileHistory<CR>", "file history" },
       j = { "<cmd>lua require 'gitsigns'.next_hunk()<CR>", "next hunk" },
       k = { "<cmd>lua require 'gitsigns'.prev_hunk()<CR>", "prev hunk" },
       p = { "<cmd>lua require 'gitsigns'.preview_hunk()<CR>", "preview hunk" },

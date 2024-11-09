@@ -75,8 +75,8 @@ vim.o.splitright = true
 -- cmp
 vim.g.completeopt = "menu,menuone,noselect,noinsert"
 
-vim.o.list = true
-vim.o.listchars = "space:·"
+-- vim.o.list = true
+-- vim.o.listchars = "space:·"
 
 -- nvim-tree
 vim.opt.termguicolors = true
