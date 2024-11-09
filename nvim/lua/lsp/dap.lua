@@ -96,12 +96,12 @@ require("dapui").setup({
   }
 })
 
-dap.adapters.codelldb = {
+dap.adapters.lldb = {
   type = 'server',
   host = '127.0.0.1',
   port = 13123,
   executable = {
-    command = '/home/ubuntu/.local/share/nvim/mason/bin/codelldb',
+    command = '/Users/jyl/.vscode/extensions/vadimcn.vscode-lldb-1.11.1/adapter/codelldb',
     args = { "--port", "13123" },
   },
 }
@@ -124,18 +124,18 @@ dap.adapters.debugpy = {
 --   }
 -- }
 
-dap.configurations.cpp = {
-  {
-    name = "Launch file",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  },
-}
+-- dap.configurations.cpp = {
+--   {
+--     name = "Launch file",
+--     type = "codelldb",
+--     request = "launch",
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopOnEntry = false,
+--   },
+-- }
 
 local debug_open = function ()
   require('custom/state').set_debug(true)

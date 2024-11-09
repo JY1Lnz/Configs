@@ -28,12 +28,6 @@ return {
       require("configs/which-key")
     end
   },
-  -- { 
-  --   'echasnovski/mini.nvim', version = '*' ,
-  --   config = function()
-  --     require("mini.icons").setup()
-  --   end
-  -- },
   {
     "jy1lnz/onedark.nvim",
     version = "main",
@@ -43,12 +37,6 @@ return {
       })
     end
   },
-  -- {
-  --   "norcalli/nvim-colorizer.lua",
-  --   config = function()
-  --     require("colorizer").setup()
-  --   end
-  -- },
   -- sidebar
   {
     "nvim-tree/nvim-tree.lua",
@@ -101,12 +89,6 @@ return {
     build =
     "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
   },
-  -- {
-  --  "ahmedkhalf/project.nvim",
-  --  config = function()
-  --    require ("configs/project")
-  --  end
-  -- },
   -- bookmarks
   {
     'tomasky/bookmarks.nvim',
@@ -123,32 +105,21 @@ return {
     end
   },
   -- -- VCS tool invalid
-  -- -- {
-  -- --   "sindrets/diffview.nvim",
-  -- --   config = function()
-  -- --     require("configs/diffview")
-  -- --   end
-  -- -- },
-  -- {
-  --   "kdheepak/lazygit.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim"
-  --   },
-  --   config = function()
-  --     require("configs/lazygit")
-  --   end
-  -- },
-  -- dashboard
-  -- {
-  --   "glepnir/dashboard-nvim",
-  --   event = "VimEnter",
-  --   config = function()
-  --     require("configs/dashboard")
-  --   end,
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons"
-  --   },
-  -- },
+  {
+    "sindrets/diffview.nvim",
+    config = function()
+      require("configs/diffview")
+    end
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config = function()
+      require("configs/lazygit")
+    end
+  },
   -- lsp
   {
     "lvimuser/lsp-inlayhints.nvim",
@@ -183,13 +154,6 @@ return {
     "arkav/lualine-lsp-progress",
     event = "VeryLazy",
   },
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   tag = "legacy",
-  --   -- event = "LspAttach",
-  --   opts = {
-  --   }
-  -- },
   {
     "williamboman/mason.nvim",
     cmd = {
@@ -218,13 +182,6 @@ return {
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
-  -- -- {
-  -- --   "jose-elias-alvarez/null-ls.nvim",
-  -- --   event = "VeryLazy",
-  -- --   opts = function()
-  -- --     return require("lsp/null-ls")
-  -- --   end,
-  -- -- },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -274,27 +231,12 @@ return {
       require("configs/blankline")
     end
   },
-  -- -- {
-  -- --   "shellRaining/hlchunk.nvim",
-  -- --   event = "UIEnter",
-  -- --   config = function()
-  -- --     require("configs/indent")
-  -- --   end
-  -- -- },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {
     }
   },
-  -- -- highlight
-  -- -- {  -- cannot use
-  -- --   "folke/todo-comments.nvim",
-  -- --   dependencies = { "nvim-lua/plenary.nvim" },
-  -- --   -- config = function ()
-  -- --   --   require("configs/todo-comments")
-  -- --   -- end
-  -- -- },
   {
     "nvim-treesitter/nvim-treesitter",
     config = function()
