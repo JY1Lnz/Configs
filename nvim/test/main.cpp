@@ -5,19 +5,14 @@ using namespace std;
 
 #define xxx 324
 
-void call(int x) {
+void call(int x) { x = 10; }
 
-  x = 10;
-}
-
-void func(int) {  }
+void func(int) {}
 
 namespace Na {
 
-class T {
-
-};
-}
+class T {};
+} // namespace Na
 
 class PQ {
 public:
@@ -29,18 +24,22 @@ public:
   static int s_f();
 };
 
-enum EX {
-  a, b, c
-};
+enum EX { a, b, c };
+
+int tmp(int x) {}
+int f();
+
+int x();
 
 int main() {
   cout << "hello world" << endl;
   int x = 10;
-  int y = 20;
+  int       y = 20;
+  const int q = 10;
   cout << "hello wold" << endl;
 
-  const int q = 10;
 
-  const char* ss = "abc";
+  const char *ss = "abc";
+  tmp(10);
   return 0;
-}
+};
