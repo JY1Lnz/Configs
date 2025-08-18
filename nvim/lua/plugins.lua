@@ -420,6 +420,9 @@ return {
   {
     "tpope/vim-surround",
   },
+  -- from "hello" to 'hello'  : cs"'
+  -- from "hello" to hello    : ds"
+  -- from hello   to  "hello" :ysiw"
   {
     "kevinhwang91/nvim-bqf",
     config = function()
