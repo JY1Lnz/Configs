@@ -233,12 +233,6 @@ return {
     }
   },
   -- outline
-  -- {
-  --   "simrat39/symbols-outline.nvim",
-  --   config = function()
-  --     require("configs/symbols-outline")
-  --   end
-  -- },
   {
     'stevearc/aerial.nvim',
     opts = {},
@@ -294,23 +288,14 @@ return {
     end
   },
   -- move
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function() require("flash").toggle() end,
-        desc =
-        "Toggle Flash Search"
-      },
-    },
-  },
+  -- {
+  --   "folke/flash.nvim",
+  --   event = "VeryLazy",
+  --   opts = {},
+  --   keys = {
+  --     { "<C-s>", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
+  --   },
+  -- },
   {
     "ethanholz/nvim-lastplace",
     config = function()
@@ -390,6 +375,9 @@ return {
   },
   {
     "tpope/vim-surround",
+  },
+  {
+    "tpope/vim-unimpaired",
   },
   {
     "kevinhwang91/nvim-bqf",

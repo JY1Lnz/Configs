@@ -42,7 +42,6 @@ M.setup = function()
   map("v", "J", "10j", opt)
   map("v", "K", "10k", opt)
 
-  map("n", "<C-M-q>", ":qa<CR>", opt)
 -- terminal
   -- map("n", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
   -- map("t", "<C-d>", "<cmd>ToggleTerm direction=float<CR>", opt)
@@ -53,7 +52,6 @@ M.setup = function()
 -- bufferline
   map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
   map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
-  map("n", "<C-w>", ":bdelete<CR>", opt)
 
 -- telescope
   map("n", "<C-p>", ":Telescope find_files<CR>", opt)
@@ -96,7 +94,7 @@ M.which_key = {
   { "<A-k>", "<C-w>k", mode = {"n"} },
   { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "buffer file", mode = {"n"} },
   { "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", desc = "toggle comment", mode = {"n"} },
-  { "<leader>/", "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", desc = "toggle comment", mode = {"v"} },
+  { "<leader>/", "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", desc = "toggle select comment", mode = {"v"} },
   { "<leader>f", "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<CR>", desc = "grep select", mode = {"v"} },
   { "<leader>l", function()
     require("flash").jump({
@@ -146,14 +144,12 @@ M.which_key = {
         "-t",
         "f"
       }})
-  end, desc = "find files with fd", mode = {"n"} },
+  end, desc = "find files and display ignore", mode = {"n"} },
   { "<leader>fw", function()
     require("telescope").extensions.live_grep_args.live_grep_args({})
   end, desc = "live_grep", mode = {"n"} },
-  { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "find buffers", mode = {"n"} },
   { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "find help", mode = {"n"} },
-  -- { "<leader>fo", "<cmd>SymbolsOutline<CR>", desc = "find outline", mode = {"n"} },
-  { "<leader>fo", "<cmd>AerialToggle<CR>", desc = "find outline", mode = {"n"} },
+  { "<leader>fo", "<cmd>AerialToggle!<CR>", desc = "find outline", mode = {"n"} },
   -- { "<leader>ft", "<cmd>TranslateW<CR>", desc = "translate", mode = { "n" } },
   { "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", desc = "find symbols", mode = {"n"} },
   { "<leader>fS", function()
