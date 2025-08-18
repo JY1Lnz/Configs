@@ -323,14 +323,14 @@ return {
     end
   },
   -- move
-  -- {
-  --   "folke/flash.nvim",
-  --   event = "VeryLazy",
-  --   opts = {},
-  --   keys = {
-  --     { "<C-s>", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
-  --   },
-  -- },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "<C-s>", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
+    },
+  },
   {
     "ethanholz/nvim-lastplace",
     config = function()
@@ -408,11 +408,17 @@ return {
   {
     "tpope/vim-repeat",
   },
+  -- Example
+  -- local function()
+  -- end
+  -- vim.keymap.set("n", "DotRepeat${NAME})", action, { silent = true })
+  -- vim.keymap.set("n", "Key", function()
+  --   action
+  --   vim.fn["repeat#set"]("DotRepeat${NAME}", vim.v.count)
+  --   
+  -- end)
   {
     "tpope/vim-surround",
-  },
-  {
-    "tpope/vim-unimpaired",
   },
   {
     "kevinhwang91/nvim-bqf",
