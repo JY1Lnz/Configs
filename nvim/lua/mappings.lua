@@ -11,6 +11,14 @@
 
 local M = {}
 
+local RegisterDotRepeatCmd = function(cmd, name)
+  vim.api.nvim_set_keymap("n", "DotRepeat" .. name, ":" .. cmd .. "<CR>", { noremap = true, silent = true  })
+  return function ()
+    vim.cmd(cmd)
+    vim.fn["repeat#set"]("DotRepeat" .. name, vim.v.count)
+  end
+end
+
 M.setup = function()
 
   vim.g.mapleader = " "
@@ -59,7 +67,7 @@ M.setup = function()
   -- map("n", "<A-.>", ":Lspsaga code_action<CR>", opt)
 -- terminal
   -- map("t", "<Esc>", "<C-\\><C-n>", opt)
-  map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
+  -- map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
   -- Dap
   map("n", "<F3>", ":lua require'dapui'.toggle()<CR>", opt)
   map("n", "<F4>", ":DapTerminate<CR>", opt)
@@ -91,7 +99,6 @@ M.which_key = {
     desc = "toggle terminal",
     mode = { "n", "v", "t" }
   },
-  { "<A-k>", "<C-w>k", mode = {"n"} },
   { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "buffer file", mode = {"n"} },
   { "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", desc = "toggle comment", mode = {"n"} },
   { "<leader>/", "<Esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", desc = "toggle select comment", mode = {"v"} },
@@ -204,24 +211,15 @@ M.which_key = {
   -- diagnostic
   { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "goto prev diagnostic", mode = {"n"} },
   { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "goto next diagnostic", mode = {"n"} },
+  -- quick fix
+  { "[q", "<cmd>cprevious<CR>", desc = "do cprevious", mode = {"n"} },
+  { "]q", "<cmd>cnext<CR>", desc = "do cnext", mode = {"n"} },
+
 
   -- s: window control
   { "<leader>s", group = "window control" },
   { "<leader>sv", "<cmd>vsp<CR>", desc = "vertical split", mode = {"n"} },
   { "<leader>sh", "<cmd>sp<CR>", desc = "horizontal split", mode = {"n"} },
-  { "<leader>sr", "<cmd>WinResizerStartResize<CR>", desc = "resize window", mode = {"n"} },
-
-  -- g: git
-  { "<leader>g",  group = "git" },
-  {
-    "<leader>gt",
-    "<cmd>DiffviewToggleFiles<CR>",
-    desc = "diffview toggle file panel",
-    mode = { "n" }
-  },
-  { "<leader>gg", "<cmd>:LazyGit<CR>", desc = "lazygit", mode = { "n" } },
-  { "<leader>gf", "<cmd>:LazyGitFilter<CR>", desc = "lazygit", mode = { "n" } },
-  { "<leader>gn", "<cmd>:LazyGitFilterCurrentFile<CR>", desc = "lazygit", mode = { "n" } },
 
   -- d: debug
   { "<leader>d", group = "debug" },
@@ -291,30 +289,26 @@ M.which_key = {
   { "<leader>t", group = "Trouble" },
   { "<leader>tb", "<cmd>Trouble diagnostics focus=true<CR>", desc = "buffer diagnostics", mode = {"n"} },
   { "<leader>te", "<cmd>Trouble diagnostics filter = { severity=vim.diagnostic.severity.ERROR }<CR>", desc = "buffer error", mode = {"n"} },
+
+  -- git
+  { "<leader>grb", "<cmd>Gitsigns reset_buffer", desc = "git reset buffer", mode = { "n" } },
+  { "<leader>grh", "<cmd>Gitsigns reset_hunk", desc = "git reset hunk", mode = { "n" } },
+  { "<leader>gg", "<cmd>LazyGit<CR>", desc = "LazyGit", mode = { "n" } },
+  { "<leader>gb", "<cmd>Telescope git_branches<CR>", desc = "git branch", mode = { "n" } },
+  { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "git status", mode = { "n" } },
+  { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<CR>", desc = "git line blame", mode = { "n" } },
+  { "[g", RegisterDotRepeatCmd("lua require 'gitsigns'.prev_hunk()", "GitPrevHunk"), desc = "git prev hunk", mode = { "n" } },
+  { "]g", RegisterDotRepeatCmd("lua require 'gitsigns'.next_hunk()", "GitNextHunk"), desc = "git next hunk", mode = { "n" } },
+  { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<CR>", desc = "preview hunk", mode = { "n"} },
 }
+
 
 -- this is use for which key
 M.normal = {
   ["<leader>"] = {
-    c = {
-    },
-    -- gitsigns & diffview
-    g = {
-      name = "git",
-      j = { "<cmd>lua require 'gitsigns'.next_hunk()<CR>", "next hunk" },
-      k = { "<cmd>lua require 'gitsigns'.prev_hunk()<CR>", "prev hunk" },
-      p = { "<cmd>lua require 'gitsigns'.preview_hunk()<CR>", "preview hunk" },
-      d = { "<cmd>Gitsigns diffthis<CR>", "git diff" },
-      l = { "<cmd>lua require 'gitsigns'.blame_line()<CR>", "git blame" },
-      b = { "<cmd>Telescope git_branches<CR>", "git branch" },
-      s = { "<cmd>Telescope git_status<CR>", "git status" },
-      g = { "<cmd>LazyGit<CR>", "lazy git" },
-    },
     -- debug,
     d = {
       name = "debug",
-      b = { "<cmd>Trouble document_diagnostics<CR>", "buffer diagnostics" },
-      w = { "<cmd>Trouble workspace_diagnostics<CR>", "workspace diagnostics" },
       v = { "<cmd>DapVirtualTextToggle<CR>", "dap virtual txt toggle" },
       d = { function ()
         require("dapui").float_element("repl", {
