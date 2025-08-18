@@ -60,7 +60,7 @@ M.setup = function()
 -- lsp
   -- map("n", "<A-.>", ":Lspsaga code_action<CR>", opt)
 -- terminal
-  map("t", "<Esc>", "<C-\\><C-n>", opt)
+  -- map("t", "<Esc>", "<C-\\><C-n>", opt)
   map("t", "<C-q>", "<C-\\><C-n>:q<CR>", opt)
   -- Dap
   map("n", "<F3>", ":lua require'dapui'.toggle()<CR>", opt)
@@ -91,7 +91,7 @@ M.which_key = {
       end
     end,
     desc = "toggle terminal",
-    mode = { "n", "v" }
+    mode = { "n", "v", "t" }
   },
   { "<A-k>", "<C-w>k", mode = {"n"} },
   { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "buffer file", mode = {"n"} },

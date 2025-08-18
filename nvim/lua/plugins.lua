@@ -1,18 +1,4 @@
 return {
-  -- 通知提示
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-    },
-    dependencies = {
-      "Muniftanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    config = function()
-      require("configs/noice")
-    end
-  },
   -- copy
   {
     "ojroques/vim-oscyank",
@@ -28,12 +14,6 @@ return {
       require("configs/which-key")
     end
   },
-  -- { 
-  --   'echasnovski/mini.nvim', version = '*' ,
-  --   config = function()
-  --     require("mini.icons").setup()
-  --   end
-  -- },
   {
     "jy1lnz/onedark.nvim",
     version = "main",
@@ -43,12 +23,6 @@ return {
       })
     end
   },
-  -- {
-  --   "norcalli/nvim-colorizer.lua",
-  --   config = function()
-  --     require("colorizer").setup()
-  --   end
-  -- },
   -- sidebar
   {
     "nvim-tree/nvim-tree.lua",
@@ -137,17 +111,6 @@ return {
   --   config = function()
   --     require("configs/lazygit")
   --   end
-  -- },
-  -- dashboard
-  -- {
-  --   "glepnir/dashboard-nvim",
-  --   event = "VimEnter",
-  --   config = function()
-  --     require("configs/dashboard")
-  --   end,
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons"
-  --   },
   -- },
   -- lsp
   {
@@ -391,12 +354,6 @@ return {
         lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
         lastplace_open_folds = true,
       })
-    end
-  },
-  -- windows resize
-  {
-    "simeji/winresizer",
-    config = function()
     end
   },
   -- terminal
