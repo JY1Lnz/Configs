@@ -212,8 +212,8 @@ M.which_key = {
   { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "goto prev diagnostic", mode = {"n"} },
   { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "goto next diagnostic", mode = {"n"} },
   -- quick fix
-  { "[q", "<cmd>cprevious<CR>", desc = "do cprevious", mode = {"n"} },
-  { "]q", "<cmd>cnext<CR>", desc = "do cnext", mode = {"n"} },
+  { "[q", RegisterDotRepeatCmd("cprevious", "CPrev"), desc = "do cprevious", mode = {"n"} },
+  { "]q", RegisterDotRepeatCmd("cnext", "CNext"), desc = "do cnext", mode = {"n"} },
 
 
   -- s: window control
