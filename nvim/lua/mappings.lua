@@ -91,7 +91,7 @@ M.which_key = {
       end
     end,
     desc = "toggle terminal",
-    mode = { "n", "v" }
+    mode = { "n", "v", "t" }
   },
   { "<A-k>", "<C-w>k", mode = {"n"} },
   { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "buffer file", mode = {"n"} },

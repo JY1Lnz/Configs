@@ -83,3 +83,7 @@ vim.opt.termguicolors = true
 
 vim.opt.exrc = true
 
+-- grep
+vim.o.grepprg = "rg --vimgrep --smart-case --hidden"
+vim.o.grepformat = "%f:%l:%c:%m"
+

@@ -1,18 +1,4 @@
 return {
-  -- 通知提示
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-    },
-    dependencies = {
-      "Muniftanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    config = function()
-      require("configs/noice")
-    end
-  },
   -- copy
   {
     "ojroques/vim-oscyank",
@@ -105,21 +91,21 @@ return {
     end
   },
   -- -- VCS tool invalid
-  {
-    "sindrets/diffview.nvim",
-    config = function()
-      require("configs/diffview")
-    end
-  },
-  {
-    "kdheepak/lazygit.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    },
-    config = function()
-      require("configs/lazygit")
-    end
-  },
+  -- -- {
+  -- --   "sindrets/diffview.nvim",
+  -- --   config = function()
+  -- --     require("configs/diffview")
+  -- --   end
+  -- -- },
+  -- {
+  --   "kdheepak/lazygit.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim"
+  --   },
+  --   config = function()
+  --     require("configs/lazygit")
+  --   end
+  -- },
   -- lsp
   {
     "lvimuser/lsp-inlayhints.nvim",
@@ -333,12 +319,6 @@ return {
         lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
         lastplace_open_folds = true,
       })
-    end
-  },
-  -- windows resize
-  {
-    "simeji/winresizer",
-    config = function()
     end
   },
   -- terminal
