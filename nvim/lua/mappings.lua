@@ -141,7 +141,14 @@ M.which_key = {
 
   -- f: find
   { "<leader>f", group = "find" },
-  { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files", mode = {"n"} },
+  { "<leader>ff", function ()
+    require("telescope.builtin").find_files({
+    find_command = {
+      "fdfind",
+      "-t",
+      "f"
+    }})
+  end, desc = "find files", mode = {"n"} },
   { "<leader>fF", function()
     require("telescope.builtin").find_files({
       find_command = {
@@ -223,6 +230,9 @@ M.which_key = {
 
   -- d: debug
   { "<leader>d", group = "debug" },
+  { "]s", RegisterDotRepeatCmd("lua require('dap').down()", "DapStackDown"), desc = "Dap Stack Down", mode = { "n" } },
+  { "[s", RegisterDotRepeatCmd("lua require('dap').up()", "DapStackUp"), desc = "Dap Stack Up", mode = { "n" } },
+  { "<leader>dv", "<cmd>DapVirtualTextToggle<CR>", desc = "Dap virtual text toggle", mode = { "n" } },
   { "<leader>ds", function()
     require("dapui").float_element("stacks", {
       width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),

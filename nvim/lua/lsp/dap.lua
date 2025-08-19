@@ -39,10 +39,10 @@ require("dapui").setup({
       elements = {
       -- Elements can be strings or table with id and size keys.
         -- "repl",
-        { id = "scopes", size = 0.4 },
-        { id = "watches", size = 0.3 },
+        { id = "scopes", size = 0.5 },
+        { id = "watches", size = 0.5 },
         -- { id = "repl", size = 0.75 },
-        { id = "stacks", size = 0.3 },
+        -- { id = "stacks", size = 0.3 },
         -- { id = "breakpoints", size = 0.15 },
       },
       size = 30, -- 40 columns
@@ -50,7 +50,7 @@ require("dapui").setup({
     },
     {
       elements = {
-        "repl",
+        "stacks",
         -- { id = "repl", size = 0.75 },
       },
       size = 30,
@@ -101,7 +101,7 @@ dap.adapters.lldb = {
   host = '127.0.0.1',
   port = 13123,
   executable = {
-    command = '/Users/jyl/.vscode/extensions/vadimcn.vscode-lldb-1.11.1/adapter/codelldb',
+    command = '/home/ubuntu/.local/share/nvim/mason/bin/codelldb',
     args = { "--port", "13123" },
   },
 }

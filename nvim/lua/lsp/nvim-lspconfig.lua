@@ -17,7 +17,7 @@ local file_exists = function(filename)
 end
 
 local clangd_cmd = {
-  "/Users/jyl/Library/Application Support/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd",
+  "/home/ubuntu/.local/share/nvim/mason/bin/clangd",
   "--pretty",
   "--background-index",   -- 后台建立索引，并持久化到disk
   "-j=16",
@@ -85,7 +85,7 @@ lspconfig.lua_ls.setup {
     },
   },
   cmd = {
-    "/Users/jyl/.local/share/nvim/mason/bin/lua-language-server",
+    "/home/ubuntu/.local/share/nvim/mason/bin/lua-language-server",
   },
   filetype = {
     "lua",
@@ -94,27 +94,27 @@ lspconfig.lua_ls.setup {
   single_file_support = true,
 }
 
--- lspconfig.pyright.setup({
---   flags = {
---     debounce_text_change = 150,
---   },
---   cmd = {
---     "pyright-langserver",
---     "--stdio",
---   },
---   filetype = { "python", },
---   single_file_support = true,
---   root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json'),
---   settings = {
---     python = {
---       analysis = {
---         autoSearchPaths = true,
---         diagnosticMode = "workspace",
---         useLibraryCodeForTypes = true
---       }
---     }
---   }
--- })
+lspconfig.pyright.setup({
+  flags = {
+    debounce_text_change = 150,
+  },
+  cmd = {
+    "/home/ubuntu/.local/share/nvim/mason/bin/pyright-langserver",
+    "--stdio",
+  },
+  filetype = { "python", },
+  single_file_support = true,
+  root_dir = lspconfig.util.root_pattern('.git', '.clang-tidy', '.conag-format', 'compile_commands.json'),
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true
+      }
+    }
+  }
+})
 
 -- vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 -- vim.api.nvim_create_autocmd("LspAttach", {
