@@ -229,7 +229,8 @@ return {
       require("configs/nvim-treesitter")
     end,
     dependencies = {
-      "p00f/nvim-ts-rainbow"
+      "p00f/nvim-ts-rainbow",
+      "nvim-treesitter/nvim-treesitter-textobjects",
     }
   },
   -- outline
