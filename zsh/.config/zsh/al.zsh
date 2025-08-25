@@ -1,1 +1,1 @@
-
+alias zj='zellij'
