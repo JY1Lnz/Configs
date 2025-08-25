@@ -45,7 +45,7 @@ cmp_config = {
     },
     source_names = {
       nvim_lsp = "(LSP)",
-      treesitter = "(TS)",
+      -- treesitter = "(TS)",
       emoji = "(Emoji)",
       path = "(Path)",
       calc = "(Calc)",

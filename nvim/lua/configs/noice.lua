@@ -12,8 +12,8 @@
 require("noice").setup({
   lsp = {
     override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
+      -- ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      -- ["vim.lsp.util.stylize_markdown"] = true,
       ["cmp.entry.get_documentation"] = true,
     },
     signature = {
@@ -37,6 +37,7 @@ require("noice").setup({
     enabled = false,
   },
   views = {
+    enabled = true,
     cmdline_popup = {
       position = {
         row = 2,
