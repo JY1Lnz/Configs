@@ -199,15 +199,15 @@ nt.setup({
       --     ["[d"] = "@conditional.outer",
       -- }
     },
-    -- lsp_interop = {
-    --   enable = true,
-    --   border = 'none',
-    --   floating_preview_opts = {},
-    --   peek_definition_code = {
-    --     ["gsf"] = "@function.outer",
-    --     ["gsc"] = "@class.outer",
-    --   },
-    -- },
+    lsp_interop = {
+      enable = true,
+      border = 'single',
+      floating_preview_opts = {},
+      peek_definition_code = {
+        ["gsf"] = "@function.outer",
+        ["gsc"] = "@class.outer",
+      },
+    },
 
 
   }
