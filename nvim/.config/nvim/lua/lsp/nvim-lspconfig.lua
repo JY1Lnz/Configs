@@ -6,6 +6,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local dir = vim.fn.getcwd()
 local filepath = dir .. '/build/compile_commands.json'
 local filepath_dir = dir .. '/build'
+local home = os.getenv("HOME")
 
 local file_exists = function(filename)
   local file = io.open(filename, "r")
@@ -17,7 +18,7 @@ local file_exists = function(filename)
 end
 
 local clangd_cmd = {
-  "/home/ubuntu/.local/share/nvim/mason/bin/clangd",
+  home .. "/.local/share/nvim/mason/bin/clangd",
   "--pretty",
   "--background-index",   -- 后台建立索引，并持久化到disk
   "-j=16",
@@ -85,7 +86,7 @@ lspconfig.lua_ls.setup {
     },
   },
   cmd = {
-    "/home/ubuntu/.local/share/nvim/mason/bin/lua-language-server",
+    home .. "/.local/share/nvim/mason/bin/lua-language-server",
   },
   filetype = {
     "lua",
@@ -99,7 +100,7 @@ lspconfig.pyright.setup({
     debounce_text_change = 150,
   },
   cmd = {
-    "/home/ubuntu/.local/share/nvim/mason/bin/pyright-langserver",
+    home .. "/.local/share/nvim/mason/bin/pyright-langserver",
     "--stdio",
   },
   filetype = { "python", },

@@ -144,7 +144,7 @@ M.which_key = {
   { "<leader>ff", function ()
     require("telescope.builtin").find_files({
     find_command = {
-      "fdfind",
+      "fd",
       "-t",
       "f"
     }})
@@ -152,7 +152,7 @@ M.which_key = {
   { "<leader>fF", function()
     require("telescope.builtin").find_files({
       find_command = {
-        "fdfind",
+        "fd",
         "-H",
         "-I",
         "-t",
