@@ -224,39 +224,39 @@ M.which_key = {
   { "<leader>fm", "<cmd>Telescope bookmarks list<CR>", desc = "show current file bookmarks", mode = { "n" } },
 
   -- m: bookmark
-  { "m",          group = "bookmark" },
-  {
-    "mm",
-    function()
-      require('bookmarks').bookmark_toggle()
-    end,
-    desc = "bookmark",
-    mode = { "n" }
-  },
-  {
-    "mi",
-    function()
-      require('bookmarks').bookmark_ann()
-    end,
-    desc = "bookmark with annoate",
-    mode = { "n" }
-  },
-  {
-    "mc",
-    function()
-      require('bookmarks').bookmark_clean()
-    end,
-    desc = "clean buffer bookmarks",
-    mode = { "n" }
-  },
-  {
-    "mC",
-    function()
-      require('bookmarks').bookmark_clear_all()
-    end,
-    desc = "clean all bookmarks",
-    mode = { "n" }
-  },
+  -- { "m",          group = "bookmark" },
+  -- {
+  --   "mm",
+  --   function()
+  --     require('bookmarks').bookmark_toggle()
+  --   end,
+  --   desc = "bookmark",
+  --   mode = { "n" }
+  -- },
+  -- {
+  --   "mi",
+  --   function()
+  --     require('bookmarks').bookmark_ann()
+  --   end,
+  --   desc = "bookmark with annoate",
+  --   mode = { "n" }
+  -- },
+  -- {
+  --   "mc",
+  --   function()
+  --     require('bookmarks').bookmark_clean()
+  --   end,
+  --   desc = "clean buffer bookmarks",
+  --   mode = { "n" }
+  -- },
+  -- {
+  --   "mC",
+  --   function()
+  --     require('bookmarks').bookmark_clear_all()
+  --   end,
+  --   desc = "clean all bookmarks",
+  --   mode = { "n" }
+  -- },
 
   -- g: goto
   { "g",  group = "goto" },

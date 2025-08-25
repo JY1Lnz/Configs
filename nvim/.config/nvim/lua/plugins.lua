@@ -17,7 +17,7 @@ return {
   {
     "jy1lnz/onedark.nvim",
     version = "main",
-    config = function ()
+    config = function()
       require("onedark").setup({
         -- transparent = true,
       })
@@ -213,7 +213,7 @@ return {
     event = "VeryLazy",
     main = "ibl",
     opts = {},
-    config = function ()
+    config = function()
       require("configs/blankline")
     end
   },
@@ -231,6 +231,10 @@ return {
     dependencies = {
       "p00f/nvim-ts-rainbow",
       "nvim-treesitter/nvim-treesitter-textobjects",
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      'windwp/nvim-ts-autotag',
+      'andymass/vim-matchup',
+      'mfussenegger/nvim-treehopper',
     }
   },
   -- outline
@@ -239,8 +243,8 @@ return {
     opts = {},
     -- Optional dependencies
     dependencies = {
-       "nvim-treesitter/nvim-treesitter",
-       "nvim-tree/nvim-web-devicons"
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
     },
     config = function()
       require("configs/aerial")
@@ -294,7 +298,7 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "<C-s>", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
+      { "<C-s>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     },
   },
   {
@@ -354,7 +358,7 @@ return {
         end,
         -- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
         -- virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
-         virt_text_pos = 'inline',
+        virt_text_pos = 'inline',
         -- virt_text_pos = 'eol',
 
         -- experimental features:
@@ -381,7 +385,7 @@ return {
   -- vim.keymap.set("n", "Key", function()
   --   action
   --   vim.fn["repeat#set"]("DotRepeat${NAME}", vim.v.count)
-  --   
+  --
   -- end)
   {
     "tpope/vim-surround",
@@ -393,47 +397,47 @@ return {
         auto_enable = true,
         auto_resize_height = true, -- highly recommended enable
         preview = {
-            win_height = 12,
-            win_vheight = 12,
-            delay_syntax = 80,
-            border = {'┏', '━', '┓', '┃', '┛', '━', '┗', '┃'},
-            show_title = false,
-            should_preview_cb = function(bufnr, qwinid)
-                local ret = true
-                local bufname = vim.api.nvim_buf_get_name(bufnr)
-                local fsize = vim.fn.getfsize(bufname)
-                if fsize > 100 * 1024 then
-                    -- skip file size greater than 100k
-                    ret = false
-                elseif bufname:match('^fugitive://') then
-                    -- skip fugitive buffer
-                    ret = false
-                end
-                return ret
+          win_height = 12,
+          win_vheight = 12,
+          delay_syntax = 80,
+          border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
+          show_title = false,
+          should_preview_cb = function(bufnr, qwinid)
+            local ret = true
+            local bufname = vim.api.nvim_buf_get_name(bufnr)
+            local fsize = vim.fn.getfsize(bufname)
+            if fsize > 100 * 1024 then
+              -- skip file size greater than 100k
+              ret = false
+            elseif bufname:match('^fugitive://') then
+              -- skip fugitive buffer
+              ret = false
             end
+            return ret
+          end
         },
         -- make `drop` and `tab drop` to become preferred
         func_map = {
-            drop = 'o',
-            openc = 'O',
-            split = '<C-s>',
-            tabdrop = '<C-t>',
-            -- set to empty string to disable
-            tabc = '',
-            ptogglemode = 'z,',
+          drop = 'o',
+          openc = 'O',
+          split = '<C-s>',
+          tabdrop = '<C-t>',
+          -- set to empty string to disable
+          tabc = '',
+          ptogglemode = 'z,',
         },
         filter = {
-            fzf = {
-                action_for = {['ctrl-s'] = 'split', ['ctrl-t'] = 'tab drop'},
-                extra_opts = {'--bind', 'ctrl-o:toggle-all', '--prompt', '> '}
-            }
+          fzf = {
+            action_for = { ['ctrl-s'] = 'split', ['ctrl-t'] = 'tab drop' },
+            extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', '> ' }
+          }
         }
-    })
+      })
     end
   },
   {
     'mfussenegger/nvim-dap-python',
-    config = function ()
+    config = function()
       require("dap-python").setup("python")
     end
   },
