@@ -30,8 +30,8 @@ return {
       ['<C-k>'] = { 'select_prev', 'fallback' },
       ['<C-j>'] = { 'select_next', 'fallback' },
       ['<Tab>'] = { 'accept', 'fallback' },
-      ['<C-u>'] = { function(cmp) cmp.show({}) end },
-      ['<C-c>'] = { 'show_signature', 'hide_signature', 'fallback' },
+      ['<C-c>'] = { function(cmp) cmp.show({}) end },
+      -- ['<C-c>'] = { 'show_signature', 'hide_signature', 'fallback' },
     },
 
     appearance = {

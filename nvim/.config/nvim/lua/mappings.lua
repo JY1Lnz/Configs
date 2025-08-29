@@ -191,9 +191,9 @@ wk.add({
   -- git signs
   { "<leader>grb", "<cmd>Gitsigns reset_buffer",                                              desc = "git reset buffer",     mode = { "n" } },
   { "<leader>grh", "<cmd>Gitsigns reset_hunk",                                                desc = "git reset hunk",       mode = { "n" } },
-  { "<leader>gg",  "<cmd>LazyGit<CR>",                                                        desc = "LazyGit",              mode = { "n" } },
-  { "<leader>gb",  "<cmd>Telescope git_branches<CR>",                                         desc = "git branch",           mode = { "n" } },
-  { "<leader>gs",  "<cmd>Telescope git_status<CR>",                                           desc = "git status",           mode = { "n" } },
+  -- { "<leader>gg",  "<cmd>LazyGit<CR>",                                                        desc = "LazyGit",              mode = { "n" } },
+  -- { "<leader>gb",  "<cmd>Telescope git_branches<CR>",                                         desc = "git branch",           mode = { "n" } },
+  -- { "<leader>gs",  "<cmd>Telescope git_status<CR>",                                           desc = "git status",           mode = { "n" } },
   { "<leader>gl",  "<cmd>lua require 'gitsigns'.blame_line()<CR>",                            desc = "git line blame",       mode = { "n" } },
   { "[g",          RegisterDotRepeatCmd("lua require 'gitsigns'.prev_hunk()", "GitPrevHunk"), desc = "git prev hunk",        mode = { "n" } },
   { "]g",          RegisterDotRepeatCmd("lua require 'gitsigns'.next_hunk()", "GitNextHunk"), desc = "git next hunk",        mode = { "n" } },
@@ -554,15 +554,6 @@ M.which_key = {
   { "<leader>te",  "<cmd>Trouble diagnostics filter = { severity=vim.diagnostic.severity.ERROR }<CR>", desc = "buffer error",       mode = { "n" } },
 
   -- git
-  { "<leader>grb", "<cmd>Gitsigns reset_buffer",                                                       desc = "git reset buffer",   mode = { "n" } },
-  { "<leader>grh", "<cmd>Gitsigns reset_hunk",                                                         desc = "git reset hunk",     mode = { "n" } },
-  { "<leader>gg",  "<cmd>LazyGit<CR>",                                                                 desc = "LazyGit",            mode = { "n" } },
-  { "<leader>gb",  "<cmd>Telescope git_branches<CR>",                                                  desc = "git branch",         mode = { "n" } },
-  { "<leader>gs",  "<cmd>Telescope git_status<CR>",                                                    desc = "git status",         mode = { "n" } },
-  { "<leader>gl",  "<cmd>lua require 'gitsigns'.blame_line()<CR>",                                     desc = "git line blame",     mode = { "n" } },
-  { "[g",          RegisterDotRepeatCmd("lua require 'gitsigns'.prev_hunk()", "GitPrevHunk"),          desc = "git prev hunk",      mode = { "n" } },
-  { "]g",          RegisterDotRepeatCmd("lua require 'gitsigns'.next_hunk()", "GitNextHunk"),          desc = "git next hunk",      mode = { "n" } },
-  { "<leader>gp",  "<cmd>lua require 'gitsigns'.preview_hunk()<CR>",                                   desc = "preview hunk",       mode = { "n" } },
 }
 
 

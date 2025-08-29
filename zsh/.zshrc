@@ -109,6 +109,7 @@ zmodload -F zsh/terminfo +p:terminfo
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # fzf-tab
 source ~/.zim/modules/fzf-tab/fzf-tab.plugin.zsh
@@ -121,3 +122,5 @@ source ~/.config/zsh/vi.zsh
 source ~/.config/zsh/al.zsh
 source ~/.config/zsh/env.zsh
 source ~/.config/zsh/map.zsh
+
+autoload -U compinit; compinit

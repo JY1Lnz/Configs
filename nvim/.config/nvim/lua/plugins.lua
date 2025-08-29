@@ -39,12 +39,15 @@ require("lazy").setup({
   require("plugins.gitsigns"),
   -- utils
   require("plugins.snacks"),
-
-
+  -- neogit
+  require("plugins.neogit"),
+  -- trouble
+  require("plugins.trouble"),
 
 
 
   -- Simple
+  { "jy1lnz/onedark.nvim" },
   { "djoshea/vim-autoread" },
   { "arkav/lualine-lsp-progress" },
   { "tpope/vim-surround" },
@@ -65,53 +68,6 @@ tmp = {
       require("onedark").setup({
         -- transparent = true,
       })
-    end
-  },
-  -- -- VCS tool invalid
-  -- -- {
-  -- --   "sindrets/diffview.nvim",
-  -- --   config = function()
-  -- --     require("configs/diffview")
-  -- --   end
-  -- -- },
-  -- {
-  --   "kdheepak/lazygit.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim"
-  --   },
-  --   config = function()
-  --     require("configs/lazygit")
-  --   end
-  -- },
-  -- lsp
-  -- indent
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   event = "VeryLazy",
-  --   main = "ibl",
-  --   opts = {},
-  --   config = function()
-  --     require("configs/blankline")
-  --   end
-  -- },
-  -- {
-  --   "windwp/nvim-autopairs",
-  --   event = "InsertEnter",
-  --   opts = {
-  --   }
-  -- },
-  -- {
-  -- auto save&load
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-    config = function()
-      require("configs/trouble")
     end
   },
   -- dap
@@ -176,9 +132,4 @@ tmp = {
       require("dap-python").setup("python")
     end
   },
-  {
-    'skywind3000/asyncrun.vim',
-    config = function()
-    end
-  }
 }

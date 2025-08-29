@@ -65,6 +65,7 @@ end
 return {
   cmd = { 'clangd' },
   filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+  single_file_support = true,
   root_markers = {
     '.clangd',
     '.clang-tidy',

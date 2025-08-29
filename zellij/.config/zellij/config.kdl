@@ -133,7 +133,7 @@ keybinds {
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
-        bind "Ctrl u" { Write 2; SwitchToMode "Normal"; }
+        bind "Ctrl z" { Write 2; SwitchToMode "Normal"; }
         bind "d" { NewPane "Down"; SwitchToMode "Locked"; }
         bind "r" { NewPane "Right"; SwitchToMode "Locked"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "Locked"; }
@@ -181,7 +181,7 @@ keybinds {
         bind "Ctrl h" { SwitchToMode "Move"; }
     }
     shared_except "tmux" {
-        bind "Ctrl u" { SwitchToMode "Tmux"; }
+        bind "Ctrl z" { SwitchToMode "Tmux"; }
     }
     shared {
         bind "Ctrl d" {}

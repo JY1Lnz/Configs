@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("basic")
 require("plugins")
+require("auto")
 require("colorscheme")
 require("mappings")
 require("highlight")
