@@ -5,6 +5,9 @@
 -- vim.bo.{option} 	: buffer-local option
 -- vim.wo.{option} 	: window-local option
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- utf-8
 vim.g.encoding = "UTF-8"
 vim.g.fileencoding = "utf-8"
@@ -46,7 +49,7 @@ vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.o.smartindent = true
 
--- serach 
+-- serach
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- vim.o.hlsearch = false
@@ -73,7 +76,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- cmp
-vim.g.completeopt = "menu,menuone,noselect,noinsert"
+-- vim.g.completeopt = "menu,menuone,noselect,noinsert"
 
 -- vim.o.list = true
 -- vim.o.listchars = "space:·"

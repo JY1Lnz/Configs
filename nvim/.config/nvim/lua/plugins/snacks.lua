@@ -1,0 +1,17 @@
+return {
+  "folke/snacks.nvim",
+  opts = {
+    indent = {
+      animate = {
+        enabled = vim.fn.has("nvim-0.10") == 1,
+        -- enabled = false,
+        style = "out",
+        easing = "linear",
+        duration = {
+          step = 20, -- ms per step
+          total = 500, -- maximum duration
+        },
+      },
+    }
+  }
+}
