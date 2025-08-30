@@ -52,6 +52,14 @@ local color = {
   m_green0 = '#57A64A',
   m_red0 = '#D69D85',
 }
-vim.api.nvim_set_hl(0, '@type.builtin', {
-  fg = color.m_purple1
-})
+
+highlight_list = {
+  ['@type.builtin'] = { fg = color.m_purple1 },
+  ['LspInlayHint'] = { link = 'Comment' },
+  ['BlinkCmpGhostText'] = { link = 'Comment' },
+
+}
+
+for type, c in pairs(highlight_list) do
+  vim.api.nvim_set_hl(0, type, c)
+end

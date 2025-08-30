@@ -106,10 +106,11 @@ wk.add({
   { "<leader>k",        "<cmd>lua require('hover').hover()<CR>", desc = "hover",             mode = { "n" } },
   -- { "<leader>K",  "<cmd>lua require('dapui').eval()<CR>",  desc = "eval hover",  mode = { "n" } },
   -- Find FzfLua
-  { "<leader><leader>", ":FzfLua buffers<CR>",                   desc = "Find buffers",      mode = { "n" } },
-  { "<leader>ff",       ":FzfLua files<CR>",                     desc = "Find files",        mode = { "n" } },
-  { "<leader>fgg",      ":FzfLua grep<CR>",                      desc = "Fzf grep",          mode = { "n" } },
-  { "<leader>fgq",      ":FzfLua qrep_quickfix<CR>",             desc = "Fzf grep quickfix", mode = { "n" } },
+  { "<leader><leader>", ":FzfLua buffers<CR>",                   desc = "Find buffers",      mode = { "n" },  noremap = true, },
+  { "<leader>ff",       ":FzfLua files<CR>",                     desc = "Find files",        mode = { "n" },  noremap = true, },
+  { "<leader>fgg",      ":FzfLua grep<CR>",                      desc = "Fzf grep",          mode = { "n" },  noremap = true, },
+  { "<leader>fgq",      ":FzfLua qrep_quickfix<CR>",             desc = "Fzf grep quickfix", mode = { "n" },  noremap = true, },
+  { "<leader>fw",       ":FzfLua live_grep<CR>",                 desc = "Fzf live grep",     mode = { "n" },  noremap = true, },
 
   -- QuickFix
   {
@@ -259,7 +260,7 @@ wk.add({
   --   end,
   --   desc = "show repl",
   --   mode = { "n" }
-  -- }, 
+  -- },
   -- {
   --   "<leader>de",
   --   function()
@@ -339,18 +340,18 @@ M.which_key = {
     mode = { "n" }
   },
 
-  { "gst",        "<cmd>lua vim.lsp.buf.typehierarchy('subtypes')<CR>",              desc = "subtypes",                   mode = { "n", "v" } },
-  { "gsT",        "<cmd>lua vim.lsp.buf.typehierarchy('supertypes')<CR>",            desc = "subtypes",                   mode = { "n", "v" } },
+  { "gst",        "<cmd>lua vim.lsp.buf.typehierarchy('subtypes')<CR>",   desc = "subtypes",                mode = { "n", "v" } },
+  { "gsT",        "<cmd>lua vim.lsp.buf.typehierarchy('supertypes')<CR>", desc = "subtypes",                mode = { "n", "v" } },
 
   -- diagnostic
-  { "[d",         "<cmd>Lspsaga diagnostic_jump_prev<CR>",                           desc = "goto prev diagnostic",       mode = { "n" } },
-  { "]d",         "<cmd>Lspsaga diagnostic_jump_next<CR>",                           desc = "goto next diagnostic",       mode = { "n" } },
+  { "[d",         "<cmd>Lspsaga diagnostic_jump_prev<CR>",                desc = "goto prev diagnostic",    mode = { "n" } },
+  { "]d",         "<cmd>Lspsaga diagnostic_jump_next<CR>",                desc = "goto next diagnostic",    mode = { "n" } },
   -- quick fix
 
 
   -- d: debug
   { "<leader>d",  group = "debug" },
-  { "<leader>dv", "<cmd>DapVirtualTextToggle<CR>",                                   desc = "Dap virtual text toggle",    mode = { "n" } },
+  { "<leader>dv", "<cmd>DapVirtualTextToggle<CR>",                        desc = "Dap virtual text toggle", mode = { "n" } },
   {
     "<leader>ds",
     function()
