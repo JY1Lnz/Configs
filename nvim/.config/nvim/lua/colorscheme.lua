@@ -1,5 +1,6 @@
 local colorscheme = "catppuccin-mocha"
--- local status, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+-- local colorscheme = "onedard"
+local status, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 
 -- if not status then
 --   vim.notify("colorscheme " .. colorscheme .. "not found")
