@@ -32,7 +32,7 @@ require("lazy").setup({
   -- pairs
   require("plugins.pairs"),
   -- lsp saga
-  -- require("plugins.lsp-saga"),
+  require("plugins.lsp-saga"),
   -- hover
   require("plugins.hover"),
   -- git
@@ -44,9 +44,8 @@ require("lazy").setup({
   -- trouble
   require("plugins.trouble"),
 
-
-
   -- Simple
+  { 'junegunn/fzf' },
   { "jy1lnz/onedark.nvim" },
   { "djoshea/vim-autoread" },
   { "arkav/lualine-lsp-progress" },
