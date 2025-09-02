@@ -1,10 +1,10 @@
-local colorscheme = "onedark"
-local status, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local colorscheme = "catppuccin-mocha"
+-- local status, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 
-if not status then
-  vim.notify("colorscheme " .. colorscheme .. "not found")
-  return
-end
+-- if not status then
+--   vim.notify("colorscheme " .. colorscheme .. "not found")
+--   return
+-- end
 
 local color = {
   none = 'NONE',
@@ -59,11 +59,14 @@ highlight_list = {
   ['BlinkCmpGhostText'] = { link = 'Comment' },
   ['@lsp.type.class.cpp'] = { fg = color.m_yellow0, bold = true },
   ['@property.cpp'] = { italic = true },
-  ['PmenuSel'] = { fg='#1E1E1E', bg = '#5E5E5E' }
+  ['PmenuSel'] = { fg = '#1E1E1E', bg = '#5E5E5E' },
   -- ['Pmenu'] = { fg = '#abb2bf', bg = '#2E2E2E' },
-  -- ['NormalFloat'] = { fg = '#abb2bf', bg = '#2E2E2E' }
+  -- ['NormalFloat'] = { fg = '#abb2bf', bg = '#2E2E2E' },
+  ['FloatBorder'] = { fg = '#abb2bf', bg = '#1E1E1E' },
+  ['BqfPreviewFloat'] = { fg = '#abb2bf', bg = '#1E1E1E' }
 }
 
-for type, c in pairs(highlight_list) do
-  vim.api.nvim_set_hl(0, type, c)
-end
+-- for type, c in pairs(highlight_list) do
+--   vim.api.nvim_set_hl(0, type, c)
+-- end
+

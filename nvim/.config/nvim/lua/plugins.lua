@@ -44,8 +44,11 @@ require("lazy").setup({
   -- trouble
   require("plugins.trouble"),
 
+  -- color scheme
+  require("plugins.catppuccin"),
+
   -- Simple
-  { 'junegunn/fzf' },
+  { "junegunn/fzf" },
   { "jy1lnz/onedark.nvim" },
   { "djoshea/vim-autoread" },
   { "arkav/lualine-lsp-progress" },
