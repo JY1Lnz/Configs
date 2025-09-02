@@ -32,7 +32,7 @@ require("lazy").setup({
   -- pairs
   require("plugins.pairs"),
   -- lsp saga
-  require("plugins.lsp-saga"),
+  -- require("plugins.lsp-saga"),
   -- hover
   require("plugins.hover"),
   -- git

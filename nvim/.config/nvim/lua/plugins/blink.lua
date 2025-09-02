@@ -73,7 +73,7 @@ return {
         },
 
       },
-      menu = { auto_show = true, border = 'single' },
+      menu = { auto_show = true },
       ghost_text = {
         enabled = false,
         show_with_menu = false,

@@ -90,5 +90,5 @@ vim.opt.exrc = true
 vim.o.grepprg = "rg --vimgrep --smart-case --hidden"
 vim.o.grepformat = "%f:%l:%c:%m"
 
-vim.o.winborder = 'single'
+vim.o.winborder = 'rounded'
 

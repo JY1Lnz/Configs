@@ -58,7 +58,10 @@ highlight_list = {
   ['LspInlayHint'] = { link = 'Comment' },
   ['BlinkCmpGhostText'] = { link = 'Comment' },
   ['@lsp.type.class.cpp'] = { fg = color.m_yellow0, bold = true },
-  ['@property.cpp'] = { italic = true }
+  ['@property.cpp'] = { italic = true },
+  ['PmenuSel'] = { fg='#1E1E1E', bg = '#5E5E5E' }
+  -- ['Pmenu'] = { fg = '#abb2bf', bg = '#2E2E2E' },
+  -- ['NormalFloat'] = { fg = '#abb2bf', bg = '#2E2E2E' }
 }
 
 for type, c in pairs(highlight_list) do
