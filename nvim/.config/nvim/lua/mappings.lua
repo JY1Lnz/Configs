@@ -192,8 +192,8 @@ wk.add({
   { "]d",          "<cmd>Lspsaga diagnostic_jump_next<CR>",                                   desc = "goto next diagnostic", mode = { "n" } },
 
   -- git signs
-  { "<leader>grb", "<cmd>Gitsigns reset_buffer",                                              desc = "git reset buffer",     mode = { "n" } },
-  { "<leader>grh", "<cmd>Gitsigns reset_hunk",                                                desc = "git reset hunk",       mode = { "n" } },
+  { "<leader>grb", "<cmd>Gitsigns reset_buffer<CR>",                                              desc = "git reset buffer",     mode = { "n" } },
+  { "<leader>grh", "<cmd>Gitsigns reset_hunk<CR>",                                                desc = "git reset hunk",       mode = { "n" } },
   -- { "<leader>gg",  "<cmd>LazyGit<CR>",                                                        desc = "LazyGit",              mode = { "n" } },
   -- { "<leader>gb",  "<cmd>Telescope git_branches<CR>",                                         desc = "git branch",           mode = { "n" } },
   -- { "<leader>gs",  "<cmd>Telescope git_status<CR>",                                           desc = "git status",           mode = { "n" } },

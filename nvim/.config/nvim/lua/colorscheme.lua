@@ -57,7 +57,8 @@ highlight_list = {
   ['@type.builtin'] = { fg = color.m_purple1 },
   ['LspInlayHint'] = { link = 'Comment' },
   ['BlinkCmpGhostText'] = { link = 'Comment' },
-
+  ['@lsp.type.class.cpp'] = { fg = color.m_yellow0, bold = true },
+  ['@property.cpp'] = { italic = true }
 }
 
 for type, c in pairs(highlight_list) do
