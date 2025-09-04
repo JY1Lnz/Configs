@@ -18,6 +18,7 @@ require("plugins")
 -- require("auto")
 require("colorscheme")
 require("mappings")
+require("commands")
 -- require("highlight")
 
 --- lazy.nvim end
