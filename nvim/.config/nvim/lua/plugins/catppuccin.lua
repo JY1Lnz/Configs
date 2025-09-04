@@ -61,6 +61,11 @@ return {
   config = function()
     local mocha = require("catppuccin.palettes").get_palette "mocha"
     require("catppuccin").setup({
+      dim_inactive = {
+        enabled = false,   -- dims the background color of inactive window
+        shade = "dark",
+        percentage = 0.15, -- percentage of the shade to apply to the inactive window
+      },
       color_overrides = {
         all = {
           base = color.black0
@@ -85,6 +90,8 @@ return {
             ['Property'] = { fg = color.brown0, italic = true },
             ['ConstVariable'] = { fg = color.brown0 },
             ['ConstProperty'] = { fg = color.brown0, italic = true, underline = true },
+            ['WinSeparator'] = { link = 'FloatBorder' },
+            ['ToggleTerm1FloatBorder'] = { link = 'FloatBorder' },
             -- ['StaticVariable'] = { fg = color.white0 },
             -- ['StaticProperty'] = { fg = color.white0 },
 

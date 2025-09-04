@@ -33,8 +33,8 @@ wk.add({
   -- buffer line keymap
   -- { "[b",         ":BufferLineCyclePrev<CR>",         mode = { "n" },            noremap = true,      silent = true },
   -- { "]b",         ":BufferLineCycleNext<CR>",         mode = { "n" },            noremap = true,      silent = true },
-  { "<C-h>",         ":BufferLineCyclePrev<CR>",         mode = { "n" },            noremap = true,      silent = true },
-  { "<C-l>",         ":BufferLineCycleNext<CR>",         mode = { "n" },            noremap = true,      silent = true },
+  { "<C-h>",      ":BufferLineCyclePrev<CR>",         mode = { "n" },            noremap = true,      silent = true },
+  { "<C-l>",      ":BufferLineCycleNext<CR>",         mode = { "n" },            noremap = true,      silent = true },
 
   { "<leader>sv", "<cmd>vsp<CR>",                     desc = "vertical split",   mode = { "n" } },
   { "<leader>sh", "<cmd>sp<CR>",                      desc = "horizontal split", mode = { "n" } },
@@ -65,6 +65,7 @@ wk.add({
     noremap = true,
     silent = true
   },
+  { "<Esc>",            "<C-\\><C-n>",                           noremap = true,             silent = true,  mode = { "t" } },
   -- flash
   {
     "<leader>l",
@@ -108,11 +109,11 @@ wk.add({
   { "<leader>k",        "<cmd>lua require('hover').hover()<CR>", desc = "hover",             mode = { "n" } },
   -- { "<leader>K",  "<cmd>lua require('dapui').eval()<CR>",  desc = "eval hover",  mode = { "n" } },
   -- Find FzfLua
-  { "<leader><leader>", ":FzfLua buffers<CR>",                   desc = "Find buffers",      mode = { "n" },  noremap = true, },
-  { "<leader>ff",       ":FzfLua files<CR>",                     desc = "Find files",        mode = { "n" },  noremap = true, },
-  { "<leader>fgg",      ":FzfLua grep<CR>",                      desc = "Fzf grep",          mode = { "n" },  noremap = true, },
-  { "<leader>fgq",      ":FzfLua qrep_quickfix<CR>",             desc = "Fzf grep quickfix", mode = { "n" },  noremap = true, },
-  { "<leader>fw",       ":FzfLua live_grep<CR>",                 desc = "Fzf live grep",     mode = { "n" },  noremap = true, },
+  { "<leader><leader>", ":FzfLua buffers<CR>",                   desc = "Find buffers",      mode = { "n" }, noremap = true, },
+  { "<leader>ff",       ":FzfLua files<CR>",                     desc = "Find files",        mode = { "n" }, noremap = true, },
+  { "<leader>fgg",      ":FzfLua grep<CR>",                      desc = "Fzf grep",          mode = { "n" }, noremap = true, },
+  { "<leader>fgq",      ":FzfLua qrep_quickfix<CR>",             desc = "Fzf grep quickfix", mode = { "n" }, noremap = true, },
+  { "<leader>fw",       ":FzfLua live_grep<CR>",                 desc = "Fzf live grep",     mode = { "n" }, noremap = true, },
 
   -- QuickFix
   {
@@ -192,8 +193,8 @@ wk.add({
   { "]d",          "<cmd>Lspsaga diagnostic_jump_next<CR>",                                   desc = "goto next diagnostic", mode = { "n" } },
 
   -- git signs
-  { "<leader>grb", "<cmd>Gitsigns reset_buffer<CR>",                                              desc = "git reset buffer",     mode = { "n" } },
-  { "<leader>grh", "<cmd>Gitsigns reset_hunk<CR>",                                                desc = "git reset hunk",       mode = { "n" } },
+  { "<leader>grb", "<cmd>Gitsigns reset_buffer<CR>",                                          desc = "git reset buffer",     mode = { "n" } },
+  { "<leader>grh", "<cmd>Gitsigns reset_hunk<CR>",                                            desc = "git reset hunk",       mode = { "n" } },
   -- { "<leader>gg",  "<cmd>LazyGit<CR>",                                                        desc = "LazyGit",              mode = { "n" } },
   -- { "<leader>gb",  "<cmd>Telescope git_branches<CR>",                                         desc = "git branch",           mode = { "n" } },
   -- { "<leader>gs",  "<cmd>Telescope git_status<CR>",                                           desc = "git status",           mode = { "n" } },
@@ -209,7 +210,7 @@ wk.add({
   { "gl",          "(v:count == 0 || v:count == 1 ? '^$' : '^$' . (v:count - 1) . 'h')",      desc = "Move to right.",       mode = { "n", "v", }, silent = true, expr = true },
   { "gd",          "<cmd>Lspsaga goto_definition<CR>",                                        desc = "goto definition",      mode = { "n" } },
   { "gD",          "<cmd>Lspsaga peek_definition<CR>",                                        desc = "peek definition",      mode = { "n" } },
-  { "gr",          "<cmd>Lspsaga finder<CR>",                                   desc = "goto reference",       mode = { "n", "v" } },
+  { "gr",          "<cmd>Lspsaga finder<CR>",                                                 desc = "goto reference",       mode = { "n", "v" } },
   -- { "gk",         "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "signature",                   mode = { "n" } },
   -- { "gs",         "<cmd>Lspsaga show_line_diagnostics<CR>",    desc = "show line diga",              mode = { "n" } },
   -- { "gK",         "<cmd>lua require('hover').hover()<CR>",     desc = "hove",                        mode = { "n" } },
