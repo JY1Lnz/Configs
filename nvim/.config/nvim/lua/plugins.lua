@@ -54,7 +54,8 @@ require("lazy").setup({
   { "arkav/lualine-lsp-progress" },
   { "tpope/vim-surround" },
   { "tpope/vim-repeat" },
-  { 'skywind3000/asyncrun.vim' }
+  { 'skywind3000/asyncrun.vim' },
+  { 'skywind3000/asynctasks.vim' },
 })
 
 tmp = {
