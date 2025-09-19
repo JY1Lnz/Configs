@@ -114,6 +114,7 @@ wk.add({
   { "<leader>fgg",      ":FzfLua grep<CR>",                      desc = "Fzf grep",          mode = { "n" }, noremap = true, },
   { "<leader>fgq",      ":FzfLua qrep_quickfix<CR>",             desc = "Fzf grep quickfix", mode = { "n" }, noremap = true, },
   { "<leader>fw",       ":FzfLua live_grep<CR>",                 desc = "Fzf live grep",     mode = { "n" }, noremap = true, },
+  { "<leader>f",        ":FzfLua grep_visual<CR>",               desc = "Fzf select",        mode = { "v" }, noremap = true, silent = true },
 
   -- QuickFix
   {

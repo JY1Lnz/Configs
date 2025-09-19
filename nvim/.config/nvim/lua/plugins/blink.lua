@@ -31,6 +31,8 @@ return {
       ['<C-j>'] = { 'select_next', 'fallback' },
       ['<Tab>'] = { 'accept', 'fallback' },
       ['<C-c>'] = { function(cmp) cmp.show({}) end },
+      ['<C-l>'] = { 'snippet_forward', 'fallback' },
+      ['<C-h>'] = { 'snippet_backward', 'fallback' },
       -- ['<C-c>'] = { 'show_signature', 'hide_signature', 'fallback' },
     },
 
