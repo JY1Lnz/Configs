@@ -125,4 +125,4 @@ source ~/.config/zsh/map.zsh
 
 autoload -U compinit; compinit
 
-[ -f ~/.tmp_env.zsh ]source ~/.tmp_env.zsh
+[ -f ~/.tmp_env.zsh ] && source ~/.tmp_env.zsh
