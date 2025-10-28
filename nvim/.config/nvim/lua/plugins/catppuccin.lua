@@ -70,11 +70,58 @@ return {
       },
       color_overrides = {
         all = {
-          base = color.black0
+          base = color.black0,
+          -- blue = "#00FF00",
         }
       },
+      custom_highlights = function(colors)
+        return {
+            ['Type'] = { fg = color.yellow0 },
+            ['Keyword'] = { fg = color.orange0, bold = true },
+            ['Function'] = { fg = color.orange1 },
+            ['Method'] = { fg = color.orange1, italic = true },
+            ['Structure'] = { fg = color.yellow0, bold = true },
+            ['Namespace'] = { fg = color.yellow0, bold = true, underline = true },
+            ['Exception'] = { fg = color.purple0, bold = true },
+            ['Conditional'] = { fg = color.purple0 },
+            ['Macro'] = { fg = color.purple1, bold = true },
+            ['Operator'] = { fg = color.purple0 },
+            ['Enum'] = { fg = color.blue0, bold = true },
+            ['EnumMember'] = { fg = color.blue1, bold = true },
+            -- ['String'] = { fg = color.brown0 },
+            ['Number'] = { fg = color.brown0 },
+            ['Variable'] = { fg = color.white0 },
+            ['ParameterVariable'] = { fg = color.brown0 },
+            ['Property'] = { fg = color.brown0, italic = true },
+            ['ConstVariable'] = { fg = color.brown0 },
+            ['ConstProperty'] = { fg = color.brown0, italic = true, underline = true },
+            ['WinSeparator'] = { link = 'FloatBorder' },
+            ['ToggleTerm1FloatBorder'] = { link = 'FloatBorder' },
+            -- ['StaticVariable'] = { fg = color.white0 },
+            -- ['StaticProperty'] = { fg = color.white0 },
+
+            ['@type.builtin.cpp'] = { fg = color.yellow0 },
+            ['@Keyword.return'] = { link = 'Keyword' },
+            ['@keyword.import.cpp'] = { fg = color.purple0 },
+            ['@module'] = { link = 'Namespace' },
+            ['@property'] = { link = 'Property' },
+
+            ['@variable.parameter'] = { link = 'ParameterVariable' },
+
+            ['@lsp.type.class.cpp'] = { link = 'Structure' },
+            ['@lsp.type.namespace.cpp'] = { link = 'Namespace' },
+            ['@lsp.type.method.cpp'] = { link = 'Method' },
+            ['@lsp.mod.readonly.cpp'] = { bold = true },
+            ['@lsp.mod.static.cpp'] = { underline = true },
+            ['@lsp.mod.fileScope.cpp'] = { underline = true },
+            ['@lsp.type.enumMember'] = { link = 'EnumMember' },
+            ['@lsp.type.enum.cpp'] = { link = 'Enum' },
+
+            -- other
+        }
+      end,
       highlight_overrides = {
-        all = function(colors)
+        all = function()
           return {
             ['Type'] = { fg = color.yellow0 },
             ['Keyword'] = { fg = color.orange0, bold = true },
@@ -116,6 +163,8 @@ return {
             ['@lsp.mod.fileScope.cpp'] = { underline = true },
             ['@lsp.type.enumMember'] = { link = 'EnumMember' },
             ['@lsp.type.enum.cpp'] = { link = 'Enum' },
+
+            -- other
           }
         end
       }

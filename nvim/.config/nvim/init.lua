@@ -138,3 +138,7 @@ require("commands")
 --
 --
 -- vim.api.nvim_set_hl(0, "LspInlayHint", { fg='#fff3b7'})
+
+-- final override hightlight
+
+-- vim.api.nvim_set_hl(0, "lualine_a_normal", { bold = true, nocombine = true, fg = "#181825", bg = "#a6e3a1" })

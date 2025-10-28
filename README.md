@@ -4,3 +4,6 @@ This is my everything configs
 
 sdf
 
+## Sync
+stow {} -t $HOME
+

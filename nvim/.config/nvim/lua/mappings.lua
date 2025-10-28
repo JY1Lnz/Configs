@@ -107,6 +107,7 @@ wk.add({
     mode = { "n", "v" }
   },
   { "<leader>k",        "<cmd>lua require('hover').hover()<CR>", desc = "hover",             mode = { "n" } },
+  { "gk",        "<cmd>lua require('hover').enter()<CR>", desc = "enter hover",             mode = { "n" } },
   -- { "<leader>K",  "<cmd>lua require('dapui').eval()<CR>",  desc = "eval hover",  mode = { "n" } },
   -- Find FzfLua
   { "<leader><leader>", ":FzfLua buffers<CR>",                   desc = "Find buffers",      mode = { "n" }, noremap = true, },
