@@ -19,6 +19,13 @@ require("plugins")
 require("colorscheme")
 require("mappings")
 require("commands")
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    -- Unmap K
+    vim.keymap.del('n', 'K', { buffer = args.buf })
+  end,
+})
 -- require("highlight")
 
 --- lazy.nvim end
